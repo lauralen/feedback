@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import cx from 'classnames'
-
-import './App.scss'
+import Header from 'layout/Header'
 
 type Theme = 'light' | 'dark'
 
@@ -9,19 +8,20 @@ function App() {
   const [theme, setTheme] = useState<Theme>('light')
 
   return (
-    <div>
-      <div
-        className={cx({
-          'theme-light': theme === 'light',
-          'theme-dark': theme === 'dark',
-        })}
-      >
-        <div className="App">App</div>
-      </div>
+    <div
+      className={cx({
+        'theme-light': theme === 'light',
+        'theme-dark': theme === 'dark',
+      })}
+    >
+      <Header>
+        <h1>Where in the world?</h1>
+        <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+          Toggle theme
+        </button>
+      </Header>
 
-      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-        Toggle theme
-      </button>
+      <div className="App">App</div>
     </div>
   )
 }

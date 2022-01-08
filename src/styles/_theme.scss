@@ -2,10 +2,12 @@
 
 $themes: (
   light: (
-    color: $color-darkgrey,
+    color: $color-blue,
+    backgroundColor: $color-white,
   ),
   dark: (
     color: $color-lightgrey,
+    backgroundColor: $color-blue,
   ),
 );
 

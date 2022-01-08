@@ -1,0 +1,27 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+@import 'styles/theme';
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 2rem;
+  font-size: 1rem;
+  font-weight: $font-weight-bold;
+  box-shadow: $shadow;
+
+  @include themify($themes) {
+    color: themed('color');
+    background-color: themed('backgroundColor');
+  }
+
+  @include respond-tablet {
+    font-size: 1.3rem;
+    padding: 3rem 5rem;
+  }
+
+  @include respond-desktop {
+    padding: 3rem 10rem;
+  }
+}
