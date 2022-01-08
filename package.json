@@ -23,7 +23,15 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:fix": "yarn eslint --fix src"
+    "compile": "tsc --noEmit",
+    "lint:fix": "yarn eslint --fix src",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "{src,cypress}/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ],
+    "{src,cypress}/**/*.{js,jsx,ts,tsx}": "eslint --fix"
   },
   "eslintConfig": {
     "root": true,
@@ -113,6 +121,8 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.1.3",
     "prettier": "^2.5.1"
   }
 }
