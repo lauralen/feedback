@@ -22,10 +22,80 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:fix": "yarn eslint --fix src"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "root": true,
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "env": {
+      "es6": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "simple-import-sort"
+    ],
+    "extends": [
+      "react-app",
+      "plugin:prettier/recommended"
+    ],
+    "rules": {
+      "simple-import-sort/imports": [
+        "warn",
+        {
+          "groups": [
+            [
+              "^react",
+              "^@?\\w"
+            ],
+            [
+              "^common",
+              "^auth",
+              "^features"
+            ],
+            [
+              "^\\u0000"
+            ],
+            [
+              "^\\.\\.(?!/?$)",
+              "^\\.\\./?$"
+            ],
+            [
+              "^\\./(?=.*/)(?!/?$)",
+              "^\\.(?!/?$)",
+              "^\\./?$"
+            ],
+            [
+              "^.+\\.s?css$"
+            ]
+          ]
+        }
+      ],
+      "no-console": 1,
+      "require-atomic-updates": 1,
+      "linebreak-style": [
+        0,
+        "unix"
+      ],
+      "prefer-template": 1,
+      "react/jsx-key": [
+        2,
+        {
+          "checkFragmentShorthand": true
+        }
+      ],
+      "prefer-object-spread": 1,
+      "curly": "warn",
+      "max-lines": [
+        1,
+        {
+          "skipBlankLines": true
+        }
+      ],
+      "react/jsx-curly-brace-presence": 1
+    }
   },
   "browserslist": {
     "production": [
@@ -38,5 +108,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.5.1"
   }
 }

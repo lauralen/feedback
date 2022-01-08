@@ -1,7 +1,9 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from 'react'
+
+import { Counter } from './features/counter/Counter'
+import logo from './logo.svg'
+
+import './App.css'
 
 function App() {
   return (
@@ -52,7 +54,7 @@ function App() {
         </span>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
