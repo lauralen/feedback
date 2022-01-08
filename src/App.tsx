@@ -2,6 +2,8 @@ import { useState } from 'react'
 import cx from 'classnames'
 import Header from 'layout/Header'
 
+import Countries from 'features/countries/Countries'
+
 type Theme = 'light' | 'dark'
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
         </button>
       </Header>
 
-      <div className="App">App</div>
+      <Countries />
     </div>
   )
 }
