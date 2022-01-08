@@ -1,0 +1,39 @@
+@import './variables';
+@import './mixins';
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+
+  @include respond-desktop {
+    font-size: 80%;
+  }
+}
+
+body {
+  box-sizing: border-box;
+  font-family: $font-main;
+  font-size: $font-size-default;
+  font-weight: $font-weight-default;
+  color: $color-blue;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
