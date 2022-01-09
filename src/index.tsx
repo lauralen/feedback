@@ -8,6 +8,11 @@ import * as serviceWorker from './serviceWorker'
 
 import 'styles/index.scss'
 
+if (process.env.REACT_APP_ENABLE_MOCKS) {
+  const { worker } = require('./mocks/browser')
+  worker.start({ onUnhandledRequest: 'bypass' })
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
