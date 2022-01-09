@@ -7,6 +7,10 @@ export async function fetchCountries(): Promise<CountriesResponse> {
     query Countries {
       countries {
         name
+        continent {
+          name
+        }
+        native
       }
     }
   `
