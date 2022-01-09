@@ -11,16 +11,19 @@ export async function fetchCountries(): Promise<CountriesResponse> {
     }
   `
 
-  const response = await fetch('https://countries.trevorblades.com/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({
-      query,
-    }),
-  })
+  const response = await fetch(
+    process.env.REACT_APP_GRAPHQL_ENDPOINT as string,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+      }),
+    }
+  )
 
   return await response.json()
 }
