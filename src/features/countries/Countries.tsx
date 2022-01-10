@@ -15,11 +15,10 @@ function Countries() {
   return (
     <>
       <h2>Countries</h2>
-
       {
         {
           loading: 'Loading...',
-          error: 'Error',
+          failed: 'Error',
           idle: (
             <ul>
               {countries.map(({ name }) => {
