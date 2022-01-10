@@ -8,8 +8,8 @@ describe('CountryCard', () => {
       <CountryCard
         data={{
           name: 'Lithuania',
-          continent: { name: 'Europe' },
-          native: 'Lietuva',
+          continent: 'Europe',
+          nativeName: 'Lietuva',
         }}
       />
     )

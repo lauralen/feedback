@@ -1,11 +1,17 @@
-export interface Country {
+export interface ResponseCountry {
   name: string
   continent: { name: string }
   native: string
 }
 
+export interface Country {
+  name: string
+  continent: string
+  nativeName: string
+}
+
 export interface CountriesData {
-  countries: Country[]
+  countries: ResponseCountry[]
 }
 
 export interface CountriesResponse {

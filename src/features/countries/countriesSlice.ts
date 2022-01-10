@@ -32,7 +32,13 @@ export const countriesSlice = createSlice({
       .addCase(
         fetchCountriesAsync.fulfilled,
         (state, action: PayloadAction<CountriesResponse>) => {
-          state.countries = action.payload.data.countries
+          state.countries = action.payload.data.countries.map(
+            ({ name, continent, native }) => ({
+              name,
+              continent: continent.name,
+              nativeName: native,
+            })
+          )
           state.status = 'idle'
         }
       )

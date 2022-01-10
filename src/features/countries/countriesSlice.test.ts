@@ -3,21 +3,37 @@ import countriesReducer, {
   fetchCountriesAsync,
 } from './countriesSlice'
 
+const MOCK_COUNTRIES_RESPONSE = {
+  data: {
+    countries: [
+      {
+        name: 'Andorra',
+        continent: { name: 'Europe' },
+        native: 'Andorra',
+      },
+      {
+        name: 'United Arab Emirates',
+        continent: {
+          name: 'Asia',
+        },
+        native: 'دولة الإمارات العربية المتحدة',
+      },
+    ],
+  },
+}
+
 const MOCK_COUNTRIES = [
   {
     name: 'Andorra',
-    continent: { name: 'Europe' },
-    native: 'Andorra',
+    continent: 'Europe',
+    nativeName: 'Andorra',
   },
   {
     name: 'United Arab Emirates',
-    continent: {
-      name: 'Asia',
-    },
-    native: 'دولة الإمارات العربية المتحدة',
+    continent: 'Asia',
+    nativeName: 'دولة الإمارات العربية المتحدة',
   },
 ]
-const MOCK_COUNTRIES_RESPONSE = { data: { countries: MOCK_COUNTRIES } }
 
 describe('counter reducer', () => {
   const initialState: CountriesState = {
