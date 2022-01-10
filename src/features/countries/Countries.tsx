@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 
+import CountryCard from './components/CountryCard/CountryCard'
 import { fetchCountriesAsync } from './countriesSlice'
-import {} from './countriesSlice'
 
 function Countries() {
   const dispatch = useAppDispatch()
@@ -21,8 +21,8 @@ function Countries() {
           failed: 'Error',
           idle: (
             <ul>
-              {countries.map(({ name }) => {
-                return <li key={name}>{name}</li>
+              {countries.map((data) => {
+                return <CountryCard key={data.name} data={data} />
               })}
             </ul>
           ),
