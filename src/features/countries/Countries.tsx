@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 
-import CountryCard from './components/CountryCard/CountryCard'
+import CountryCard from './components/CountryCard'
 import { fetchCountriesAsync } from './countriesSlice'
 
 function Countries() {

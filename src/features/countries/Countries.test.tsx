@@ -7,7 +7,7 @@ import Countries from './Countries'
 
 describe('Countries', () => {
   it('renders correctly', async () => {
-    const { getByText, queryByText } = render(<Countries />)
+    const { getByText, queryByText, getAllByText } = render(<Countries />)
 
     expect(getByText(/countries/i)).toBeInTheDocument()
     expect(getByText(/loading/i)).toBeInTheDocument()
@@ -15,7 +15,8 @@ describe('Countries', () => {
     await waitFor(() => expect(queryByText(/loading/i)).not.toBeInTheDocument())
 
     expect(queryByText(/error/i)).not.toBeInTheDocument()
-    expect(getByText(/andorra/i)).toBeInTheDocument()
+
+    expect(getAllByText(/andorra/i)).toHaveLength(2)
     expect(getByText(/united arab emirates/i)).toBeInTheDocument()
   })
 
@@ -29,7 +30,6 @@ describe('Countries', () => {
     const { getByText, queryByText } = render(<Countries />)
 
     await waitFor(() => expect(queryByText(/loading/i)).not.toBeInTheDocument())
-
     expect(getByText(/error/i)).toBeInTheDocument()
   })
 })
