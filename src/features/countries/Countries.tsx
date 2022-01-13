@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 
 import Input from 'common/components/Input'
 
 import CountryCard from './components/CountryCard'
-import { fetchCountriesAsync } from './countriesSlice'
+import { fetchCountriesAsync, getCountries, setSearch } from './countriesSlice'
 
 function Countries() {
   const dispatch = useAppDispatch()
-  const { countries, status } = useAppSelector((state) => state.countries)
 
-  const [search, setSearch] = useState<string>('')
+  const { status, search } = useAppSelector((state) => state.countries)
+  const countries = useAppSelector(getCountries)
 
   useEffect(() => {
     dispatch(fetchCountriesAsync())
@@ -27,7 +27,7 @@ function Countries() {
             <>
               <Input
                 value={search}
-                onChange={(event) => setSearch(event.target.value)}
+                onChange={(event) => dispatch(setSearch(event.target.value))}
                 placeholder="Search for a country..."
               />
 

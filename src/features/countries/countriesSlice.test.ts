@@ -39,6 +39,7 @@ describe('counter reducer', () => {
   const initialState: CountriesState = {
     countries: [],
     status: 'idle',
+    search: '',
   }
 
   it('handles initial state', () => {

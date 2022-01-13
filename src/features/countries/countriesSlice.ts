@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from 'app/store'
 
 import { fetchCountries } from './api'
 import { CountriesResponse, Country } from './types'
@@ -6,11 +7,13 @@ import { CountriesResponse, Country } from './types'
 export interface CountriesState {
   countries: Country[]
   status: 'idle' | 'loading' | 'failed'
+  search: string
 }
 
 const initialState: CountriesState = {
   countries: [],
   status: 'idle',
+  search: '',
 }
 
 export const fetchCountriesAsync = createAsyncThunk<CountriesResponse>(
@@ -23,7 +26,11 @@ export const fetchCountriesAsync = createAsyncThunk<CountriesResponse>(
 export const countriesSlice = createSlice({
   name: 'countries',
   initialState,
-  reducers: {},
+  reducers: {
+    setSearch(state, action: PayloadAction<string>) {
+      state.search = action.payload
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCountriesAsync.pending, (state) => {
@@ -48,6 +55,18 @@ export const countriesSlice = createSlice({
   },
 })
 
-export const {} = countriesSlice.actions
+export const { setSearch } = countriesSlice.actions
+
+export const getCountries = (state: RootState) => {
+  const { countries, search } = state.countries
+
+  if (search) {
+    return countries.filter((country) =>
+      country.name.toLowerCase().includes(search)
+    )
+  } else {
+    return countries
+  }
+}
 
 export default countriesSlice.reducer
