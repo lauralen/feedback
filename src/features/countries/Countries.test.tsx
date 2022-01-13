@@ -7,7 +7,8 @@ import Countries from './Countries'
 
 describe('Countries', () => {
   it('renders correctly', async () => {
-    const { getByText, queryByText, getAllByText } = render(<Countries />)
+    const { getByText, queryByText, getAllByText, getByPlaceholderText } =
+      render(<Countries />)
 
     expect(getByText(/countries/i)).toBeInTheDocument()
     expect(getByText(/loading/i)).toBeInTheDocument()
@@ -16,6 +17,7 @@ describe('Countries', () => {
 
     expect(queryByText(/error/i)).not.toBeInTheDocument()
 
+    expect(getByPlaceholderText('Search for a country...')).toBeInTheDocument()
     expect(getAllByText(/andorra/i)).toHaveLength(2)
     expect(getByText(/united arab emirates/i)).toBeInTheDocument()
   })
