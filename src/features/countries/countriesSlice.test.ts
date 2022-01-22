@@ -35,11 +35,12 @@ const MOCK_COUNTRIES = [
   },
 ]
 
-describe('counter reducer', () => {
+describe('countries reducer', () => {
   const initialState: CountriesState = {
     countries: [],
     status: 'idle',
     search: '',
+    regionFilter: 'None',
   }
 
   it('handles initial state', () => {

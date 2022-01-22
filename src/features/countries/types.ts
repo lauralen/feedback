@@ -10,6 +10,16 @@ export interface Country {
   nativeName: string
 }
 
+type Region =
+  | 'Africa'
+  | 'North America'
+  | 'South America'
+  | 'Asia'
+  | 'Europe'
+  | 'Oceania'
+
+export type RegionFilter = Region | 'None'
+
 export interface CountriesData {
   countries: ResponseCountry[]
 }

@@ -2,18 +2,20 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'app/store'
 
 import { fetchCountries } from './api'
-import { CountriesResponse, Country } from './types'
+import { CountriesResponse, Country, RegionFilter } from './types'
 
 export interface CountriesState {
   countries: Country[]
   status: 'idle' | 'loading' | 'failed'
   search: string
+  regionFilter: RegionFilter
 }
 
 const initialState: CountriesState = {
   countries: [],
   status: 'idle',
   search: '',
+  regionFilter: 'None',
 }
 
 export const fetchCountriesAsync = createAsyncThunk<CountriesResponse>(
@@ -29,6 +31,9 @@ export const countriesSlice = createSlice({
   reducers: {
     setSearch(state, action: PayloadAction<string>) {
       state.search = action.payload
+    },
+    setRegionFilter(state, action: PayloadAction<RegionFilter>) {
+      state.regionFilter = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -55,15 +60,24 @@ export const countriesSlice = createSlice({
   },
 })
 
-export const { setSearch } = countriesSlice.actions
+export const { setSearch, setRegionFilter } = countriesSlice.actions
 
 export const getCountries = (state: RootState) => {
-  const { countries, search } = state.countries
+  const { countries, search, regionFilter } = state.countries
+  const isRegionFilterSelected = regionFilter !== 'None'
 
-  if (search) {
+  if (search && isRegionFilterSelected) {
+    return countries.filter(
+      (country) =>
+        country.name.toLowerCase().includes(search) &&
+        country.continent === regionFilter
+    )
+  } else if (search) {
     return countries.filter((country) =>
       country.name.toLowerCase().includes(search)
     )
+  } else if (isRegionFilterSelected) {
+    return countries.filter((country) => country.continent === regionFilter)
   } else {
     return countries
   }
