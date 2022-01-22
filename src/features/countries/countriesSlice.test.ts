@@ -7,11 +7,13 @@ const MOCK_COUNTRIES_RESPONSE = {
   data: {
     countries: [
       {
+        code: 'AD',
         name: 'Andorra',
         continent: { name: 'Europe' },
         native: 'Andorra',
       },
       {
+        code: 'AE',
         name: 'United Arab Emirates',
         continent: {
           name: 'Asia',
@@ -24,11 +26,13 @@ const MOCK_COUNTRIES_RESPONSE = {
 
 const MOCK_COUNTRIES = [
   {
+    code: 'AD',
     name: 'Andorra',
     continent: 'Europe',
     nativeName: 'Andorra',
   },
   {
+    code: 'AE',
     name: 'United Arab Emirates',
     continent: 'Asia',
     nativeName: 'دولة الإمارات العربية المتحدة',

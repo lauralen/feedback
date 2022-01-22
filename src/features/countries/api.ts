@@ -6,6 +6,7 @@ export async function fetchCountries(): Promise<CountriesResponse> {
   const query = gql`
     query Countries {
       countries {
+        code
         name
         continent {
           name

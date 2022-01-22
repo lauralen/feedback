@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { server } from 'mocks/server'
@@ -8,10 +9,16 @@ import Countries from './Countries'
 
 const SEARCH_INPUT_PLACEHOLDER = 'Search for a country...'
 
+const Component = (
+  <BrowserRouter>
+    <Countries />
+  </BrowserRouter>
+)
+
 describe('Countries', () => {
   it('renders correctly', async () => {
     const { getByText, queryByText, getAllByText, getByPlaceholderText } =
-      render(<Countries />)
+      render(Component)
 
     expect(getByText(/countries/i)).toBeInTheDocument()
     expect(getByText(/loading/i)).toBeInTheDocument()
@@ -32,14 +39,14 @@ describe('Countries', () => {
       })
     )
 
-    const { getByText, queryByText } = render(<Countries />)
+    const { getByText, queryByText } = render(Component)
 
     await waitFor(() => expect(queryByText(/loading/i)).not.toBeInTheDocument())
     expect(getByText(/error/i)).toBeInTheDocument()
   })
 
   it('filters countries by search value', async () => {
-    render(<Countries />)
+    render(Component)
 
     expect(screen.getByText(/loading/i)).toBeInTheDocument()
     await waitFor(() =>

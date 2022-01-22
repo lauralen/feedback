@@ -4,6 +4,7 @@ import cx from 'classnames'
 import Header from 'layout/Header'
 
 import Countries from 'features/countries/Countries'
+import Country from 'features/countries/Country'
 
 type Theme = 'light' | 'dark'
 
@@ -29,6 +30,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Countries />} />
+          <Route path="/country/:code" element={<Country />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -45,7 +45,8 @@ export const countriesSlice = createSlice({
         fetchCountriesAsync.fulfilled,
         (state, action: PayloadAction<CountriesResponse>) => {
           state.countries = action.payload.data.countries.map(
-            ({ name, continent, native }) => ({
+            ({ code, name, continent, native }) => ({
+              code,
               name,
               continent: continent.name,
               nativeName: native,

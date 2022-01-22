@@ -9,11 +9,11 @@ interface Props {
 }
 
 function CountryCard({ data }: Props) {
-  const { name, continent, nativeName } = data
+  const { code, name, continent, nativeName } = data
 
   return (
     <Card>
-      <Link to={`/country/${name}`}>
+      <Link to={`/country/${code}`}>
         <li>
           <h3>{name}</h3>
           <ul>

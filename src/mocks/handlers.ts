@@ -8,11 +8,13 @@ export const handlers = [
       ctx.data({
         countries: [
           {
+            code: 'AD',
             name: 'Andorra',
             continent: { name: 'Europe' },
             native: 'Andorra',
           },
           {
+            code: 'AE',
             name: 'United Arab Emirates',
             continent: {
               name: 'Asia',
