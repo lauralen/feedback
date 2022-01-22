@@ -1,11 +1,27 @@
+import { screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import render from 'test/render'
 
 import Input from './Input'
 
 describe('Input', () => {
-  it('renders correctly', async () => {
-    const { getByPlaceholderText } = render(<Input placeholder="Test" />)
+  it('displays placeholder', async () => {
+    render(<Input placeholder="Test" />)
 
-    expect(getByPlaceholderText('Test')).toBeInTheDocument()
+    expect(screen.getByPlaceholderText('Test')).toBeInTheDocument()
+  })
+
+  it('is disabled', async () => {
+    render(<Input disabled />)
+
+    expect(screen.getByRole('textbox')).toBeDisabled()
+  })
+
+  it('allows typing value', async () => {
+    render(<Input />)
+    const input = screen.getByRole('textbox')
+
+    userEvent.type(input, 'Hello')
+    expect(input).toHaveValue('Hello')
   })
 })
