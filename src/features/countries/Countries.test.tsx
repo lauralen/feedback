@@ -1,9 +1,12 @@
-import { waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { server } from 'mocks/server'
 import { graphql } from 'msw'
 import render from 'test/render'
 
 import Countries from './Countries'
+
+const SEARCH_INPUT_PLACEHOLDER = 'Search for a country...'
 
 describe('Countries', () => {
   it('renders correctly', async () => {
@@ -17,7 +20,7 @@ describe('Countries', () => {
 
     expect(queryByText(/error/i)).not.toBeInTheDocument()
 
-    expect(getByPlaceholderText('Search for a country...')).toBeInTheDocument()
+    expect(getByPlaceholderText(SEARCH_INPUT_PLACEHOLDER)).toBeInTheDocument()
     expect(getAllByText(/andorra/i)).toHaveLength(2)
     expect(getByText(/united arab emirates/i)).toBeInTheDocument()
   })
@@ -33,5 +36,25 @@ describe('Countries', () => {
 
     await waitFor(() => expect(queryByText(/loading/i)).not.toBeInTheDocument())
     expect(getByText(/error/i)).toBeInTheDocument()
+  })
+
+  it('filters countries by search value', async () => {
+    render(<Countries />)
+
+    expect(screen.getByText(/loading/i)).toBeInTheDocument()
+    await waitFor(() =>
+      expect(screen.queryByText(/loading/i)).not.toBeInTheDocument()
+    )
+
+    userEvent.type(
+      screen.getByPlaceholderText(SEARCH_INPUT_PLACEHOLDER),
+      'unit'
+    )
+    expect(screen.getByText(/united arab emirates/i)).toBeInTheDocument()
+    expect(screen.queryByText(/andorra/i)).not.toBeInTheDocument()
+
+    userEvent.clear(screen.getByPlaceholderText(SEARCH_INPUT_PLACEHOLDER))
+    expect(screen.getByText(/united arab emirates/i)).toBeInTheDocument()
+    await waitFor(() => expect(screen.getAllByText(/andorra/i)).toHaveLength(2))
   })
 })
