@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 
 import Input from 'common/components/Input'
@@ -36,7 +36,7 @@ function Countries() {
   }, [dispatch])
 
   return (
-    <>
+    <Fragment>
       <h2>Countries</h2>
       {
         {
@@ -69,7 +69,7 @@ function Countries() {
           ),
         }[status]
       }
-    </>
+    </Fragment>
   )
 }
 

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import Card from 'common/components/Card'
 import LabeledListItem from 'common/components/LabeledListItem'
 import { Country } from 'features/countries/types'
@@ -11,13 +13,15 @@ function CountryCard({ data }: Props) {
 
   return (
     <Card>
-      <li>
-        <h3>{name}</h3>
-        <ul>
-          <LabeledListItem label="Continent" value={continent} />
-          <LabeledListItem label="Native name" value={nativeName} />
-        </ul>
-      </li>
+      <Link to={`/country/${name}`}>
+        <li>
+          <h3>{name}</h3>
+          <ul>
+            <LabeledListItem label="Continent" value={continent} />
+            <LabeledListItem label="Native name" value={nativeName} />
+          </ul>
+        </li>
+      </Link>
     </Card>
   )
 }
