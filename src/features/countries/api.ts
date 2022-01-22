@@ -33,10 +33,10 @@ export async function fetchCountries(): Promise<CountriesResponse> {
   return await response.json()
 }
 
-export async function fetchCountry(): Promise<CountryResponse> {
+export async function fetchCountry(code: string): Promise<CountryResponse> {
   const query = gql`
-    query Country {
-      country(code: "LT") {
+    query Query($code: ID!) {
+      country(code: $code) {
         name
         native
         continent {
@@ -53,6 +53,8 @@ export async function fetchCountry(): Promise<CountryResponse> {
     }
   `
 
+  const variables = { code }
+
   const response = await fetch(
     process.env.REACT_APP_GRAPHQL_ENDPOINT as string,
     {
@@ -63,6 +65,7 @@ export async function fetchCountry(): Promise<CountryResponse> {
       },
       body: JSON.stringify({
         query,
+        variables,
       }),
     }
   )

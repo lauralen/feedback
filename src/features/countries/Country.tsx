@@ -23,33 +23,40 @@ const Country = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setStatus('loading')
+      if (code) {
+        setStatus('loading')
 
-      try {
-        const res = await fetchCountry()
-        const {
-          continent,
-          currency,
-          languages,
-          name,
-          native: nativeName,
-          states,
-        } = res.data.country
+        try {
+          const res = await fetchCountry(code)
+          const { country } = res.data
 
-        const formattedData = {
-          name,
-          nativeName,
-          currency,
-          continent: continent.name,
-          languages: languages.map(({ name }) => name),
-          states: states.map(({ name }) => name),
+          if (!country) {
+            throw new Error('Country with code not found')
+          }
+
+          const {
+            continent,
+            currency,
+            languages,
+            name,
+            native: nativeName,
+            states,
+          } = country
+
+          const formattedData = {
+            name,
+            nativeName,
+            currency,
+            continent: continent.name,
+            languages: languages.map(({ name }) => name),
+            states: states.map(({ name }) => name),
+          }
+
+          setData(formattedData)
+          setStatus('idle')
+        } catch {
+          setStatus('error')
         }
-
-        setData(formattedData)
-        setStatus('idle')
-      } catch (error) {
-        console.log('error', error)
-        setStatus('error')
       }
     }
 
@@ -61,7 +68,7 @@ const Country = () => {
       {
         {
           loading: 'Loading...',
-          failed: 'Error',
+          error: 'Error',
           idle: (
             <>
               <div>{data?.name}</div>
