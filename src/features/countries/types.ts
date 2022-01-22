@@ -12,7 +12,7 @@ export interface Country {
   nativeName: string
 }
 
-type Region =
+export type Region =
   | 'Africa'
   | 'North America'
   | 'South America'
@@ -28,4 +28,17 @@ export interface CountriesData {
 
 export interface CountriesResponse {
   data: CountriesData
+}
+
+interface ResponseCountryDetais {
+  name: string
+  continent: { name: Region }
+  native: string
+  currency: string
+  languages: { name: string }[]
+  states: { name: string }[]
+}
+
+export interface CountryResponse {
+  data: { country: ResponseCountryDetais }
 }
