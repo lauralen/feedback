@@ -7,7 +7,7 @@
   padding: 1.5rem;
   border-radius: $border-radius;
   box-shadow: $shadow;
-  transition: all 0.3s;
+  transition: $transition;
 
   &:hover {
     box-shadow: $shadow-darker;

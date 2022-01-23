@@ -4,6 +4,7 @@ import cx from 'classnames'
 import Content from 'layout/Content'
 import Header from 'layout/Header'
 
+import Button from 'common/components/Button'
 import Countries from 'features/countries/Countries'
 import Country from 'features/countries/Country'
 
@@ -24,11 +25,11 @@ function App() {
           <Link to="/">
             <h1>Where in the world?</h1>
           </Link>
-          <button
+          <Button
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           >
             Toggle theme
-          </button>
+          </Button>
         </Header>
 
         <Routes>
