@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import cx from 'classnames'
 import Header from 'layout/Header'
 
@@ -20,7 +20,9 @@ function App() {
         })}
       >
         <Header>
-          <h1>Where in the world?</h1>
+          <Link to="/">
+            <h1>Where in the world?</h1>
+          </Link>
           <button
             onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
           >
