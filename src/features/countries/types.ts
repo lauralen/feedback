@@ -1,14 +1,14 @@
 export interface ResponseCountry {
   code: string
   name: string
-  continent: { name: string }
+  continent: { name: Region }
   native: string
 }
 
 export interface Country {
   code: string
   name: string
-  continent: string
+  continent: Region
   nativeName: string
 }
 

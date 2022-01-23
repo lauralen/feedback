@@ -2,8 +2,9 @@ import countriesReducer, {
   CountriesState,
   fetchCountriesAsync,
 } from './countriesSlice'
+import { CountriesResponse, Country } from './types'
 
-const MOCK_COUNTRIES_RESPONSE = {
+const MOCK_COUNTRIES_RESPONSE: CountriesResponse = {
   data: {
     countries: [
       {
@@ -24,7 +25,7 @@ const MOCK_COUNTRIES_RESPONSE = {
   },
 }
 
-const MOCK_COUNTRIES = [
+const MOCK_COUNTRIES: Country[] = [
   {
     code: 'AD',
     name: 'Andorra',
