@@ -21,6 +21,11 @@
   box-shadow: 0 0.2rem 0.5rem rgba($color-grey, 0.4);
   transition: $transition;
 
+  @include themify($themes) {
+    color: themed('color');
+    background-color: themed('backgroundColor');
+  }
+
   &:focus {
     outline: none;
     box-shadow: 0 0.2rem 0.6rem rgba($color-grey, 0.8);

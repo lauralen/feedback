@@ -15,4 +15,9 @@ button {
   &:hover {
     box-shadow: $shadow;
   }
+
+  @include themify($themes) {
+    color: themed('color');
+    background-color: themed('backgroundColor');
+  }
 }
