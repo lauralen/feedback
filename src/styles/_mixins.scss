@@ -13,7 +13,7 @@
 @mixin input {
   padding: 1rem;
   border: none;
-  border-radius: 6px;
+  border-radius: $border-radius;
   color: inherit;
   font-size: inherit;
   font-family: inherit;

@@ -12,17 +12,17 @@ function CountryCard({ data }: Props) {
   const { code, name, continent, nativeName } = data
 
   return (
-    <Card>
-      <Link to={`/country/${code}`}>
+    <Link to={`/country/${code}`}>
+      <Card>
         <li>
-          <h3>{name}</h3>
-          <ul>
+          <h3 className="country-card-name">{name}</h3>
+          <ul className="country-card-data">
             <LabeledListItem label="Continent" value={continent} />
             <LabeledListItem label="Native name" value={nativeName} />
           </ul>
         </li>
-      </Link>
-    </Card>
+      </Card>
+    </Link>
   )
 }
 

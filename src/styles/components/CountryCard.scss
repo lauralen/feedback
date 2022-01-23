@@ -1,0 +1,13 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+@import 'styles/theme';
+
+.country-card-name {
+  margin-bottom: 1rem;
+}
+
+.country-card-data {
+  > *:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+}

@@ -3,7 +3,17 @@
 @import 'styles/theme';
 
 .card {
+  height: 100%;
+  padding: 1.5rem;
+  border-radius: $border-radius;
   box-shadow: $shadow;
-  margin: 0.5rem;
-  padding: 1rem;
+  transition: all 0.3s;
+
+  &:hover {
+    box-shadow: $shadow-darker;
+  }
+
+  @include respond-tablet {
+    padding: 2.5rem;
+  }
 }
