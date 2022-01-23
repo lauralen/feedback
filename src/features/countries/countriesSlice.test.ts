@@ -1,6 +1,8 @@
 import countriesReducer, {
   CountriesState,
   fetchCountriesAsync,
+  setRegionFilter,
+  setSearch,
 } from './countriesSlice'
 import { CountriesResponse, Country } from './types'
 
@@ -85,6 +87,26 @@ describe('countries reducer', () => {
     expect(actual).toEqual({
       ...initialState,
       status: 'failed',
+    })
+  })
+
+  it('handles setSearch', () => {
+    const value = 'and'
+    const actual = countriesReducer(initialState, setSearch(value))
+
+    expect(actual).toEqual({
+      ...initialState,
+      search: value,
+    })
+  })
+
+  it('handles setRegionFilter', () => {
+    const value = 'Europe'
+    const actual = countriesReducer(initialState, setRegionFilter(value))
+
+    expect(actual).toEqual({
+      ...initialState,
+      regionFilter: value,
     })
   })
 })
