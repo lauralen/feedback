@@ -14,3 +14,17 @@
     gap: 2rem;
   }
 }
+
+.countries {
+  display: grid;
+  grid-gap: 1rem;
+
+  @include respond-tablet {
+    grid-gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

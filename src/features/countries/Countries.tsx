@@ -62,7 +62,7 @@ function Countries() {
                 />
               </div>
 
-              <ul>
+              <ul className="countries">
                 {countries.map((data) => {
                   return <CountryCard key={data.name} data={data} />
                 })}
