@@ -44,21 +44,23 @@ function Countries() {
           failed: 'Error',
           idle: (
             <>
-              <Input
-                value={search}
-                onChange={(event) => dispatch(setSearch(event.target.value))}
-                placeholder="Search for a country..."
-              />
+              <div className="filters-wrapper">
+                <Input
+                  value={search}
+                  onChange={(event) => dispatch(setSearch(event.target.value))}
+                  placeholder="Search for a country..."
+                />
 
-              <Select
-                placeholder="Filter by Region"
-                value={regionFilter}
-                options={regionFilters}
-                onChange={(e) => {
-                  const value = e.target.value
-                  dispatch(setRegionFilter(value as RegionFilter))
-                }}
-              />
+                <Select
+                  placeholder="Filter by Region"
+                  value={regionFilter}
+                  options={regionFilters}
+                  onChange={(e) => {
+                    const value = e.target.value
+                    dispatch(setRegionFilter(value as RegionFilter))
+                  }}
+                />
+              </div>
 
               <ul>
                 {countries.map((data) => {
