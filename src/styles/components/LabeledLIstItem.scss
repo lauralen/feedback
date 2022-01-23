@@ -1,0 +1,10 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+@import 'styles/theme';
+
+.labeled-li {
+  .label {
+    margin-right: 0.5rem;
+    font-weight: $font-weight-bold;
+  }
+}

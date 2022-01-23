@@ -5,8 +5,8 @@ interface Props {
 
 function LabeledListItem({ label, value }: Props) {
   return (
-    <li>
-      <span>{label}:</span>
+    <li className="labeled-li">
+      <span className="label">{label}:</span>
       <span>{value ?? '-'}</span>
     </li>
   )
