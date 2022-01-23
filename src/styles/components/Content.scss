@@ -1,0 +1,17 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+@import 'styles/theme';
+
+.content {
+  padding: 1rem;
+  max-width: $width-limit;
+  margin: 0 auto;
+
+  @include respond-tablet {
+    padding: 2rem 3rem;
+  }
+
+  @include respond-desktop {
+    padding: 2rem 5rem;
+  }
+}

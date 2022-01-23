@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import cx from 'classnames'
+import Content from 'layout/Content'
 import Header from 'layout/Header'
 
 import Countries from 'features/countries/Countries'
@@ -31,8 +32,22 @@ function App() {
         </Header>
 
         <Routes>
-          <Route path="/" element={<Countries />} />
-          <Route path="/country/:code" element={<Country />} />
+          <Route
+            path="/"
+            element={
+              <Content>
+                <Countries />
+              </Content>
+            }
+          />
+          <Route
+            path="/country/:code"
+            element={
+              <Content>
+                <Country />
+              </Content>
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>
