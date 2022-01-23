@@ -2,6 +2,6 @@
 @import 'styles/mixins';
 @import 'styles/theme';
 
-input {
+select {
   @include input;
 }
