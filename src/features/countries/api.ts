@@ -1,5 +1,7 @@
 import { gql } from 'graphql-request'
 
+import { fetchGraphQL } from 'common/api'
+
 import { CountriesResponse, CountryResponse } from './types'
 
 export async function fetchCountries(): Promise<CountriesResponse> {
@@ -16,21 +18,7 @@ export async function fetchCountries(): Promise<CountriesResponse> {
     }
   `
 
-  const response = await fetch(
-    process.env.REACT_APP_GRAPHQL_ENDPOINT as string,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        query,
-      }),
-    }
-  )
-
-  return await response.json()
+  return fetchGraphQL<CountriesResponse>({ query })
 }
 
 export async function fetchCountry(code: string): Promise<CountryResponse> {
@@ -55,20 +43,5 @@ export async function fetchCountry(code: string): Promise<CountryResponse> {
 
   const variables = { code }
 
-  const response = await fetch(
-    process.env.REACT_APP_GRAPHQL_ENDPOINT as string,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        query,
-        variables,
-      }),
-    }
-  )
-
-  return await response.json()
+  return fetchGraphQL<CountryResponse>({ query, variables })
 }
