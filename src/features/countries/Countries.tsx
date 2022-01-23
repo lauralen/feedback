@@ -46,6 +46,7 @@ function Countries() {
             <>
               <div className="filters-wrapper">
                 <Input
+                  type="search"
                   value={search}
                   onChange={(event) => dispatch(setSearch(event.target.value))}
                   placeholder="Search for a country..."
