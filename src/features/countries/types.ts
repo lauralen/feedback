@@ -39,6 +39,10 @@ interface ResponseCountryDetais {
   states: { name: string }[]
 }
 
+export interface CountryData {
+  country: ResponseCountryDetais
+}
+
 export interface CountryResponse {
-  data: { country: ResponseCountryDetais }
+  data: CountryData
 }

@@ -35,7 +35,7 @@ export async function fetchCountries(): Promise<CountriesResponse> {
 
 export async function fetchCountry(code: string): Promise<CountryResponse> {
   const query = gql`
-    query Query($code: ID!) {
+    query Country($code: ID!) {
       country(code: $code) {
         name
         native

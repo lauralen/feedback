@@ -1,6 +1,6 @@
 import { graphql } from 'msw'
 
-import { CountriesData } from 'features/countries/types'
+import { CountriesData, CountryData } from 'features/countries/types'
 
 export const handlers = [
   graphql.query<CountriesData>('Countries', (req, res, ctx) => {
@@ -22,6 +22,20 @@ export const handlers = [
             native: 'دولة الإمارات العربية المتحدة',
           },
         ],
+      })
+    )
+  }),
+  graphql.query<CountryData>('Country', (req, res, ctx) => {
+    return res(
+      ctx.data({
+        country: {
+          name: 'Andorra',
+          continent: { name: 'Europe' },
+          languages: [{ name: 'Catalan' }],
+          native: 'Andorra',
+          currency: 'EUR',
+          states: [],
+        },
       })
     )
   }),
