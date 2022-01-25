@@ -1,7 +1,12 @@
+@import 'styles/variables';
+@import 'styles/mixins';
 @import 'styles/theme';
 
-.App {
+.app {
+  min-height: 100vh;
+
   @include themify($themes) {
     color: themed('color');
+    background-color: themed('backgroundColor');
   }
 }

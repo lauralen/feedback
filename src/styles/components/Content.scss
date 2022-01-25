@@ -6,11 +6,6 @@
   padding: 1rem;
   margin: 0 auto;
 
-  @include themify($themes) {
-    color: themed('color');
-    background-color: themed('backgroundColor');
-  }
-
   @include respond-tablet {
     padding: 2rem 3rem;
   }

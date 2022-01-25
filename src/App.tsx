@@ -16,40 +16,42 @@ function App() {
   return (
     <BrowserRouter>
       <div
-        className={cx({
+        className={cx('app', {
           'theme-light': theme === 'light',
           'theme-dark': theme === 'dark',
         })}
       >
-        <Header>
-          <Link to="/">
-            <h1>Where in the world?</h1>
-          </Link>
-          <Button
-            onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-          >
-            Toggle theme
-          </Button>
-        </Header>
+        <div className="app">
+          <Header>
+            <Link to="/">
+              <h1>Where in the world?</h1>
+            </Link>
+            <Button
+              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            >
+              Toggle theme
+            </Button>
+          </Header>
 
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Content>
-                <Countries />
-              </Content>
-            }
-          />
-          <Route
-            path="/country/:code"
-            element={
-              <Content>
-                <Country />
-              </Content>
-            }
-          />
-        </Routes>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Content>
+                  <Countries />
+                </Content>
+              }
+            />
+            <Route
+              path="/country/:code"
+              element={
+                <Content>
+                  <Country />
+                </Content>
+              }
+            />
+          </Routes>
+        </div>
       </div>
     </BrowserRouter>
   )
