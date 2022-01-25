@@ -4,10 +4,14 @@ $themes: (
   light: (
     color: $color-blue,
     backgroundColor: $color-white,
+    boxShadow: $shadow,
+    boxShadowHover: $shadow-darker,
   ),
   dark: (
     color: $color-lightgrey,
     backgroundColor: $color-blue,
+    boxShadow: $shadow-darker,
+    boxShadowHover: $shadow,
   ),
 );
 

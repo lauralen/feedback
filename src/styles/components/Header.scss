@@ -9,11 +9,11 @@ header {
   padding: 2.5rem 2rem;
   font-size: 1rem;
   font-weight: $font-weight-bold;
-  box-shadow: $shadow;
 
   @include themify($themes) {
     color: themed('color');
     background-color: themed('backgroundColor');
+    box-shadow: themed('boxShadow');
   }
 
   @include respond-tablet {

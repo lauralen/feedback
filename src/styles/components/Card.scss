@@ -6,11 +6,16 @@
   height: 100%;
   padding: 1.5rem;
   border-radius: $border-radius;
-  box-shadow: $shadow;
   transition: $transition;
 
+  @include themify($themes) {
+    box-shadow: themed('boxShadow');
+  }
+
   &:hover {
-    box-shadow: $shadow-darker;
+    @include themify($themes) {
+      box-shadow: themed('boxShadowHover');
+    }
   }
 
   @include respond-tablet {

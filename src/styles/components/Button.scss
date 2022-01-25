@@ -12,12 +12,14 @@ button {
   cursor: pointer;
   transition: $transition;
 
-  &:hover {
-    box-shadow: $shadow;
-  }
-
   @include themify($themes) {
     color: themed('color');
     background-color: themed('backgroundColor');
+  }
+
+  &:hover {
+    @include themify($themes) {
+      box-shadow: themed('boxShadowHover');
+    }
   }
 }
