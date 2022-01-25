@@ -1,3 +1,5 @@
+export type Status = 'idle' | 'loading' | 'failed'
+
 export interface ResponseCountry {
   code: string
   name: string

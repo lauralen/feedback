@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'app/store'
 
 import { fetchCountries } from './api'
-import { CountriesResponse, Country, RegionFilter } from './types'
+import { CountriesResponse, Country, RegionFilter, Status } from './types'
 
 export interface CountriesState {
   countries: Country[]
-  status: 'idle' | 'loading' | 'failed'
+  status: Status
   search: string
   regionFilter: RegionFilter
 }
