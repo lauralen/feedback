@@ -45,8 +45,6 @@ const Country = () => {
             states,
           } = country
 
-          console.log('country', country)
-
           const formattedData = {
             name,
             nativeName,
@@ -66,8 +64,6 @@ const Country = () => {
 
     fetchData()
   }, [code])
-
-  console.log('data', data)
 
   return (
     <div>
