@@ -9,7 +9,7 @@ import { Region } from './types'
 interface Data {
   name: string
   nativeName: string
-  currency: string
+  currency: string | null
   continent: Region
   languages: string[]
   states: string[]
@@ -45,6 +45,8 @@ const Country = () => {
             states,
           } = country
 
+          console.log('country', country)
+
           const formattedData = {
             name,
             nativeName,
@@ -65,6 +67,8 @@ const Country = () => {
     fetchData()
   }, [code])
 
+  console.log('data', data)
+
   return (
     <div>
       {
@@ -78,7 +82,7 @@ const Country = () => {
               <LabeledListItem label="Native name" value={data?.nativeName} />
               <LabeledListItem
                 label="Currency"
-                value={data?.currency.split(',').join(', ')}
+                value={data?.currency?.split(',').join(', ')}
               />
               <LabeledListItem
                 label="Languages"

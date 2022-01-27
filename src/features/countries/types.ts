@@ -21,6 +21,7 @@ export type Region =
   | 'Asia'
   | 'Europe'
   | 'Oceania'
+  | 'Antarctica'
 
 export type RegionFilter = Region | 'None'
 
@@ -36,7 +37,7 @@ interface ResponseCountryDetais {
   name: string
   continent: { name: Region }
   native: string
-  currency: string
+  currency: string | null
   languages: { name: string }[]
   states: { name: string }[]
 }

@@ -21,22 +21,47 @@ export const handlers = [
             },
             native: 'دولة الإمارات العربية المتحدة',
           },
+          {
+            code: 'AQ',
+            name: 'Antarctica',
+            continent: {
+              name: 'Antarctica',
+            },
+            native: 'Antarctica',
+          },
         ],
       })
     )
   }),
   graphql.query<CountryData>('Country', (req, res, ctx) => {
-    return res(
-      ctx.data({
-        country: {
-          name: 'Andorra',
-          continent: { name: 'Europe' },
-          languages: [{ name: 'Catalan' }],
-          native: 'Andorra',
-          currency: 'EUR',
-          states: [],
-        },
-      })
-    )
+    const { code } = req.variables
+
+    if (code === 'AD') {
+      return res(
+        ctx.data({
+          country: {
+            name: 'Andorra',
+            continent: { name: 'Europe' },
+            languages: [{ name: 'Catalan' }],
+            native: 'Andorra',
+            currency: 'EUR',
+            states: [],
+          },
+        })
+      )
+    } else if (code === 'AQ') {
+      return res(
+        ctx.data({
+          country: {
+            name: 'Antarctica',
+            continent: { name: 'Antarctica' },
+            languages: [],
+            native: 'Antarctica',
+            currency: null,
+            states: [],
+          },
+        })
+      )
+    }
   }),
 ]
