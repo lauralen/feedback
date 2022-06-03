@@ -6,7 +6,7 @@ const theme = extendTheme({
     body: `Jost, ${baseTheme.fonts.body}`,
   },
   colors: {
-    white: '#FFFFF',
+    white: '#FFFFFF',
     purple: '#AD1FEA',
     coral: '#F49F85',
     gray: {

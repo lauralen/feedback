@@ -11,7 +11,7 @@ function App() {
         <Link to="/">
           <h1>Where in the world?</h1>
         </Link>
-        <Button onClick={() => {}}>Toggle theme</Button>
+        <Button onClick={() => {}}>Button text</Button>
 
         <Routes>
           <Route path="/" element={<Countries />} />
