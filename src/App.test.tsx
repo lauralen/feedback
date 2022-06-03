@@ -9,10 +9,6 @@ describe('App', () => {
   it('renders correctly', async () => {
     render(Component)
 
-    expect(
-      screen.getByRole('link', { name: /where in the world/i })
-    ).toHaveAttribute('href', '/')
-    expect(screen.getByRole('button', { name: /toggle theme/i })).toBeEnabled()
-    expect(screen.getByText(/countries/i)).toBeInTheDocument()
+    expect(screen.getByText(/feedback board/i)).toBeInTheDocument()
   })
 })

@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom'
-import { getByText, screen, waitFor } from '@testing-library/react'
+import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { server } from 'mocks/server'
 import { graphql } from 'msw'
