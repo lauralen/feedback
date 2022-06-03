@@ -1,6 +1,7 @@
-import { Box, Button, Flex, Heading } from '@chakra-ui/react'
+import { Box, Button, Flex } from '@chakra-ui/react'
 
 import H1 from 'common/components/H1'
+import H2 from 'common/components/H2'
 
 function Feedbacks() {
   return (
@@ -9,7 +10,7 @@ function Feedbacks() {
         <Flex py="4" px="6" align="center" justify="space-between">
           <Box>
             <H1 color="white">Frontend Mentor</H1>
-            <Heading as="h2">Feedback Board</Heading>
+            <H2 color="white">Feedback Board</H2>
           </Box>
           <Button>Menu</Button>
         </Flex>

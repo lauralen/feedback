@@ -1,17 +1,17 @@
 import { FC } from 'react'
 import { Heading, HeadingProps } from '@chakra-ui/react'
 
-const H1: FC<HeadingProps> = ({ ...rest }) => {
+const H2: FC<HeadingProps> = ({ ...rest }) => {
   return (
     <Heading
-      as="h1"
+      as="h2"
       color="blueGray.100"
-      lineHeight="9"
-      fontSize="2xl"
-      letterSpacing="tighter"
+      lineHeight="7"
+      fontSize="xl"
+      letterSpacing="tight"
       {...rest}
     />
   )
 }
 
-export default H1
+export default H2
