@@ -1,16 +1,7 @@
 ## About
 
-React app that displays countries information.
-
-### Features
-
-- Search by country name
-- Filter countries by selected region
-- Country details view
-- Dark theme (WIP)
-
-The project is inspired by [Frontend Mentor Countries challenge](https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca).
-
+React app for product feedbacked.
+Challenge by [Frontend Mentor](https://www.frontendmentor.io).
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
