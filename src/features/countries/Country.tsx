@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import LabeledListItem from 'common/components/LabeledListItem'
-
 import { fetchCountry } from './api'
 import { Region } from './types'
 
@@ -71,22 +69,7 @@ const Country = () => {
         {
           loading: 'Loading...',
           error: 'Error',
-          idle: (
-            <ul>
-              <LabeledListItem label="Name" value={data?.name} />
-              <LabeledListItem label="Continent" value={data?.continent} />
-              <LabeledListItem label="Native name" value={data?.nativeName} />
-              <LabeledListItem
-                label="Currency"
-                value={data?.currency?.split(',').join(', ')}
-              />
-              <LabeledListItem
-                label="Languages"
-                value={data?.languages.join(', ')}
-              />
-              <LabeledListItem label="States" value={data?.states.join(', ')} />
-            </ul>
-          ),
+          idle: <ul>*info*</ul>,
         }[status]
       }
     </div>
