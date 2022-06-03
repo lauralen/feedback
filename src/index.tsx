@@ -2,10 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { ChakraProvider } from '@chakra-ui/react'
+import theme from 'theme'
 
 import { store } from './app/store'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
+
+import 'theme/styles.css'
 
 if (process.env.REACT_APP_ENABLE_MOCKS) {
   const { worker } = require('./mocks/browser')
@@ -15,7 +18,7 @@ if (process.env.REACT_APP_ENABLE_MOCKS) {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <App />
       </ChakraProvider>
     </Provider>
