@@ -12,6 +12,8 @@ import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { ReactComponent as CloseIcon } from 'assets/icons/icon-close.svg'
 import { ReactComponent as HamburgerIcon } from 'assets/icons/icon-hamburger.svg'
 
+import Card from 'common/components/Card'
+import Drawer from 'common/components/Drawer'
 import H1 from 'common/components/H1'
 import H2 from 'common/components/H2'
 import Select from 'common/components/Select'
@@ -71,6 +73,13 @@ function Feedbacks() {
           </ButtonCU>
         </Flex>
       </Box>
+      <Drawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      >
+        <Card p="5">Mobile drawer</Card>
+      </Drawer>
+
       <Box bg="blueGray.200">
         <Flex py="4" px="6" align="center" justify="space-between">
           <FormControl color="white" display="flex" alignItems="center">
