@@ -20,6 +20,7 @@ import Select from 'common/components/Select'
 import Spinner from 'common/components/Spinner'
 
 import AddFeedbackButton from './components/AddFeedbackButton'
+import CategoryFilter from './components/CategoryFilter'
 import Feedback from './components/Feedback'
 import NoData from './components/NoData'
 import { fetchRequestsAsync, getRequests, setSortBy } from './feedbacksSlice'
@@ -77,7 +78,9 @@ function Feedbacks() {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
       >
-        <Card p="5">Mobile drawer</Card>
+        <Card p="5">
+          <CategoryFilter />
+        </Card>
       </Drawer>
 
       <Box bg="blueGray.200">

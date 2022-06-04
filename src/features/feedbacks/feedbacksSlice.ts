@@ -2,21 +2,23 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'app/store'
 
 import { fetchRequests } from './api'
-import { Feedback, SortBy, Status } from './types'
+import { CategoryFilter, Feedback, SortBy, Status } from './types'
 
 export interface FeedbacksState {
   requests: Feedback[]
   status: Status
   sortBy: SortBy
+  categoryFilter: CategoryFilter
 }
 
 const initialState: FeedbacksState = {
   requests: [],
   status: 'idle',
   sortBy: 'most upvotes',
+  categoryFilter: 'all',
 }
 
-export const fetchRequestsAsync = createAsyncThunk<any>(
+export const fetchRequestsAsync = createAsyncThunk<Feedback[]>(
   'countries/fetchRequests',
   async () => {
     const res = await fetchRequests()
@@ -30,6 +32,9 @@ export const feedbacksSlice = createSlice({
   reducers: {
     setSortBy(state, action: PayloadAction<SortBy>) {
       state.sortBy = action.payload
+    },
+    selectCategoryFilter(state, action: PayloadAction<CategoryFilter>) {
+      state.categoryFilter = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -50,7 +55,7 @@ export const feedbacksSlice = createSlice({
   },
 })
 
-export const { setSortBy } = feedbacksSlice.actions
+export const { setSortBy, selectCategoryFilter } = feedbacksSlice.actions
 
 export const getRequests = (state: RootState) => {
   const { requests: stateRequests, sortBy } = state.feedbacks

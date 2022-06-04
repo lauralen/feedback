@@ -1,4 +1,6 @@
 export type Status = 'idle' | 'loading' | 'failed'
+export type Category = 'enhancement' | 'feature' | 'bug' | 'UI' | 'UX'
+export type CategoryFilter = Category | 'all'
 export type SortBy =
   | 'most upvotes'
   | 'least upvotes'
@@ -26,7 +28,7 @@ type Comment = CommentBase & {
 export type Feedback = {
   id: number
   title: string
-  category: 'enhancement' | 'feature' | 'bug'
+  category: Category
   upvotes: number
   status: 'suggestion' | 'planned' | 'in-progress' | 'live'
   description: string
