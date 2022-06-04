@@ -18,6 +18,7 @@ import H1 from 'common/components/H1'
 import H2 from 'common/components/H2'
 import Select from 'common/components/Select'
 import Spinner from 'common/components/Spinner'
+import { capitalizeEveryWord } from 'common/utils'
 
 import AddFeedbackButton from './components/AddFeedbackButton'
 import CategoryFilter from './components/CategoryFilter'
@@ -98,9 +99,7 @@ function Feedbacks() {
               options={sortOptions.map((option) => {
                 return {
                   value: option,
-                  label: option.replace(/\w\S*/g, (w) =>
-                    w.replace(/^\w/, (c) => c.toUpperCase())
-                  ),
+                  label: capitalizeEveryWord(option),
                 }
               })}
               onChange={(e) =>

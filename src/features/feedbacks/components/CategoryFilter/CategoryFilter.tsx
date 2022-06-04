@@ -3,6 +3,7 @@ import { useRadioGroup, Wrap } from '@chakra-ui/react'
 import { useAppDispatch } from 'app/hooks'
 
 import RadioCard from 'common/components/RadioCard'
+import { capitalizeEveryWord } from 'common/utils'
 import { selectCategoryFilter } from 'features/feedbacks/feedbacksSlice'
 import { CategoryFilter as Option } from 'features/feedbacks/types'
 
@@ -25,7 +26,7 @@ const CategoryFilter: FC = () => {
 
         return (
           <RadioCard key={value} {...radio}>
-            {value}
+            {capitalizeEveryWord(value)}
           </RadioCard>
         )
       })}
