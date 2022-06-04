@@ -3,6 +3,7 @@ import { Flex } from '@chakra-ui/react'
 
 import Card from 'common/components/Card'
 import H3 from 'common/components/H3'
+import Tag from 'common/components/Tag'
 import Text from 'common/components/Text'
 
 const Feedback: FC = () => {
@@ -12,7 +13,7 @@ const Feedback: FC = () => {
       <Text my="2">
         Easier to search for solutions based on a specific stack.
       </Text>
-      <div>Enhancement</div>
+      <Tag>Enhancement</Tag>
       <Flex justify="space-between">
         <div>^ 112</div>
         <div>2</div>
