@@ -1,20 +1,21 @@
-import { FC, SelectHTMLAttributes } from 'react'
+import { FC } from 'react'
+import { Box, Select as SelectCU, SelectProps } from '@chakra-ui/react'
 
-interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
+interface Props extends SelectProps {
   options: string[]
 }
 
-const Select: FC<Props> = ({ placeholder, options, ...rest }) => {
+const Select: FC<Props> = ({ options, ...rest }) => {
   return (
-    <select aria-label={placeholder} placeholder={placeholder} {...rest}>
+    <SelectCU {...rest}>
       {options.map((option) => {
         return (
-          <option key={option} value={option}>
+          <Box as="option" key={option} value={option} color="blueGray.100">
             {option}
-          </option>
+          </Box>
         )
       })}
-    </select>
+    </SelectCU>
   )
 }
 

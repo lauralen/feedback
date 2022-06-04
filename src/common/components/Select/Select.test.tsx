@@ -8,7 +8,7 @@ const OPTIONS = ['blue', 'yellow', 'green']
 
 describe('Select', () => {
   it('is disabled', async () => {
-    render(<Select disabled options={OPTIONS} />)
+    render(<Select isDisabled options={OPTIONS} />)
     expect(screen.getByRole('combobox')).toBeDisabled()
   })
 
