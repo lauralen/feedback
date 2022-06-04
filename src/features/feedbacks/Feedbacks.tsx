@@ -6,6 +6,7 @@ import H2 from 'common/components/H2'
 import Select from 'common/components/Select'
 
 import AddFeedbackButton from './components/AddFeedbackButton'
+import NoData from './components/NoData'
 
 function Feedbacks() {
   return (
@@ -43,7 +44,9 @@ function Feedbacks() {
           <AddFeedbackButton />
         </Flex>
       </Box>
-      <Box as="main" h="100%" bg="gray.100"></Box>
+      <Box as="main" h="100%" bg="gray.100" py="8" px="6">
+        <NoData />
+      </Box>
     </Box>
   )
 }
