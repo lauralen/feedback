@@ -1,5 +1,6 @@
 import { FC } from 'react'
-import { Flex } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
+import { ReactComponent as CommentIcon } from 'assets/icons/icon-comments.svg'
 
 import Card from 'common/components/Card'
 import H3 from 'common/components/H3'
@@ -17,7 +18,17 @@ const Feedback: FC = () => {
       <Tag mb="4">Enhancement</Tag>
       <Flex justify="space-between">
         <UpvoteButton>112</UpvoteButton>
-        <div>2</div>
+        <Flex
+          align="center"
+          color="blueGray.100"
+          fontSize="sm"
+          fontWeight="bold"
+        >
+          <CommentIcon />
+          <Box as="span" ml="2">
+            2
+          </Box>
+        </Flex>
       </Flex>
     </Card>
   )
