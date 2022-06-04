@@ -10,7 +10,7 @@ import Feedbacks from './Feedbacks'
 const Component = <Feedbacks />
 
 const ui = {
-  spinner: tlsScreen.byText(/loading/i),
+  spinner: tlsScreen.byText(/loading.../i),
   headerTitle: tlsScreen.byText(/frontend mentor/i),
   headerSubitle: tlsScreen.byText(/feedback board/i),
   sortSelect: tlsScreen.byRole('combobox'),
@@ -33,9 +33,9 @@ describe('Feedbacks', () => {
     expect(ui.noDataMessage.query()).not.toBeInTheDocument()
     expect(ui.error.query()).not.toBeInTheDocument()
 
-    // mockRequests.forEach(({ title }) =>
-    //   expect(screen.getByText(title)).toBeInTheDocument()
-    // )
+    mockRequests.forEach(({ title }) =>
+      expect(screen.getByText(title)).toBeInTheDocument()
+    )
   })
 
   it('renders no data message', async () => {

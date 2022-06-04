@@ -6,6 +6,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  List,
 } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { ReactComponent as CloseIcon } from 'assets/icons/icon-close.svg'
@@ -98,11 +99,11 @@ function Feedbacks() {
             ),
             failed: 'Error',
             idle: (
-              <ul>
+              <List>
                 {requests.map((data) => {
                   return <Feedback key={data.id} data={data} />
                 })}
-              </ul>
+              </List>
             ),
             noData: <NoData />,
           }[getUiStatus()]

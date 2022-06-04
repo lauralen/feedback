@@ -14,26 +14,31 @@ type Props = {
 }
 
 const Feedback: FC<Props> = ({ data }) => {
+  const { title, description, category, upvotes, comments } = data
+  const commentsCount = comments?.length
+
   return (
-    <Card mb="4" p="6">
-      <H3>Add tags for solutions</H3>
-      <Text my="2">
-        Easier to search for solutions based on a specific stack.
-      </Text>
-      <Tag mb="4">Enhancement</Tag>
+    <Card as="li" mb="4" p="6">
+      <H3>{title}</H3>
+      <Text my="2">{description}</Text>
+      <Tag mb="4">{category}</Tag>
       <Flex justify="space-between">
-        <UpvoteButton>112</UpvoteButton>
-        <Flex
-          align="center"
-          color="blueGray.100"
-          fontSize="sm"
-          fontWeight="bold"
-        >
-          <CommentIcon />
-          <Box as="span" ml="2">
-            2
-          </Box>
-        </Flex>
+        <UpvoteButton>{upvotes}</UpvoteButton>
+        {commentsCount && (
+          <>
+            <Flex
+              align="center"
+              color="blueGray.100"
+              fontSize="sm"
+              fontWeight="bold"
+            >
+              <CommentIcon />
+              <Box as="span" ml="2">
+                {commentsCount}
+              </Box>
+            </Flex>
+          </>
+        )}
       </Flex>
     </Card>
   )
