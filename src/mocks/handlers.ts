@@ -1,3 +1,3 @@
-// import { graphql } from 'msw'
+import productRequests from './productRequests'
 
-export const handlers = []
+export const handlers = [...productRequests]

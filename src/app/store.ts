@@ -1,10 +1,10 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit'
 
-// import countriesReducer from '../features/countries/countriesSlice'
+import feedbacksReducer from '../features/feedbacks/feedbacksSlice'
 
 export const store = configureStore({
   reducer: {
-    // countries: countriesReducer,
+    feedbacks: feedbacksReducer,
   },
 })
 

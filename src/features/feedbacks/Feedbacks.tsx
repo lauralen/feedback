@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Box,
   Button as ButtonCU,
@@ -7,6 +7,7 @@ import {
   FormControl,
   FormLabel,
 } from '@chakra-ui/react'
+import { useAppDispatch } from 'app/hooks'
 import { ReactComponent as CloseIcon } from 'assets/icons/icon-close.svg'
 import { ReactComponent as HamburgerIcon } from 'assets/icons/icon-hamburger.svg'
 
@@ -18,9 +19,16 @@ import Spinner from 'common/components/Spinner'
 import AddFeedbackButton from './components/AddFeedbackButton'
 import Feedback from './components/Feedback'
 import NoData from './components/NoData'
+import { fetchRequestsAsync } from './feedbacksSlice'
 
 function Feedbacks() {
+  const dispatch = useAppDispatch()
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    dispatch(fetchRequestsAsync())
+  }, [dispatch])
 
   return (
     <Box minHeight="100vh">
