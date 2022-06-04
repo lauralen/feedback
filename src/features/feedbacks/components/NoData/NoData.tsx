@@ -14,6 +14,8 @@ const NoData: FC = () => {
       flexDirection="column"
       alignItems="center"
       textAlign="center"
+      px="6"
+      py="20"
     >
       <Illustration />
       <H3 mt="10">There is no feedback yet.</H3>
