@@ -19,7 +19,7 @@ describe('Feedbacks', () => {
 
     expect(screen.getByRole('combobox')).toBeInTheDocument()
     expect(
-      screen.getAllByRole('button', { name: /add feedback/i })
-    ).toHaveLength(2)
+      screen.getByRole('button', { name: /add feedback/i })
+    ).toBeInTheDocument()
   })
 })

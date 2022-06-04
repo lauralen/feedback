@@ -7,7 +7,7 @@ import {
   FormControl,
   FormLabel,
 } from '@chakra-ui/react'
-import { useAppDispatch } from 'app/hooks'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { ReactComponent as CloseIcon } from 'assets/icons/icon-close.svg'
 import { ReactComponent as HamburgerIcon } from 'assets/icons/icon-hamburger.svg'
 
@@ -19,10 +19,15 @@ import Spinner from 'common/components/Spinner'
 import AddFeedbackButton from './components/AddFeedbackButton'
 import Feedback from './components/Feedback'
 import NoData from './components/NoData'
-import { fetchRequestsAsync } from './feedbacksSlice'
+import { fetchRequestsAsync, getRequests } from './feedbacksSlice'
+import { Status } from './types'
+
+type UiStatus = Status | 'noData'
 
 function Feedbacks() {
   const dispatch = useAppDispatch()
+  const { status } = useAppSelector((state) => state.feedbacks)
+  const requests = useAppSelector(getRequests)
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
 
@@ -30,8 +35,18 @@ function Feedbacks() {
     dispatch(fetchRequestsAsync())
   }, [dispatch])
 
+  const getUiStatus = (): UiStatus => {
+    const hasData = requests.length
+
+    if (status !== 'failed' && status !== 'loading' && !hasData) {
+      return 'noData'
+    } else {
+      return status
+    }
+  }
+
   return (
-    <Box minHeight="100vh">
+    <Box minHeight="100vh" bg="gray.100">
       <Box as="header" bgGradient="linear(to-tr, #28A7ED, #E84D70)">
         <Flex py="4" px="6" align="center" justify="space-between">
           <Box>
@@ -73,12 +88,25 @@ function Feedbacks() {
           <AddFeedbackButton />
         </Flex>
       </Box>
-      <Box as="main" h="100%" bg="gray.100" py="8" px="6">
-        <Feedback />
-        <NoData />
-        <Center>
-          <Spinner />
-        </Center>
+      <Box as="main" py="8" px="6">
+        {
+          {
+            loading: (
+              <Center>
+                <Spinner />
+              </Center>
+            ),
+            failed: 'Error',
+            idle: (
+              <ul>
+                {requests.map((data) => {
+                  return <Feedback key={data.id} />
+                })}
+              </ul>
+            ),
+            noData: <NoData />,
+          }[getUiStatus()]
+        }
       </Box>
     </Box>
   )

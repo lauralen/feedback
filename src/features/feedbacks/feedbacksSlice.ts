@@ -1,15 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from 'app/store'
 
 import { fetchRequests } from './api'
 import { Feedback, Status } from './types'
 
 export interface FeedbacksState {
-  feedbacks: Feedback[]
+  requests: Feedback[]
   status: Status
 }
 
 const initialState: FeedbacksState = {
-  feedbacks: [],
+  requests: [],
   status: 'idle',
 }
 
@@ -33,7 +34,7 @@ export const feedbacksSlice = createSlice({
       .addCase(
         fetchRequestsAsync.fulfilled,
         (state, action: PayloadAction<Feedback[]>) => {
-          state.feedbacks = action.payload
+          state.requests = action.payload
           state.status = 'idle'
         }
       )
@@ -42,5 +43,10 @@ export const feedbacksSlice = createSlice({
       })
   },
 })
+
+export const getRequests = (state: RootState) => {
+  const { requests } = state.feedbacks
+  return requests
+}
 
 export default feedbacksSlice.reducer
