@@ -5,6 +5,7 @@ import Card from 'common/components/Card'
 import H3 from 'common/components/H3'
 import Tag from 'common/components/Tag'
 import Text from 'common/components/Text'
+import UpvoteButton from 'common/components/UpvoteButton'
 
 const Feedback: FC = () => {
   return (
@@ -13,9 +14,9 @@ const Feedback: FC = () => {
       <Text my="2">
         Easier to search for solutions based on a specific stack.
       </Text>
-      <Tag>Enhancement</Tag>
+      <Tag mb="4">Enhancement</Tag>
       <Flex justify="space-between">
-        <div>^ 112</div>
+        <UpvoteButton>112</UpvoteButton>
         <div>2</div>
       </Flex>
     </Card>
