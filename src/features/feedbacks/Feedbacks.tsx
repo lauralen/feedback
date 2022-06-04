@@ -1,6 +1,14 @@
-import { Box, Flex, FormControl, FormLabel } from '@chakra-ui/react'
+import { useState } from 'react'
+import {
+  Box,
+  Button as ButtonCU,
+  Flex,
+  FormControl,
+  FormLabel,
+} from '@chakra-ui/react'
+import { ReactComponent as CloseIcon } from 'assets/icons/icon-close.svg'
+import { ReactComponent as HamburgerIcon } from 'assets/icons/icon-hamburger.svg'
 
-import Button from 'common/components/Button'
 import H1 from 'common/components/H1'
 import H2 from 'common/components/H2'
 import Select from 'common/components/Select'
@@ -10,6 +18,8 @@ import Feedback from './components/Feedback'
 import NoData from './components/NoData'
 
 function Feedbacks() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
+
   return (
     <Box minHeight="100vh">
       <Box as="header" bgGradient="linear(to-tr, #28A7ED, #E84D70)">
@@ -18,7 +28,15 @@ function Feedbacks() {
             <H1 color="white">Frontend Mentor</H1>
             <H2 color="white">Feedback Board</H2>
           </Box>
-          <Button>Menu</Button>
+          <ButtonCU
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            bg="transparent"
+            _hover={{
+              background: 'transparent',
+            }}
+          >
+            {isMobileMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+          </ButtonCU>
         </Flex>
       </Box>
       <Box bg="blueGray.200">
