@@ -53,8 +53,23 @@ export const feedbacksSlice = createSlice({
 export const { setSortBy } = feedbacksSlice.actions
 
 export const getRequests = (state: RootState) => {
-  const { requests } = state.feedbacks
-  return requests
+  const { requests: stateRequests, sortBy } = state.feedbacks
+  const requests = [...stateRequests]
+
+  switch (sortBy) {
+    case 'most upvotes':
+      return requests.sort((a, b) => b.upvotes - a.upvotes)
+    case 'most comments':
+      return requests.sort(
+        (a, b) => (b.comments?.length ?? 0) - (a.comments?.length ?? 0)
+      )
+    case 'least upvotes':
+      return requests.sort((a, b) => a.upvotes - b.upvotes)
+    case 'least comments':
+      return requests.sort(
+        (a, b) => (a.comments?.length ?? 0) - (b.comments?.length ?? 0)
+      )
+  }
 }
 
 export default feedbacksSlice.reducer
