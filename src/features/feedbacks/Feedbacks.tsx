@@ -2,6 +2,7 @@ import { useState } from 'react'
 import {
   Box,
   Button as ButtonCU,
+  Center,
   Flex,
   FormControl,
   FormLabel,
@@ -12,6 +13,7 @@ import { ReactComponent as HamburgerIcon } from 'assets/icons/icon-hamburger.svg
 import H1 from 'common/components/H1'
 import H2 from 'common/components/H2'
 import Select from 'common/components/Select'
+import Spinner from 'common/components/Spinner'
 
 import AddFeedbackButton from './components/AddFeedbackButton'
 import Feedback from './components/Feedback'
@@ -66,6 +68,9 @@ function Feedbacks() {
       <Box as="main" h="100%" bg="gray.100" py="8" px="6">
         <Feedback />
         <NoData />
+        <Center>
+          <Spinner />
+        </Center>
       </Box>
     </Box>
   )
