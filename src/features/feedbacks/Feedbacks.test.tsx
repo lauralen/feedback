@@ -17,6 +17,7 @@ describe('Feedbacks', () => {
     expect(screen.getByText(/frontend mentor/i)).toBeInTheDocument()
     expect(screen.getByText(/feedback board/i)).toBeInTheDocument()
 
+    expect(screen.getByRole('combobox')).toBeInTheDocument()
     expect(
       screen.getByRole('button', { name: /add feedback/i })
     ).toBeInTheDocument()
