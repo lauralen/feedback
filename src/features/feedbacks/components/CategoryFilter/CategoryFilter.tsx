@@ -19,7 +19,7 @@ const CategoryFilter: FC = () => {
   const group = getRootProps()
 
   return (
-    <Wrap {...group}>
+    <Wrap spacing="3.5" {...group}>
       {options.map((value) => {
         const radio = getRadioProps({ value })
 

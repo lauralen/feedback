@@ -12,20 +12,22 @@ const RadioCard: FC<UseRadioProps> = (props) => {
       <input {...input} />
       <Box
         {...checkbox}
+        px={4}
+        py={1}
+        fontSize="sm"
+        fontWeight="semibold"
         cursor="pointer"
-        borderWidth="1px"
-        borderRadius="md"
-        boxShadow="md"
+        borderRadius="lg"
+        color="blue.100"
+        bg="gray.100"
+        _hover={{
+          color: 'blue.100',
+          bg: '#CFD7FF',
+        }}
         _checked={{
-          bg: 'teal.600',
           color: 'white',
-          borderColor: 'teal.600',
+          bg: 'blue.100',
         }}
-        _focus={{
-          boxShadow: 'outline',
-        }}
-        px={5}
-        py={3}
       >
         {props.children}
       </Box>
