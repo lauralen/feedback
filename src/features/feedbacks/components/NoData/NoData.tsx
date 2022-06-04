@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { Flex } from '@chakra-ui/react'
 import { ReactComponent as Illustration } from 'assets/illustration-empty.svg'
 
+import Card from 'common/components/Card'
 import H3 from 'common/components/H3'
 import Text from 'common/components/Text'
 
@@ -9,13 +9,10 @@ import AddFeedbackButton from '../AddFeedbackButton'
 
 const NoData: FC = () => {
   return (
-    <Flex
-      direction="column"
-      align="center"
-      px="6"
-      py="20"
-      bg="white"
-      borderRadius="lg"
+    <Card
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
       textAlign="center"
     >
       <Illustration />
@@ -25,7 +22,7 @@ const NoData: FC = () => {
         about new ideas to improve our app.
       </Text>
       <AddFeedbackButton />
-    </Flex>
+    </Card>
   )
 }
 
