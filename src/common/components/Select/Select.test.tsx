@@ -4,7 +4,10 @@ import render from 'test/render'
 
 import Select from './Select'
 
-const OPTIONS = ['blue', 'yellow', 'green']
+const blueOption = { value: 'blue', label: 'Blue color' }
+const yellowOption = { value: 'yellow', label: 'Yellow color' }
+const greenOption = { value: 'green', label: 'Green color' }
+const OPTIONS = [blueOption, yellowOption, greenOption]
 
 describe('Select', () => {
   it('is disabled', async () => {
@@ -15,23 +18,23 @@ describe('Select', () => {
   it('selects a value', async () => {
     render(<Select options={OPTIONS} />)
     const select = screen.getByRole('combobox')
-    userEvent.selectOptions(select, 'blue')
+    userEvent.selectOptions(select, blueOption.value)
 
     const optionBlue = screen.getByRole('option', {
-      name: 'blue',
+      name: blueOption.label,
     }) as HTMLOptionElement
     const optionYellow = screen.getByRole('option', {
-      name: 'yellow',
+      name: yellowOption.label,
     }) as HTMLOptionElement
     const optionGreen = screen.getByRole('option', {
-      name: 'green',
+      name: greenOption.label,
     }) as HTMLOptionElement
 
     expect(optionBlue.selected).toBe(true)
     expect(optionYellow.selected).toBe(false)
     expect(optionGreen.selected).toBe(false)
 
-    userEvent.selectOptions(select, 'green')
+    userEvent.selectOptions(select, greenOption.value)
     expect(optionBlue.selected).toBe(false)
     expect(optionYellow.selected).toBe(false)
     expect(optionGreen.selected).toBe(true)

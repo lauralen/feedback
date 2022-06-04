@@ -1,17 +1,19 @@
 import { FC } from 'react'
 import { Box, Select as SelectCU, SelectProps } from '@chakra-ui/react'
 
-interface Props extends SelectProps {
-  options: string[]
+type Option = { label: string; value: string }
+
+type Props = SelectProps & {
+  options: Option[]
 }
 
 const Select: FC<Props> = ({ options, ...rest }) => {
   return (
     <SelectCU {...rest}>
-      {options.map((option) => {
+      {options.map(({ label, value }) => {
         return (
-          <Box as="option" key={option} value={option} color="blueGray.100">
-            {option}
+          <Box as="option" key={value} value={value} color="blueGray.100">
+            {label}
           </Box>
         )
       })}

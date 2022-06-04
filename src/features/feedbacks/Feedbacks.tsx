@@ -20,14 +20,20 @@ import Spinner from 'common/components/Spinner'
 import AddFeedbackButton from './components/AddFeedbackButton'
 import Feedback from './components/Feedback'
 import NoData from './components/NoData'
-import { fetchRequestsAsync, getRequests } from './feedbacksSlice'
-import { Status } from './types'
+import { fetchRequestsAsync, getRequests, setSortBy } from './feedbacksSlice'
+import { SortBy, Status } from './types'
 
 type UiStatus = Status | 'noData'
+const sortOptions: SortBy[] = [
+  'most upvotes',
+  'least upvotes',
+  'most comments',
+  'least comments',
+]
 
 function Feedbacks() {
   const dispatch = useAppDispatch()
-  const { status } = useAppSelector((state) => state.feedbacks)
+  const { status, sortBy } = useAppSelector((state) => state.feedbacks)
   const requests = useAppSelector(getRequests)
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
@@ -75,13 +81,19 @@ function Feedbacks() {
               name="sort-by"
               border="none"
               fontWeight="semibold"
-              maxWidth={160}
-              options={[
-                'Most Upvotes',
-                'Least Upvotes',
-                'Most Comments',
-                'Least Comments',
-              ]}
+              maxWidth={170}
+              value={sortBy}
+              options={sortOptions.map((option) => {
+                return {
+                  value: option,
+                  label: option.replace(/\w\S*/g, (w) =>
+                    w.replace(/^\w/, (c) => c.toUpperCase())
+                  ),
+                }
+              })}
+              onChange={(e) =>
+                dispatch(setSortBy(e.target.value.toLowerCase() as SortBy))
+              }
             >
               Select
             </Select>

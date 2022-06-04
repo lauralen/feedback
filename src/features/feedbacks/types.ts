@@ -1,6 +1,16 @@
 export type Status = 'idle' | 'loading' | 'failed'
+export type SortBy =
+  | 'most upvotes'
+  | 'least upvotes'
+  | 'most comments'
+  | 'least comments'
 
-type Reply = any
+type CommentBase = {
+  content: string
+  user: User
+}
+
+type Reply = CommentBase & { replyingTo: string }
 
 type User = {
   image: string
@@ -8,10 +18,8 @@ type User = {
   username: string
 }
 
-type Comment = {
+type Comment = CommentBase & {
   id: number
-  content: string
-  user: User
   replies?: Reply[]
 }
 
