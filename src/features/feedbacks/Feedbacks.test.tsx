@@ -1,6 +1,10 @@
 import { BrowserRouter } from 'react-router-dom'
-import { screen } from '@testing-library/react'
+import { waitForElementToBeRemoved } from '@testing-library/react'
+import { REQUESTS_ENDPOINT } from 'mocks/productRequests'
+import { server } from 'mocks/server'
+import { rest } from 'msw'
 import render from 'test/render'
+import * as tlsScreen from 'testing-library-selector'
 
 import Feedbacks from './Feedbacks'
 
@@ -10,16 +14,62 @@ const Component = (
   </BrowserRouter>
 )
 
+const ui = {
+  spinner: tlsScreen.byText(/loading/i),
+  headerTitle: tlsScreen.byText(/frontend mentor/i),
+  headerSubitle: tlsScreen.byText(/feedback board/i),
+  sortSelect: tlsScreen.byRole('combobox'),
+  addFeedbackButton: tlsScreen.byRole('button', { name: /add feedback/i }),
+  error: tlsScreen.byText(/error/i),
+  noDataMessage: tlsScreen.byText(/no feedback yet/i),
+}
+
 describe('Feedbacks', () => {
-  it('renders correctly', async () => {
+  it('renders a list of requests', async () => {
     render(Component)
 
-    expect(screen.getByText(/frontend mentor/i)).toBeInTheDocument()
-    expect(screen.getByText(/feedback board/i)).toBeInTheDocument()
+    await waitForElementToBeRemoved(() => ui.spinner.get())
 
-    expect(screen.getByRole('combobox')).toBeInTheDocument()
-    expect(
-      screen.getByRole('button', { name: /add feedback/i })
-    ).toBeInTheDocument()
+    expect(ui.headerTitle.get()).toBeInTheDocument()
+    expect(ui.headerSubitle.get()).toBeInTheDocument()
+    expect(ui.sortSelect.get()).toBeInTheDocument()
+    expect(ui.addFeedbackButton.get()).toBeInTheDocument()
+
+    expect(ui.noDataMessage.query()).not.toBeInTheDocument()
+    expect(ui.error.query()).not.toBeInTheDocument()
+  })
+
+  it('renders no data message', async () => {
+    server.use(
+      rest.get(REQUESTS_ENDPOINT, (req, res, ctx) => res(ctx.json([])))
+    )
+    render(Component)
+
+    await waitForElementToBeRemoved(() => ui.spinner.get())
+
+    expect(ui.headerTitle.get()).toBeInTheDocument()
+    expect(ui.headerSubitle.get()).toBeInTheDocument()
+    expect(ui.sortSelect.get()).toBeInTheDocument()
+    expect(ui.addFeedbackButton.getAll()).toHaveLength(2)
+
+    expect(ui.noDataMessage.get()).toBeInTheDocument()
+    expect(ui.error.query()).not.toBeInTheDocument()
+  })
+
+  it('shows error message', async () => {
+    server.use(
+      rest.get(REQUESTS_ENDPOINT, (req, res, ctx) => res(ctx.status(500)))
+    )
+    render(Component)
+
+    await waitForElementToBeRemoved(() => ui.spinner.get())
+
+    expect(ui.headerTitle.get()).toBeInTheDocument()
+    expect(ui.headerSubitle.get()).toBeInTheDocument()
+    expect(ui.sortSelect.get()).toBeInTheDocument()
+    expect(ui.addFeedbackButton.get()).toBeInTheDocument()
+
+    expect(ui.error.get()).toBeInTheDocument()
+    expect(ui.noDataMessage.query()).not.toBeInTheDocument()
   })
 })

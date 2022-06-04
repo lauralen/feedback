@@ -4,6 +4,8 @@ import { rest } from 'msw'
 import { Feedback } from 'features/feedbacks/types'
 const { REACT_APP_API_ENDPOINT } = process.env
 
+export const REQUESTS_ENDPOINT = `${REACT_APP_API_ENDPOINT}requests`
+
 const mockRequests = [
   {
     id: 1,
@@ -345,10 +347,9 @@ const mockRequests = [
 ]
 
 const handlers = [
-  rest.get<Feedback[]>(`${REACT_APP_API_ENDPOINT}requests`, (req, res, ctx) => {
-    return res(ctx.json(mockRequests))
-    // return res(ctx.json({ data: mockRequests }))
-  }),
+  rest.get<Feedback[]>(REQUESTS_ENDPOINT, (req, res, ctx) =>
+    res(ctx.json(mockRequests))
+  ),
 ]
 
 export default handlers
