@@ -1,6 +1,5 @@
-import { BrowserRouter } from 'react-router-dom'
-import { waitForElementToBeRemoved } from '@testing-library/react'
-import { REQUESTS_ENDPOINT } from 'mocks/productRequests'
+import { screen, waitForElementToBeRemoved } from '@testing-library/react'
+import { mockRequests, REQUESTS_ENDPOINT } from 'mocks/productRequests'
 import { server } from 'mocks/server'
 import { rest } from 'msw'
 import render from 'test/render'
@@ -8,11 +7,7 @@ import * as tlsScreen from 'testing-library-selector'
 
 import Feedbacks from './Feedbacks'
 
-const Component = (
-  <BrowserRouter>
-    <Feedbacks />
-  </BrowserRouter>
-)
+const Component = <Feedbacks />
 
 const ui = {
   spinner: tlsScreen.byText(/loading/i),
@@ -37,6 +32,10 @@ describe('Feedbacks', () => {
 
     expect(ui.noDataMessage.query()).not.toBeInTheDocument()
     expect(ui.error.query()).not.toBeInTheDocument()
+
+    // mockRequests.forEach(({ title }) =>
+    //   expect(screen.getByText(title)).toBeInTheDocument()
+    // )
   })
 
   it('renders no data message', async () => {

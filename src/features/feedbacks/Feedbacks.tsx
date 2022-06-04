@@ -100,7 +100,7 @@ function Feedbacks() {
             idle: (
               <ul>
                 {requests.map((data) => {
-                  return <Feedback key={data.id} />
+                  return <Feedback key={data.id} data={data} />
                 })}
               </ul>
             ),

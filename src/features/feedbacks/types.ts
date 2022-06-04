@@ -1,15 +1,18 @@
 export type Status = 'idle' | 'loading' | 'failed'
 
-export type User = {
+type Reply = any
+
+type User = {
   image: string
   name: string
   username: string
 }
 
-export type Comment = {
+type Comment = {
   id: number
   content: string
   user: User
+  replies?: Reply[]
 }
 
 export type Feedback = {
@@ -19,5 +22,5 @@ export type Feedback = {
   upvotes: number
   status: 'suggestion' | 'planned' | 'in-progress' | 'live'
   description: string
-  comments: Comment[]
+  comments?: Comment[]
 }

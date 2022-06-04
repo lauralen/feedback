@@ -1,19 +1,17 @@
 import { screen } from '@testing-library/react'
+import { mockRequests } from 'mocks/productRequests'
 import render from 'test/render'
 
 import Feedback from './Feedback'
 
 describe('Feedback', () => {
   it('renders correctly', async () => {
-    render(<Feedback />)
+    const data = mockRequests[0]
+    render(<Feedback data={data} />)
 
     expect(
-      screen.getByRole('heading', { name: /Add tags for solutions/i })
+      screen.getByRole('heading', { name: data.title })
     ).toBeInTheDocument()
-    expect(
-      screen.getByText(
-        'Easier to search for solutions based on a specific stack.'
-      )
-    ).toBeInTheDocument()
+    expect(screen.getByText(data.description)).toBeInTheDocument()
   })
 })

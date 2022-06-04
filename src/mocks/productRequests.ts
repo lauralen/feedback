@@ -6,7 +6,7 @@ const { REACT_APP_API_ENDPOINT } = process.env
 
 export const REQUESTS_ENDPOINT = `${REACT_APP_API_ENDPOINT}requests`
 
-const mockRequests = [
+export const mockRequests: Feedback[] = [
   {
     id: 1,
     title: 'Add tags for solutions',

@@ -7,8 +7,13 @@ import H3 from 'common/components/H3'
 import Tag from 'common/components/Tag'
 import Text from 'common/components/Text'
 import UpvoteButton from 'common/components/UpvoteButton'
+import { Feedback as Data } from 'features/feedbacks/types'
 
-const Feedback: FC = () => {
+type Props = {
+  data: Data
+}
+
+const Feedback: FC<Props> = ({ data }) => {
   return (
     <Card mb="4" p="6">
       <H3>Add tags for solutions</H3>
