@@ -1,8 +1,13 @@
-// import Card from 'common/components/Card'
-import { Link as RouterLink } from 'react-router-dom'
+import Card from 'common/components/Card'
+import Link from 'common/components/Link'
 
 function Feedbacks() {
-  return <RouterLink to="/"> Go back</RouterLink>
+  return (
+    <>
+      <Link to="/"> Go back</Link>
+      <Card></Card>
+    </>
+  )
 }
 
 export default Feedbacks
