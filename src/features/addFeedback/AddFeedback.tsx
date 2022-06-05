@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Box } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 import { ReactComponent as PlusIcon } from 'assets/icons/icon-new-feedback.svg'
 
 import Button from 'common/components/Button'
@@ -44,10 +44,12 @@ function Feedbacks() {
             <TextArea id="details" />
           </FormControl>
 
-          <Button>Add Feedback</Button>
-          <Link to="/">
-            <Button>Cancel</Button>
-          </Link>
+          <Flex mt="10" direction="column" align="stretch">
+            <Button mb="4">Add Feedback</Button>
+            <Link to="/">
+              <Button w="100%">Cancel</Button>
+            </Link>
+          </Flex>
         </form>
       </Card>
     </Box>
