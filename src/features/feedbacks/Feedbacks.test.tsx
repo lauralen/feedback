@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom'
 import { screen, waitForElementToBeRemoved } from '@testing-library/react'
 import { mockRequests, REQUESTS_ENDPOINT } from 'mocks/productRequests'
 import { server } from 'mocks/server'
@@ -7,7 +8,11 @@ import * as tlsScreen from 'testing-library-selector'
 
 import Feedbacks from './Feedbacks'
 
-const Component = <Feedbacks />
+const Component = (
+  <BrowserRouter>
+    <Feedbacks />
+  </BrowserRouter>
+)
 
 const ui = {
   spinner: tlsScreen.byText(/loading.../i),
