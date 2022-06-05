@@ -1,11 +1,13 @@
 /* eslint-disable max-lines */
 import { rest } from 'msw'
 
-import { Feedback } from 'features/feedbacks/types'
+import { Feedback } from 'common/types'
+
 const { REACT_APP_API_ENDPOINT } = process.env
 
 export const REQUESTS_ENDPOINT = `${REACT_APP_API_ENDPOINT}requests`
 export const ADD_REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-request`
+export const REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}request/*`
 
 export const mockRequests: Feedback[] = [
   {
@@ -352,6 +354,9 @@ const handlers = [
     res(ctx.json(mockRequests))
   ),
   rest.post(ADD_REQUEST_ENDPOINT, (req, res, ctx) => res(ctx.status(200))),
+  rest.get<Feedback>(REQUEST_ENDPOINT, (req, res, ctx) =>
+    res(ctx.json(mockRequests[0]))
+  ),
 ]
 
 export default handlers

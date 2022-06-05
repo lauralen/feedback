@@ -1,2 +1,30 @@
 export type Status = 'idle' | 'loading' | 'failed'
 export type Category = 'enhancement' | 'feature' | 'bug' | 'UI' | 'UX'
+
+type CommentBase = {
+  content: string
+  user: User
+}
+
+type Reply = CommentBase & { replyingTo: string }
+
+type User = {
+  image: string
+  name: string
+  username: string
+}
+
+type Comment = CommentBase & {
+  id: number
+  replies?: Reply[]
+}
+
+export type Feedback = {
+  id: number
+  title: string
+  category: Category
+  upvotes: number
+  status: 'suggestion' | 'planned' | 'in-progress' | 'live'
+  description: string
+  comments?: Comment[]
+}

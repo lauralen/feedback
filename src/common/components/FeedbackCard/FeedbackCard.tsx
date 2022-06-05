@@ -7,7 +7,7 @@ import H3 from 'common/components/H3'
 import Tag from 'common/components/Tag'
 import Text from 'common/components/Text'
 import UpvoteButton from 'common/components/UpvoteButton'
-import { Feedback as Data } from 'features/feedbacks/types'
+import { Feedback as Data } from 'common/types'
 
 type Props = BoxProps & {
   data: Data

@@ -1,20 +1,40 @@
 import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Box, Center, Flex } from '@chakra-ui/react'
 
 import Button from 'common/components/Button'
 import FeedbackCard from 'common/components/FeedbackCard'
 import GoBackLink from 'common/components/GoBackLink'
 import Spinner from 'common/components/Spinner'
-import { Status } from 'common/types'
+import { Feedback, Status } from 'common/types'
 
-import NoData from '../feedbacks/components/NoData'
+import { fetchRequest } from './api'
 
 function Feedbacks() {
+  let { id } = useParams()
+
   const [status, setStatus] = useState<Status>('idle')
+  const [data, setData] = useState<Feedback>()
 
   useEffect(() => {
-    // fetch feedback by id from param
-  }, [])
+    ;(async () => {
+      setStatus('loading')
+
+      try {
+        if (id) {
+          const res = await fetchRequest(id)
+          const data = await res.json()
+
+          setData(data)
+          setStatus('idle')
+        } else {
+          throw new Error('feedback id not found')
+        }
+      } catch {
+        setStatus('failed')
+      }
+    })()
+  }, [id])
 
   return (
     <>
@@ -35,13 +55,11 @@ function Feedbacks() {
             failed: 'Error',
             idle: (
               <>
-                {/* <FeedbackCard /> */}
-                <div>Feedback card</div>
+                <FeedbackCard data={data as Feedback} />
                 <div>Comments</div>
                 <div>Add comment</div>
               </>
             ),
-            noData: <NoData />,
           }[status]
         }
       </Box>

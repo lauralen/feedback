@@ -6,31 +6,3 @@ export type SortBy =
   | 'least upvotes'
   | 'most comments'
   | 'least comments'
-
-type CommentBase = {
-  content: string
-  user: User
-}
-
-type Reply = CommentBase & { replyingTo: string }
-
-type User = {
-  image: string
-  name: string
-  username: string
-}
-
-type Comment = CommentBase & {
-  id: number
-  replies?: Reply[]
-}
-
-export type Feedback = {
-  id: number
-  title: string
-  category: Category
-  upvotes: number
-  status: 'suggestion' | 'planned' | 'in-progress' | 'live'
-  description: string
-  comments?: Comment[]
-}
