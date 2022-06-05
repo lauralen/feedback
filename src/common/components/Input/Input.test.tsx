@@ -12,7 +12,7 @@ describe('Input', () => {
   })
 
   it('is disabled', async () => {
-    render(<Input disabled />)
+    render(<Input isDisabled />)
 
     expect(screen.getByRole('textbox')).toBeDisabled()
   })
