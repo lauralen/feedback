@@ -28,18 +28,21 @@ const theme = extendTheme({
     Button: {
       variants: {
         primary: {
+          px: 10,
           backgroundColor: 'purple',
           _hover: {
             background: '#C75AF6',
           },
         },
         secondary: {
+          px: 10,
           backgroundColor: 'blueGray.100',
           _hover: {
             background: '#656EA3',
           },
         },
         blue: {
+          px: 10,
           backgroundColor: 'blue.100',
           _hover: {
             background: '#7C91F9',

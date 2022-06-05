@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import {
   Box,
-  Button as ButtonCU,
   Center,
   Flex,
   FormControl,
@@ -12,6 +11,7 @@ import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { ReactComponent as CloseIcon } from 'assets/icons/icon-close.svg'
 import { ReactComponent as HamburgerIcon } from 'assets/icons/icon-hamburger.svg'
 
+import Button from 'common/components/Button'
 import Card from 'common/components/Card'
 import Drawer from 'common/components/Drawer'
 import FeedbackCard from 'common/components/FeedbackCard'
@@ -65,8 +65,9 @@ function Feedbacks() {
             <H1 color="white">Frontend Mentor</H1>
             <H2 color="white">Feedback Board</H2>
           </Box>
-          <ButtonCU
+          <Button
             aria-label="Toggle menu"
+            variant="transparent"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             bg="transparent"
             _hover={{
@@ -74,7 +75,7 @@ function Feedbacks() {
             }}
           >
             {isMobileMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
-          </ButtonCU>
+          </Button>
         </Flex>
       </Box>
       <Drawer
