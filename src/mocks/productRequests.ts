@@ -354,9 +354,18 @@ const handlers = [
     res(ctx.json(mockRequests))
   ),
   rest.post(ADD_REQUEST_ENDPOINT, (req, res, ctx) => res(ctx.status(200))),
-  rest.get<Feedback>(REQUEST_ENDPOINT, (req, res, ctx) =>
-    res(ctx.json(mockRequests[0]))
-  ),
+  rest.get<Feedback>(REQUEST_ENDPOINT, (req, res, ctx) => {
+    const { pathname } = req.url
+
+    const id = pathname.split('/')[2]
+    const requestIndex = Number(id) - 1
+
+    if (requestIndex < mockRequests.length) {
+      return res(ctx.json(mockRequests[requestIndex]))
+    } else {
+      return res(ctx.status(404))
+    }
+  }),
 ]
 
 export default handlers

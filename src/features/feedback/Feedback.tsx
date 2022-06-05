@@ -13,7 +13,7 @@ import { fetchRequest } from './api'
 function Feedbacks() {
   let { id } = useParams()
 
-  const [status, setStatus] = useState<Status>('idle')
+  const [status, setStatus] = useState<Status>('loading')
   const [data, setData] = useState<Feedback>()
 
   useEffect(() => {
