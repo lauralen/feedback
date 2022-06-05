@@ -1,13 +1,20 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Box } from '@chakra-ui/react'
 
+import AddFeedback from 'features/addFeedback'
 import Feedbacks from 'features/feedbacks'
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Feedbacks />} />
-      </Routes>
+      <Box minHeight="100vh" bg="gray.100">
+        <Routes>
+          <Route path="/" element={<Feedbacks />} />
+        </Routes>
+        <Routes>
+          <Route path="/add-feedback" element={<AddFeedback />} />
+        </Routes>
+      </Box>
     </BrowserRouter>
   )
 }

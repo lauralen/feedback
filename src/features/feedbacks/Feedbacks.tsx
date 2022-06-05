@@ -57,7 +57,7 @@ function Feedbacks() {
   }
 
   return (
-    <Box minHeight="100vh" bg="gray.100">
+    <>
       <Box as="header" bgGradient="linear(to-tr, #28A7ED, #E84D70)">
         <Flex py="4" px="6" align="center" justify="space-between">
           <Box>
@@ -131,7 +131,7 @@ function Feedbacks() {
           }[getUiStatus()]
         }
       </Box>
-    </Box>
+    </>
   )
 }
 

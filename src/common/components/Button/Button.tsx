@@ -1,7 +1,7 @@
-import { ButtonHTMLAttributes, FC } from 'react'
-import { Button as ButtonCU } from '@chakra-ui/react'
+import { FC } from 'react'
+import { Button as ButtonCU, ButtonProps } from '@chakra-ui/react'
 
-const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ ...rest }) => {
+const Button: FC<ButtonProps> = ({ ...rest }) => {
   return (
     <ButtonCU
       bg="purple"
