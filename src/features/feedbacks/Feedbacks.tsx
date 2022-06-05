@@ -96,12 +96,10 @@ function Feedbacks() {
               fontWeight="semibold"
               maxWidth={170}
               value={sortBy}
-              options={sortOptions.map((option) => {
-                return {
-                  value: option,
-                  label: capitalizeEveryWord(option),
-                }
-              })}
+              options={sortOptions.map((option) => ({
+                value: option,
+                label: capitalizeEveryWord(option),
+              }))}
               onChange={(e) =>
                 dispatch(setSortBy(e.target.value.toLowerCase() as SortBy))
               }

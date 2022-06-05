@@ -20,6 +20,7 @@ const RadioCard: FC<UseRadioProps> = (props) => {
         borderRadius="lg"
         color="blue.100"
         bg="gray.100"
+        textTransform="capitalize"
         _hover={{
           color: 'blue.100',
           bg: '#CFD7FF',

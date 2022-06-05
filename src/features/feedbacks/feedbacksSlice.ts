@@ -58,8 +58,12 @@ export const feedbacksSlice = createSlice({
 export const { setSortBy, selectCategoryFilter } = feedbacksSlice.actions
 
 export const getRequests = (state: RootState) => {
-  const { requests: stateRequests, sortBy } = state.feedbacks
-  const requests = [...stateRequests]
+  const { requests: stateRequests, sortBy, categoryFilter } = state.feedbacks
+  let requests = [...stateRequests]
+
+  if (categoryFilter !== 'all') {
+    requests = requests.filter(({ category }) => category === categoryFilter)
+  }
 
   switch (sortBy) {
     case 'most upvotes':

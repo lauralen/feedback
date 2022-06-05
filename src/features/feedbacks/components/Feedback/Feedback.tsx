@@ -21,7 +21,9 @@ const Feedback: FC<Props> = ({ data }) => {
     <Card as="li" mb="4" p="6">
       <H3>{title}</H3>
       <Text my="2">{description}</Text>
-      <Tag mb="4">{category}</Tag>
+      <Tag mb="4" textTransform="capitalize">
+        {category}
+      </Tag>
       <Flex justify="space-between">
         <UpvoteButton>{upvotes}</UpvoteButton>
         {commentsCount && (
