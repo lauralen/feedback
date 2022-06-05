@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Box, Textarea } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { ReactComponent as PlusIcon } from 'assets/icons/icon-new-feedback.svg'
 
 import Button from 'common/components/Button'
@@ -11,6 +11,7 @@ import GoBackLink from 'common/components/GoBackLink'
 import H1 from 'common/components/H1'
 import Input from 'common/components/Input'
 import Select from 'common/components/Select'
+import TextArea from 'common/components/TextArea'
 
 function Feedbacks() {
   return (
@@ -40,7 +41,7 @@ function Feedbacks() {
               Include any specific comments on what should be improved, added,
               etc.
             </FormHelper>
-            <Textarea id="details" />
+            <TextArea id="details" />
           </FormControl>
 
           <Button>Add Feedback</Button>
