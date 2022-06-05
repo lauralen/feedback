@@ -3,17 +3,11 @@ import { useRadioGroup, Wrap } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 
 import RadioCard from 'common/components/RadioCard'
+import { feedbackCategories } from 'common/consts'
 import { selectCategoryFilter } from 'features/feedbacks/feedbacksSlice'
 import { CategoryFilter as Option } from 'features/feedbacks/types'
 
-export const options: Option[] = [
-  'all',
-  'enhancement',
-  'feature',
-  'bug',
-  'UI',
-  'UX',
-]
+export const options: Option[] = ['all', ...feedbackCategories]
 
 const CategoryFilter: FC = () => {
   const dispatch = useAppDispatch()

@@ -13,6 +13,8 @@ import H1 from 'common/components/H1'
 import Input from 'common/components/Input'
 import Select from 'common/components/Select'
 import TextArea from 'common/components/TextArea'
+import { feedbackCategories } from 'common/consts'
+import { capitalizeEveryWord } from 'common/utils'
 
 function Feedbacks() {
   const validateTitle = (value: string): string | undefined => {
@@ -37,7 +39,11 @@ function Feedbacks() {
       <Card icon={<PlusIcon />} mt="12" py="10" px="6">
         <H1 mb="6">Create New Feedback</H1>
         <Formik
-          initialValues={{ title: '', category: '', details: '' }}
+          initialValues={{
+            title: '',
+            category: feedbackCategories[0],
+            details: '',
+          }}
           onSubmit={(values, actions) => {
             setTimeout(() => {
               alert(JSON.stringify(values, null, 2))
@@ -67,10 +73,10 @@ function Feedbacks() {
                       {...field}
                       onChange={(e) => field.onChange(e)}
                       id="category"
-                      options={[
-                        { value: 'feature', label: 'Feature' },
-                        { value: 'feature2', label: 'Feature2' },
-                      ]}
+                      options={feedbackCategories.map((option) => ({
+                        value: option,
+                        label: capitalizeEveryWord(option),
+                      }))}
                     />
                   </FormControl>
                 )}
