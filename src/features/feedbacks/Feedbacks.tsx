@@ -94,6 +94,8 @@ function Feedbacks() {
             <Select
               name="sort-by"
               border="none"
+              color="white"
+              bg="transparent"
               fontWeight="semibold"
               maxWidth={170}
               value={sortBy}

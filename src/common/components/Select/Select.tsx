@@ -9,7 +9,13 @@ type Props = SelectProps & {
 
 const Select: FC<Props> = ({ options, ...rest }) => {
   return (
-    <SelectCU {...rest}>
+    <SelectCU
+      color="blueGray.100"
+      borderColor="transparent"
+      bg="gray.50"
+      _focus={{ borderColor: 'blue.100' }}
+      {...rest}
+    >
       {options.map(({ label, value }) => {
         return (
           <Box as="option" key={value} value={value} color="blueGray.100">
