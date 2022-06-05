@@ -6,7 +6,14 @@ import RadioCard from 'common/components/RadioCard'
 import { selectCategoryFilter } from 'features/feedbacks/feedbacksSlice'
 import { CategoryFilter as Option } from 'features/feedbacks/types'
 
-const options: Option[] = ['all', 'enhancement', 'feature', 'bug', 'UI', 'UX']
+export const options: Option[] = [
+  'all',
+  'enhancement',
+  'feature',
+  'bug',
+  'UI',
+  'UX',
+]
 
 const CategoryFilter: FC = () => {
   const dispatch = useAppDispatch()

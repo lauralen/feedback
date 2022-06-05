@@ -65,6 +65,7 @@ function Feedbacks() {
             <H2 color="white">Feedback Board</H2>
           </Box>
           <ButtonCU
+            aria-label="Toggle menu"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             bg="transparent"
             _hover={{
