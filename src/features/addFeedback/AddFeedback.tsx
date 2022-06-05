@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, FormErrorMessage } from '@chakra-ui/react'
 import { ReactComponent as PlusIcon } from 'assets/icons/icon-new-feedback.svg'
 import { Field, Formik } from 'formik'
 
@@ -15,6 +15,22 @@ import Select from 'common/components/Select'
 import TextArea from 'common/components/TextArea'
 
 function Feedbacks() {
+  const validateTitle = (value: string): string | undefined => {
+    if (!value) {
+      return "Can't be empty"
+    } else if (value.length > 130) {
+      return "Can't be longer than 130 characters"
+    }
+  }
+
+  const validateDetails = (value: string): string | undefined => {
+    if (!value) {
+      return "Can't be empty"
+    } else if (value.length > 10000) {
+      return "Can't be longer than 10000 characters"
+    }
+  }
+
   return (
     <Box py="8" px="6">
       <GoBackLink />
@@ -29,14 +45,15 @@ function Feedbacks() {
             }, 1000)
           }}
         >
-          {({ handleSubmit }) => (
+          {({ handleSubmit, errors, touched }) => (
             <form onSubmit={handleSubmit}>
-              <Field name="title">
+              <Field name="title" validate={validateTitle}>
                 {({ field }) => (
-                  <FormControl>
+                  <FormControl isInvalid={!!(errors.title && touched.title)}>
                     <FormLabel htmlFor="title">Feedback Title</FormLabel>
                     <FormHelper>Add a short, descriptive headline</FormHelper>
                     <Input {...field} id="title" />
+                    <FormErrorMessage>{errors.title}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
@@ -59,15 +76,18 @@ function Feedbacks() {
                 )}
               </Field>
 
-              <Field name="details">
+              <Field name="details" validate={validateDetails}>
                 {({ field }) => (
-                  <FormControl>
+                  <FormControl
+                    isInvalid={!!(errors.details && touched.details)}
+                  >
                     <FormLabel htmlFor="details">Feedback Detail</FormLabel>
                     <FormHelper>
                       Include any specific comments on what should be improved,
                       added, etc.
                     </FormHelper>
                     <TextArea {...field} id="details" />
+                    <FormErrorMessage>{errors.details}</FormErrorMessage>
                   </FormControl>
                 )}
               </Field>
