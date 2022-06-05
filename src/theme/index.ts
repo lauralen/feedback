@@ -23,6 +23,7 @@ const theme = extendTheme({
       100: '#4661E6',
     },
   },
+  space: { 19: '4.75rem' },
 })
 
 export default theme
