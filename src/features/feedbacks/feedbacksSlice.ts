@@ -1,8 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'app/store'
 
+import { Status } from 'common/types'
+
 import { fetchRequests } from './api'
-import { CategoryFilter, Feedback, SortBy, Status } from './types'
+import { CategoryFilter, Feedback, SortBy } from './types'
 
 export interface FeedbacksState {
   requests: Feedback[]

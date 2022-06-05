@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Box } from '@chakra-ui/react'
 
 import AddFeedback from 'features/addFeedback'
+import Feedback from 'features/feedback'
 import Feedbacks from 'features/feedbacks'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Feedbacks />} />
           <Route path="/add-feedback" element={<AddFeedback />} />
+          <Route path="/feedback/:id" element={<Feedback />} />
         </Routes>
       </Box>
     </BrowserRouter>

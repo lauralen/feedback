@@ -1,6 +1,5 @@
 import { Category } from 'common/types'
 
-export type Status = 'idle' | 'loading' | 'failed'
 export type CategoryFilter = Category | 'all'
 export type SortBy =
   | 'most upvotes'

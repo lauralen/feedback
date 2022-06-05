@@ -18,6 +18,7 @@ import H1 from 'common/components/H1'
 import H2 from 'common/components/H2'
 import Select from 'common/components/Select'
 import Spinner from 'common/components/Spinner'
+import { Status } from 'common/types'
 import { capitalizeEveryWord } from 'common/utils'
 
 import AddFeedbackButton from './components/AddFeedbackButton'
@@ -25,7 +26,7 @@ import CategoryFilter from './components/CategoryFilter'
 import Feedback from './components/Feedback'
 import NoData from './components/NoData'
 import { fetchRequestsAsync, getRequests, setSortBy } from './feedbacksSlice'
-import { SortBy, Status } from './types'
+import { SortBy } from './types'
 
 type UiStatus = Status | 'noData'
 const sortOptions: SortBy[] = [
