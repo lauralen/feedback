@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
-import { Box, FormControl, Textarea } from '@chakra-ui/react'
+import { Box, Textarea } from '@chakra-ui/react'
 import { ReactComponent as PlusIcon } from 'assets/icons/icon-new-feedback.svg'
 
 import Button from 'common/components/Button'
 import Card from 'common/components/Card'
+import FormControl from 'common/components/FormControl'
 import FormHelper from 'common/components/FormHelper'
 import FormLabel from 'common/components/FormLabel'
 import GoBackLink from 'common/components/GoBackLink'
@@ -18,7 +19,7 @@ function Feedbacks() {
       <Card icon={<PlusIcon />} mt="12" py="10" px="6">
         <H1 mb="6">Create New Feedback</H1>
         <form>
-          <FormControl mb="6">
+          <FormControl>
             <FormLabel htmlFor="title">Feedback Title</FormLabel>
             <FormHelper>Add a short, descriptive headline</FormHelper>
             <Input id="title" />
