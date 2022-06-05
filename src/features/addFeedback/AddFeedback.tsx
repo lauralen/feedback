@@ -45,7 +45,7 @@ function Feedbacks() {
             }, 1000)
           }}
         >
-          {({ handleSubmit, errors, touched }) => (
+          {({ handleSubmit, errors, touched, isSubmitting }) => (
             <form onSubmit={handleSubmit}>
               <Field name="title" validate={validateTitle}>
                 {({ field }) => (
@@ -93,7 +93,7 @@ function Feedbacks() {
               </Field>
 
               <Flex mt="10" direction="column" align="stretch">
-                <Button mb="4" type="submit">
+                <Button mb="4" type="submit" isLoading={isSubmitting}>
                   Add Feedback
                 </Button>
                 <Link to="/">
