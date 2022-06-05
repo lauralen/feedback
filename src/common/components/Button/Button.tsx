@@ -1,18 +1,19 @@
 import { FC } from 'react'
 import { Button as ButtonCU, ButtonProps } from '@chakra-ui/react'
 
-const Button: FC<ButtonProps> = ({ ...rest }) => {
+type Props = ButtonProps & {
+  variant?: 'primary' | 'secondary'
+}
+
+const Button: FC<Props> = ({ variant = 'primary', ...rest }) => {
   return (
     <ButtonCU
-      bg="purple"
+      variant={variant}
       color="white"
       lineHeight="5"
       fontSize="sm"
       px="10"
       borderRadius="lg"
-      _hover={{
-        background: '#C75AF6',
-      }}
       {...rest}
     />
   )

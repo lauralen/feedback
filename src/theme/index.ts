@@ -24,6 +24,24 @@ const theme = extendTheme({
     },
   },
   space: { 19: '4.75rem' },
+  components: {
+    Button: {
+      variants: {
+        primary: {
+          backgroundColor: 'purple',
+          _hover: {
+            background: '#C75AF6',
+          },
+        },
+        secondary: {
+          backgroundColor: 'blueGray.100',
+          _hover: {
+            background: '#656EA3',
+          },
+        },
+      },
+    },
+  },
 })
 
 export default theme

@@ -47,7 +47,9 @@ function Feedbacks() {
           <Flex mt="10" direction="column" align="stretch">
             <Button mb="4">Add Feedback</Button>
             <Link to="/">
-              <Button w="100%">Cancel</Button>
+              <Button variant="secondary" w="100%">
+                Cancel
+              </Button>
             </Link>
           </Flex>
         </form>
