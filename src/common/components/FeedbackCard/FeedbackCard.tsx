@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, BoxProps, Flex } from '@chakra-ui/react'
 import { ReactComponent as CommentIcon } from 'assets/icons/icon-comments.svg'
 
 import Card from 'common/components/Card'
@@ -9,16 +9,16 @@ import Text from 'common/components/Text'
 import UpvoteButton from 'common/components/UpvoteButton'
 import { Feedback as Data } from 'features/feedbacks/types'
 
-type Props = {
+type Props = BoxProps & {
   data: Data
 }
 
-const Feedback: FC<Props> = ({ data }) => {
+const FeedbackCard: FC<Props> = ({ data, ...rest }) => {
   const { title, description, category, upvotes, comments } = data
   const commentsCount = comments?.length
 
   return (
-    <Card as="li" mb="4" p="6">
+    <Card mb="4" p="6" {...rest}>
       <H3>{title}</H3>
       <Text my="2">{description}</Text>
       <Tag mb="4" textTransform="capitalize">
@@ -46,4 +46,4 @@ const Feedback: FC<Props> = ({ data }) => {
   )
 }
 
-export default Feedback
+export default FeedbackCard

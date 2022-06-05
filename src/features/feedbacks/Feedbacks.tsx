@@ -14,6 +14,7 @@ import { ReactComponent as HamburgerIcon } from 'assets/icons/icon-hamburger.svg
 
 import Card from 'common/components/Card'
 import Drawer from 'common/components/Drawer'
+import FeedbackCard from 'common/components/FeedbackCard'
 import H1 from 'common/components/H1'
 import H2 from 'common/components/H2'
 import Select from 'common/components/Select'
@@ -23,7 +24,6 @@ import { capitalizeEveryWord } from 'common/utils'
 
 import AddFeedbackButton from './components/AddFeedbackButton'
 import CategoryFilter from './components/CategoryFilter'
-import Feedback from './components/Feedback'
 import NoData from './components/NoData'
 import { fetchRequestsAsync, getRequests, setSortBy } from './feedbacksSlice'
 import { SortBy } from './types'
@@ -126,7 +126,7 @@ function Feedbacks() {
             idle: (
               <List>
                 {requests.map((data) => {
-                  return <Feedback key={data.id} data={data} />
+                  return <FeedbackCard as="li" key={data.id} data={data} />
                 })}
               </List>
             ),
