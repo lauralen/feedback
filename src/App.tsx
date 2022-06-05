@@ -10,8 +10,6 @@ function App() {
       <Box minHeight="100vh" bg="gray.100">
         <Routes>
           <Route path="/" element={<Feedbacks />} />
-        </Routes>
-        <Routes>
           <Route path="/add-feedback" element={<AddFeedback />} />
         </Routes>
       </Box>
