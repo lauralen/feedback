@@ -39,6 +39,12 @@ const theme = extendTheme({
             background: '#656EA3',
           },
         },
+        blue: {
+          backgroundColor: 'blue.100',
+          _hover: {
+            background: '#7C91F9',
+          },
+        },
       },
     },
   },

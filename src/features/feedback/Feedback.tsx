@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Box, Center } from '@chakra-ui/react'
+import { Box, Center, Flex } from '@chakra-ui/react'
 
+import Button from 'common/components/Button'
+import FeedbackCard from 'common/components/FeedbackCard'
+import GoBackLink from 'common/components/GoBackLink'
 import Spinner from 'common/components/Spinner'
 import { Status } from 'common/types'
 
@@ -16,6 +19,12 @@ function Feedbacks() {
   return (
     <>
       <Box py="8" px="6">
+        <Flex mb="6" align="center" justify="space-between">
+          <GoBackLink />
+          <Button variant="blue" isDisabled={status !== 'idle'}>
+            Edit Feedback
+          </Button>
+        </Flex>
         {
           {
             loading: (
@@ -26,6 +35,7 @@ function Feedbacks() {
             failed: 'Error',
             idle: (
               <>
+                {/* <FeedbackCard /> */}
                 <div>Feedback card</div>
                 <div>Comments</div>
                 <div>Add comment</div>

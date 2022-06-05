@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { Button as ButtonCU, ButtonProps } from '@chakra-ui/react'
 
 type Props = ButtonProps & {
-  variant?: 'primary' | 'secondary'
+  variant?: 'primary' | 'secondary' | 'blue'
 }
 
 const Button: FC<Props> = ({ variant = 'primary', ...rest }) => {
