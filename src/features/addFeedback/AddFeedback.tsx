@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
-import { Box, Flex, FormErrorMessage } from '@chakra-ui/react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Box, Flex, FormErrorMessage, useToast } from '@chakra-ui/react'
 import { ReactComponent as PlusIcon } from 'assets/icons/icon-new-feedback.svg'
-import { Field, Formik } from 'formik'
+import { Field, Formik, FormikHelpers } from 'formik'
 
 import Button from 'common/components/Button'
 import Card from 'common/components/Card'
@@ -16,7 +16,13 @@ import TextArea from 'common/components/TextArea'
 import { feedbackCategories } from 'common/consts'
 import { capitalizeEveryWord } from 'common/utils'
 
+import { postRequest } from './api'
+import { RequestData } from './types'
+
 function Feedbacks() {
+  const toast = useToast()
+  const navigate = useNavigate()
+
   const validateTitle = (value: string): string | undefined => {
     if (!value) {
       return "Can't be empty"
@@ -33,6 +39,30 @@ function Feedbacks() {
     }
   }
 
+  const onSubmit = async (
+    values: RequestData,
+    actions: FormikHelpers<RequestData>
+  ) => {
+    try {
+      await postRequest(values)
+
+      toast({
+        title: 'Feedback posted successfully',
+        status: 'success',
+        isClosable: true,
+      })
+      navigate('/')
+    } catch {
+      toast({
+        title: 'Failed to post feedback',
+        status: 'error',
+        isClosable: true,
+      })
+    } finally {
+      actions.setSubmitting(false)
+    }
+  }
+
   return (
     <Box py="8" px="6">
       <GoBackLink />
@@ -44,12 +74,7 @@ function Feedbacks() {
             category: feedbackCategories[0],
             details: '',
           }}
-          onSubmit={(values, actions) => {
-            setTimeout(() => {
-              alert(JSON.stringify(values, null, 2))
-              actions.setSubmitting(false)
-            }, 1000)
-          }}
+          onSubmit={onSubmit}
         >
           {({ handleSubmit, errors, touched, isSubmitting }) => (
             <form onSubmit={handleSubmit}>

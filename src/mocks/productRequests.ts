@@ -5,6 +5,7 @@ import { Feedback } from 'features/feedbacks/types'
 const { REACT_APP_API_ENDPOINT } = process.env
 
 export const REQUESTS_ENDPOINT = `${REACT_APP_API_ENDPOINT}requests`
+export const ADD_REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-request`
 
 export const mockRequests: Feedback[] = [
   {
@@ -350,6 +351,7 @@ const handlers = [
   rest.get<Feedback[]>(REQUESTS_ENDPOINT, (req, res, ctx) =>
     res(ctx.json(mockRequests))
   ),
+  rest.post(ADD_REQUEST_ENDPOINT, (req, res, ctx) => res(ctx.status(200))),
 ]
 
 export default handlers
