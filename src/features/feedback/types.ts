@@ -1,3 +1,5 @@
-export type PostCommentBody = {
+export type PostComment = {
   comment: string
+  feedbackId: string
+  username: string
 }

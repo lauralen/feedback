@@ -24,7 +24,8 @@ import TextArea from 'common/components/TextArea'
 import { Feedback, Status } from 'common/types'
 
 import { fetchRequest, postComment } from './api'
-import { PostCommentBody } from './types'
+
+type FormValues = { comment: string }
 
 const COMMENT_CHAR_LIMIT = 250
 
@@ -69,18 +70,26 @@ function Feedbacks() {
   }
 
   const onSubmit = async (
-    values: PostCommentBody,
-    actions: FormikHelpers<PostCommentBody>
+    values: FormValues,
+    actions: FormikHelpers<FormValues>
   ) => {
     try {
-      await postComment(values)
+      if (id) {
+        await postComment({
+          ...values,
+          feedbackId: id,
+          username: 'you',
+        })
 
-      toast({
-        title: 'Comment posted successfully',
-        status: 'success',
-        isClosable: true,
-      })
-      actions.resetForm()
+        toast({
+          title: 'Comment posted successfully',
+          status: 'success',
+          isClosable: true,
+        })
+        actions.resetForm()
+      } else {
+        throw new Error('feedback id not found')
+      }
     } catch {
       toast({
         title: 'Failed to post comment',
