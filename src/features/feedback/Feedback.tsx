@@ -23,7 +23,8 @@ import Text from 'common/components/Text'
 import TextArea from 'common/components/TextArea'
 import { Feedback, Status } from 'common/types'
 
-import { fetchRequest } from './api'
+import { fetchRequest, postComment } from './api'
+import { PostCommentBody } from './types'
 
 const COMMENT_CHAR_LIMIT = 250
 
@@ -67,15 +68,19 @@ function Feedbacks() {
     }
   }
 
-  const onSubmit = async (values: any, actions: FormikHelpers<any>) => {
+  const onSubmit = async (
+    values: PostCommentBody,
+    actions: FormikHelpers<PostCommentBody>
+  ) => {
     try {
-      // await postRequest(values)
+      await postComment(values)
 
       toast({
         title: 'Comment posted successfully',
         status: 'success',
         isClosable: true,
       })
+      actions.resetForm()
     } catch {
       toast({
         title: 'Failed to post comment',
@@ -195,7 +200,9 @@ function Feedbacks() {
                             )}{' '}
                             Characters left
                           </Text>
-                          <Button isLoading={isSubmitting}>Post Comment</Button>
+                          <Button type="submit" isLoading={isSubmitting}>
+                            Post Comment
+                          </Button>
                         </Flex>
                       </form>
                     )}

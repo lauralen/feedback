@@ -8,6 +8,7 @@ const { REACT_APP_API_ENDPOINT } = process.env
 export const REQUESTS_ENDPOINT = `${REACT_APP_API_ENDPOINT}requests`
 export const ADD_REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-request`
 export const REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}request/*`
+export const ADD_COMMENT_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-comment`
 
 export const mockRequests: Feedback[] = [
   {
@@ -366,6 +367,7 @@ const handlers = [
       return res(ctx.status(404))
     }
   }),
+  rest.post(ADD_COMMENT_ENDPOINT, (req, res, ctx) => res(ctx.status(200))),
 ]
 
 export default handlers
