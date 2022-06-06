@@ -1,11 +1,15 @@
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Box, Center, Flex } from '@chakra-ui/react'
+import { Box, Center, Flex, Image, List } from '@chakra-ui/react'
 
 import Button from 'common/components/Button'
+import Card from 'common/components/Card'
 import FeedbackCard from 'common/components/FeedbackCard'
 import GoBackLink from 'common/components/GoBackLink'
+import H1 from 'common/components/H1'
+import H2 from 'common/components/H2'
 import Spinner from 'common/components/Spinner'
+import Text from 'common/components/Text'
 import { Feedback, Status } from 'common/types'
 
 import { fetchRequest } from './api'
@@ -56,8 +60,50 @@ function Feedbacks() {
             idle: (
               <>
                 <FeedbackCard data={data as Feedback} />
-                <div>Comments</div>
-                <div>Add comment</div>
+                {data?.comments && (
+                  <Card p="6">
+                    <H1>
+                      {data.comments.length} comment
+                      {data.comments.length > 1 && 's'}
+                    </H1>
+                    <List>
+                      {data.comments.map(({ id, user, content }) => (
+                        <Box
+                          as="li"
+                          key={id}
+                          my="6"
+                          _notLast={{
+                            borderBottom: '2px',
+                            borderColor: 'gray.100',
+                          }}
+                        >
+                          <Flex mb="4">
+                            <Image
+                              mr="4"
+                              w="12"
+                              h="12"
+                              borderRadius="full"
+                              src={user.image}
+                              alt="User profile"
+                            />
+                            <Flex direction="column">
+                              <H2 fontSize="md">{user.name}</H2>
+                              <Text
+                                fontSize="sm"
+                                _before={{
+                                  content: '"@"',
+                                }}
+                              >
+                                {user.username}
+                              </Text>
+                            </Flex>
+                          </Flex>
+                          <Text mb="6">{content}</Text>
+                        </Box>
+                      ))}
+                    </List>
+                  </Card>
+                )}
               </>
             ),
           }[status]
