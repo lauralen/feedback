@@ -126,9 +126,9 @@ function Feedbacks() {
             failed: 'Error',
             idle: (
               <List>
-                {requests.map((data) => {
-                  return <FeedbackCard as="li" key={data.id} data={data} />
-                })}
+                {requests.map((data) => (
+                  <FeedbackCard as="li" key={data.id} data={data} withLink />
+                ))}
               </List>
             ),
             noData: <NoData />,
