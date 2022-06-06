@@ -10,6 +10,7 @@ import H1 from 'common/components/H1'
 import H2 from 'common/components/H2'
 import Spinner from 'common/components/Spinner'
 import Text from 'common/components/Text'
+import TextArea from 'common/components/TextArea'
 import { Feedback, Status } from 'common/types'
 
 import { fetchRequest } from './api'
@@ -61,7 +62,7 @@ function Feedbacks() {
               <>
                 <FeedbackCard data={data as Feedback} />
                 {data?.comments && (
-                  <Card p="6">
+                  <Card mb="6" p="6">
                     <H1>
                       {data.comments.length} comment
                       {data.comments.length > 1 && 's'}
@@ -104,6 +105,15 @@ function Feedbacks() {
                     </List>
                   </Card>
                 )}
+
+                <Card p="6">
+                  <H1 mb="6">Add Comment</H1>
+                  <TextArea mb="4" placeholder="Type your comment here" />
+                  <Flex align="center" justify="space-between">
+                    <Text>250 Characters left</Text>
+                    <Button>Post Comment</Button>
+                  </Flex>
+                </Card>
               </>
             ),
           }[status]
