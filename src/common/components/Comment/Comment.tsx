@@ -3,6 +3,7 @@ import { Box, BoxProps, Flex, Image } from '@chakra-ui/react'
 
 import H2 from 'common/components/H2'
 import Text from 'common/components/Text'
+import Username from 'common/components/Username'
 import { Comment as CommentType, Reply } from 'common/types'
 
 type Props = BoxProps & {
@@ -32,14 +33,7 @@ const Comment: FC<Props> = ({ data, ...rest }) => {
         />
         <Flex direction="column">
           <H2 fontSize="md">{user.name}</H2>
-          <Text
-            fontSize="sm"
-            _before={{
-              content: '"@"',
-            }}
-          >
-            {user.username}
-          </Text>
+          <Username>{user.username}</Username>
         </Flex>
       </Flex>
       <Text mb="6">{content}</Text>
