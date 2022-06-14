@@ -1,6 +1,6 @@
 import { generatePath, Link, useNavigate, useParams } from 'react-router-dom'
 import { Box, Flex, FormErrorMessage, useToast } from '@chakra-ui/react'
-import { ReactComponent as PlusIcon } from 'assets/icons/icon-new-feedback.svg'
+import { ReactComponent as EditIcon } from 'assets/icons/icon-edit-feedback.svg'
 import { Field, Formik, FormikHelpers } from 'formik'
 
 import Button from 'common/components/Button'
@@ -63,11 +63,13 @@ function Edit() {
     }
   }
 
+  const previousUrl = generatePath('/feedback/:id', { id })
+
   return (
     <Box py="8" px="6">
-      <GoBackLink to={generatePath('/feedback/:id', { id })} />
-      <Card icon={<PlusIcon />} mt="12" py="10" px="6">
-        <H1 mb="6">Create New Feedback</H1>
+      <GoBackLink to={previousUrl} />
+      <Card icon={<EditIcon />} mt="12" py="10" px="6">
+        <H1 mb="6">Editing *feedback title*</H1>
         <Formik
           initialValues={{
             title: '',
@@ -125,13 +127,16 @@ function Edit() {
 
               <Flex mt="10" direction="column" align="stretch">
                 <Button mb="4" type="submit" isLoading={isSubmitting}>
-                  Add Feedback
+                  Save Changes
                 </Button>
-                <Link to="/">
+                <Link to={previousUrl}>
                   <Button variant="secondary" w="100%">
                     Cancel
                   </Button>
                 </Link>
+                <Button variant="danger" mt="4">
+                  Delete
+                </Button>
               </Flex>
             </form>
           )}

@@ -48,6 +48,13 @@ const theme = extendTheme({
             background: '#7C91F9',
           },
         },
+        danger: {
+          px: 10,
+          backgroundColor: '#D73737',
+          _hover: {
+            background: '#E98888',
+          },
+        },
       },
     },
   },
