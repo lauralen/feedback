@@ -17,6 +17,7 @@ type User = {
 export type Comment = CommentBase & {
   id: number
   replies?: Reply[]
+  replyingTo?: never
 }
 
 export type Feedback = {

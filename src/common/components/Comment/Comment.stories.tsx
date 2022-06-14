@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { mockComment } from 'mocks/productRequests'
+import { mockComment, mockCommentWithReplies } from 'mocks/productRequests'
 import theme from 'theme'
 
 import Comment from './Comment'
@@ -23,4 +23,10 @@ const commonArgs = {
 export const Default = Template.bind({})
 Default.args = {
   ...commonArgs,
+}
+
+export const WithReplies = Template.bind({})
+WithReplies.args = {
+  ...commonArgs,
+  data: mockCommentWithReplies,
 }

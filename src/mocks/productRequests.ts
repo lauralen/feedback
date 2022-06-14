@@ -22,6 +22,41 @@ export const mockComment: Comment = {
   },
 }
 
+export const mockCommentWithReplies: Comment = {
+  id: 4,
+  content: 'Second this!',
+  user: {
+    image:
+      'https://github.com/SirDev97/product-feedback-app/blob/main/public/assets/user-images/image-james.jpg?raw=true',
+    name: 'James Skinner',
+    username: 'hummingbird1',
+  },
+  replies: [
+    {
+      content:
+        "While waiting for dark mode, there are browser extensions that will also do the job. Search for 'dark theme' followed by your browser. There might be a need to turn off the extension for sites with naturally black backgrounds though.",
+      replyingTo: 'hummingbird1',
+      user: {
+        image:
+          'https://github.com/SirDev97/product-feedback-app/blob/main/public/assets/user-images/image-anne.jpg?raw=true',
+        name: 'Anne Valentine',
+        username: 'annev1990',
+      },
+    },
+    {
+      content:
+        "Good point! Using any kind of style extension is great and can be highly customizable, like the ability to change contrast and brightness. I'd prefer not to use one of such extensions, however, for security and privacy reasons.",
+      replyingTo: 'annev1990',
+      user: {
+        image:
+          'https://github.com/SirDev97/product-feedback-app/blob/main/public/assets/user-images/image-ryan.jpg?raw=true',
+        name: 'Ryan Welles',
+        username: 'voyager.344',
+      },
+    },
+  ],
+}
+
 export const mockRequests: Feedback[] = [
   {
     id: 1,
@@ -65,41 +100,7 @@ export const mockRequests: Feedback[] = [
           username: 'hexagon.bestagon',
         },
       },
-      {
-        id: 4,
-        content:
-          'Second this! I do a lot of late night coding and reading. Adding a dark theme can be great for preventing eye strain and the headaches that result. It’s also quite a trend with modern apps and  apparently saves battery life.',
-        user: {
-          image:
-            'https://github.com/SirDev97/product-feedback-app/blob/main/public/assets/user-images/image-james.jpg?raw=true',
-          name: 'James Skinner',
-          username: 'hummingbird1',
-        },
-        replies: [
-          {
-            content:
-              "While waiting for dark mode, there are browser extensions that will also do the job. Search for 'dark theme' followed by your browser. There might be a need to turn off the extension for sites with naturally black backgrounds though.",
-            replyingTo: 'hummingbird1',
-            user: {
-              image:
-                'https://github.com/SirDev97/product-feedback-app/blob/main/public/assets/user-images/image-anne.jpg?raw=true',
-              name: 'Anne Valentine',
-              username: 'annev1990',
-            },
-          },
-          {
-            content:
-              "Good point! Using any kind of style extension is great and can be highly customizable, like the ability to change contrast and brightness. I'd prefer not to use one of such extensions, however, for security and privacy reasons.",
-            replyingTo: 'annev1990',
-            user: {
-              image:
-                'https://github.com/SirDev97/product-feedback-app/blob/main/public/assets/user-images/image-ryan.jpg?raw=true',
-              name: 'Ryan Welles',
-              username: 'voyager.344',
-            },
-          },
-        ],
-      },
+      mockCommentWithReplies,
     ],
   },
   {
