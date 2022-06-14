@@ -16,16 +16,17 @@ const Comment: FC<Props> = ({ data, ...rest }) => {
 
   return (
     <Box
-      my="6"
-      _notLast={
+      mb="6"
+      pt={isReply ? undefined : '6'}
+      _notFirst={
         isReply
           ? undefined
           : {
-              borderBottom: '2px',
+              borderTop: '2px',
               borderColor: 'gray.100',
             }
       }
-      paddingLeft={isReply ? '6' : undefined}
+      pl={isReply ? '6' : undefined}
       borderLeft={isReply ? '2px' : undefined}
       borderColor="gray.100"
       {...rest}
