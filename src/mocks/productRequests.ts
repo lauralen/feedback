@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 import { rest } from 'msw'
 
-import { Feedback } from 'common/types'
+import { Comment, Feedback } from 'common/types'
 
 const { REACT_APP_API_ENDPOINT } = process.env
 
@@ -9,6 +9,18 @@ export const REQUESTS_ENDPOINT = `${REACT_APP_API_ENDPOINT}requests`
 export const ADD_REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-request`
 export const REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}request/*`
 export const ADD_COMMENT_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-comment`
+
+export const mockComment: Comment = {
+  id: 1,
+  content:
+    'Awesome idea! Trying to find framework-specific projects within the hubs can be tedious',
+  user: {
+    image:
+      'https://github.com/SirDev97/product-feedback-app/blob/main/public/assets/user-images/image-suzanne.jpg?raw=true',
+    name: 'Suzanne Chang',
+    username: 'upbeat1811',
+  },
+}
 
 export const mockRequests: Feedback[] = [
   {
@@ -19,17 +31,7 @@ export const mockRequests: Feedback[] = [
     status: 'suggestion',
     description: 'Easier to search for solutions based on a specific stack.',
     comments: [
-      {
-        id: 1,
-        content:
-          'Awesome idea! Trying to find framework-specific projects within the hubs can be tedious',
-        user: {
-          image:
-            'https://github.com/SirDev97/product-feedback-app/blob/main/public/assets/user-images/image-suzanne.jpg?raw=true',
-          name: 'Suzanne Chang',
-          username: 'upbeat1811',
-        },
-      },
+      mockComment,
       {
         id: 2,
         content:

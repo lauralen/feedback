@@ -6,7 +6,7 @@ type CommentBase = {
   user: User
 }
 
-type Reply = CommentBase & { replyingTo: string }
+export type Reply = CommentBase & { replyingTo: string }
 
 type User = {
   image: string
@@ -14,7 +14,7 @@ type User = {
   username: string
 }
 
-type Comment = CommentBase & {
+export type Comment = CommentBase & {
   id: number
   replies?: Reply[]
 }

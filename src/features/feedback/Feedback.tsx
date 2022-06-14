@@ -5,7 +5,6 @@ import {
   Center,
   Flex,
   FormErrorMessage,
-  Image,
   List,
   useToast,
 } from '@chakra-ui/react'
@@ -13,11 +12,11 @@ import { Field, Formik, FormikHelpers } from 'formik'
 
 import Button from 'common/components/Button'
 import Card from 'common/components/Card'
+import Comment from 'common/components/Comment'
 import FeedbackCard from 'common/components/FeedbackCard'
 import FormControl from 'common/components/FormControl'
 import GoBackLink from 'common/components/GoBackLink'
 import H1 from 'common/components/H1'
-import H2 from 'common/components/H2'
 import Spinner from 'common/components/Spinner'
 import Text from 'common/components/Text'
 import TextArea from 'common/components/TextArea'
@@ -128,39 +127,8 @@ function Feedbacks() {
                       {data.comments.length > 1 && 's'}
                     </H1>
                     <List>
-                      {data.comments.map(({ id, user, content }) => (
-                        <Box
-                          as="li"
-                          key={id}
-                          my="6"
-                          _notLast={{
-                            borderBottom: '2px',
-                            borderColor: 'gray.100',
-                          }}
-                        >
-                          <Flex mb="4">
-                            <Image
-                              mr="4"
-                              w="12"
-                              h="12"
-                              borderRadius="full"
-                              src={user.image}
-                              alt="User profile"
-                            />
-                            <Flex direction="column">
-                              <H2 fontSize="md">{user.name}</H2>
-                              <Text
-                                fontSize="sm"
-                                _before={{
-                                  content: '"@"',
-                                }}
-                              >
-                                {user.username}
-                              </Text>
-                            </Flex>
-                          </Flex>
-                          <Text mb="6">{content}</Text>
-                        </Box>
+                      {data.comments.map((comment) => (
+                        <Comment key={comment.id} data={comment} as="li" />
                       ))}
                     </List>
                   </Card>
