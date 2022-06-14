@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import {
   Box,
   Center,
@@ -105,9 +105,11 @@ function Feedbacks() {
       <Box py="8" px="6">
         <Flex mb="6" align="center" justify="space-between">
           <GoBackLink />
-          <Button variant="blue" isDisabled={status !== 'idle'}>
-            Edit Feedback
-          </Button>
+          <Link to="edit">
+            <Button variant="blue" isDisabled={status !== 'idle'}>
+              Edit Feedback
+            </Button>
+          </Link>
         </Flex>
         {
           {

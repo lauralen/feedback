@@ -3,6 +3,7 @@ import { Box } from '@chakra-ui/react'
 
 import AddFeedback from 'features/addFeedback'
 import Feedback from 'features/feedback'
+import EditFeedback from 'features/feedback/components/edit'
 import Feedbacks from 'features/feedbacks'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Feedbacks />} />
           <Route path="/add-feedback" element={<AddFeedback />} />
           <Route path="/feedback/:id" element={<Feedback />} />
+          <Route path="/feedback/:id/edit" element={<EditFeedback />} />
         </Routes>
       </Box>
     </BrowserRouter>

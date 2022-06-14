@@ -15,11 +15,10 @@ import Select from 'common/components/Select'
 import TextArea from 'common/components/TextArea'
 import { feedbackCategories } from 'common/consts'
 import { capitalizeEveryWord } from 'common/utils'
+import { postRequest } from 'features/addFeedback/api'
+import { RequestData } from 'features/addFeedback/types'
 
-import { postRequest } from './api'
-import { RequestData } from './types'
-
-function AddFeedback() {
+function Edit() {
   const toast = useToast()
   const navigate = useNavigate()
 
@@ -141,4 +140,4 @@ function AddFeedback() {
   )
 }
 
-export default AddFeedback
+export default Edit
