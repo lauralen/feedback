@@ -1,5 +1,6 @@
 export type Status = 'idle' | 'loading' | 'failed'
 export type Category = 'enhancement' | 'feature' | 'bug' | 'UI' | 'UX'
+export type State = 'suggestion' | 'planned' | 'in-progress' | 'live'
 
 type CommentBase = {
   content: string

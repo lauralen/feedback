@@ -1,4 +1,4 @@
-import { Category } from './types'
+import { Category, State } from './types'
 
 export const feedbackCategories: Category[] = [
   'enhancement',
@@ -6,4 +6,10 @@ export const feedbackCategories: Category[] = [
   'bug',
   'UI',
   'UX',
+]
+export const feedbackStates: State[] = [
+  'suggestion',
+  'planned',
+  'in-progress',
+  'live',
 ]

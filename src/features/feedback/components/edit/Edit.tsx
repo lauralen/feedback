@@ -13,10 +13,12 @@ import H1 from 'common/components/H1'
 import Input from 'common/components/Input'
 import Select from 'common/components/Select'
 import TextArea from 'common/components/TextArea'
-import { feedbackCategories } from 'common/consts'
+import { feedbackCategories, feedbackStates } from 'common/consts'
+import { State } from 'common/types'
 import { capitalizeEveryWord } from 'common/utils'
-import { postRequest } from 'features/addFeedback/api'
-import { RequestData } from 'features/addFeedback/types'
+
+import { editRequest } from './api'
+import { RequestData } from './types'
 
 function Edit() {
   const toast = useToast()
@@ -40,11 +42,13 @@ function Edit() {
   }
 
   const onSubmit = async (
-    values: RequestData,
+    values: RequestData & {
+      status: State
+    },
     actions: FormikHelpers<RequestData>
   ) => {
     try {
-      await postRequest(values)
+      await editRequest(values)
 
       toast({
         title: 'Feedback posted successfully',
@@ -74,6 +78,7 @@ function Edit() {
           initialValues={{
             title: '',
             category: feedbackCategories[0],
+            status: feedbackStates[0],
             details: '',
           }}
           onSubmit={onSubmit}
@@ -101,6 +106,24 @@ function Edit() {
                       onChange={(e) => field.onChange(e)}
                       id="category"
                       options={feedbackCategories.map((option) => ({
+                        value: option,
+                        label: capitalizeEveryWord(option),
+                      }))}
+                    />
+                  </FormControl>
+                )}
+              </Field>
+
+              <Field name="status">
+                {({ field }) => (
+                  <FormControl>
+                    <FormLabel htmlFor="status">Update Status</FormLabel>
+                    <FormHelper>Change feature state</FormHelper>
+                    <Select
+                      {...field}
+                      onChange={(e) => field.onChange(e)}
+                      id="status"
+                      options={feedbackStates.map((option) => ({
                         value: option,
                         label: capitalizeEveryWord(option),
                       }))}
