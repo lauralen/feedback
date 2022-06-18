@@ -9,6 +9,7 @@ export const REQUESTS_ENDPOINT = `${REACT_APP_API_ENDPOINT}requests`
 export const ADD_REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-request`
 export const REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}request/*`
 export const ADD_COMMENT_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-comment`
+export const EDIT_COMMENT_ENDPOINT = `${REACT_APP_API_ENDPOINT}edit-request`
 
 export const mockComment: Comment = {
   id: 1,
@@ -371,6 +372,7 @@ const handlers = [
     }
   }),
   rest.post(ADD_COMMENT_ENDPOINT, (req, res, ctx) => res(ctx.status(200))),
+  rest.patch(EDIT_COMMENT_ENDPOINT, (req, res, ctx) => res(ctx.status(200))),
 ]
 
 export default handlers

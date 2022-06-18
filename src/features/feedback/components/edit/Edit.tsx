@@ -33,6 +33,8 @@ function Edit() {
   const [status, setStatus] = useState<Status>('loading')
   const [data, setData] = useState<Feedback>()
 
+  const previousUrl = generatePath('/feedback/:id', { id })
+
   useEffect(() => {
     ;(async () => {
       setStatus('loading')
@@ -79,14 +81,14 @@ function Edit() {
       await editRequest(values)
 
       toast({
-        title: 'Feedback posted successfully',
+        title: 'Feedback updated successfully',
         status: 'success',
         isClosable: true,
       })
-      navigate('/')
+      navigate(previousUrl)
     } catch {
       toast({
-        title: 'Failed to post feedback',
+        title: 'Failed to update feedback',
         status: 'error',
         isClosable: true,
       })
@@ -94,8 +96,6 @@ function Edit() {
       actions.setSubmitting(false)
     }
   }
-
-  const previousUrl = generatePath('/feedback/:id', { id })
 
   return (
     <Box py="8" px="6">
