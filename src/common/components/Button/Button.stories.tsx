@@ -37,6 +37,12 @@ Blue.args = {
   variant: 'blue',
 }
 
+export const Danger = Template.bind({})
+Danger.args = {
+  ...commonArgs,
+  variant: 'danger',
+}
+
 export const Transparent = Template.bind({})
 Transparent.args = {
   ...commonArgs,
