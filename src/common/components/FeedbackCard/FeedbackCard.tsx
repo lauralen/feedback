@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { generatePath, Link } from 'react-router-dom'
-import { BoxProps, Flex } from '@chakra-ui/react'
+import { Box, BoxProps, Flex } from '@chakra-ui/react'
 
 import Card from 'common/components/Card'
 import H3 from 'common/components/H3'
@@ -18,33 +18,62 @@ type Props = BoxProps & {
 
 const FeedbackCard: FC<Props> = ({ data, withLink, ...rest }) => {
   const { title, description, category, upvotes, comments } = data
-  const commentsCount = comments?.length
+  const commentsCount = comments?.length ?? 0
 
-  const titleComponent = <H3>{title}</H3>
+  const titleHeading = <H3>{title}</H3>
+  const titleComponent = withLink ? (
+    <Link
+      key={data.id}
+      to={generatePath('/feedback/:id', {
+        id: String(data.id),
+      })}
+    >
+      {titleHeading}
+    </Link>
+  ) : (
+    <>{titleHeading}</>
+  )
+  const upvoteButton = <UpvoteButton>{upvotes}</UpvoteButton>
+  const descriptionComponent = <Text my="2">{description}</Text>
+  const commentsCountComponent = <CommentsCount>{commentsCount}</CommentsCount>
+  const categoryComponent = (
+    <Tag mb={[4, 0]} textTransform="capitalize">
+      {category}
+    </Tag>
+  )
 
   return (
-    <Card mb="4" p="6" {...rest}>
-      {withLink ? (
-        <Link
-          key={data.id}
-          to={generatePath('/feedback/:id', {
-            id: String(data.id),
-          })}
-        >
+    <>
+      <Card display={['block', 'none']} mb="4" p="6" {...rest}>
+        {titleComponent}
+        {descriptionComponent}
+        {categoryComponent}
+        <Flex justify="space-between">
+          {upvoteButton}
+          {commentsCountComponent}
+        </Flex>
+      </Card>
+
+      <Card
+        display={['none', 'flex']}
+        justifyContent="space-between"
+        gap="10"
+        mb="4"
+        py="7"
+        px="8"
+        {...rest}
+      >
+        {upvoteButton}
+
+        <Box flexGrow="1">
           {titleComponent}
-        </Link>
-      ) : (
-        <>{titleComponent}</>
-      )}
-      <Text my="2">{description}</Text>
-      <Tag mb="4" textTransform="capitalize">
-        {category}
-      </Tag>
-      <Flex justify="space-between">
-        <UpvoteButton>{upvotes}</UpvoteButton>
-        {commentsCount && <CommentsCount>{commentsCount}</CommentsCount>}
-      </Flex>
-    </Card>
+          {descriptionComponent}
+          {categoryComponent}
+        </Box>
+
+        {commentsCountComponent}
+      </Card>
+    </>
   )
 }
 
