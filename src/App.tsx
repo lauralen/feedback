@@ -9,7 +9,7 @@ import Feedbacks from 'features/feedbacks'
 function App() {
   return (
     <BrowserRouter>
-      <Box minHeight="100vh" bg="gray.100">
+      <Box minHeight="100vh" pt={[0, 14]} bg="gray.100">
         <Routes>
           <Route path="/" element={<Feedbacks />} />
           <Route path="/add-feedback" element={<AddFeedback />} />

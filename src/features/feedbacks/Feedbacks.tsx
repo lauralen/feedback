@@ -5,11 +5,13 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Grid,
   List,
 } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { ReactComponent as CloseIcon } from 'assets/icons/icon-close.svg'
 import { ReactComponent as HamburgerIcon } from 'assets/icons/icon-hamburger.svg'
+import { ReactComponent as SuggestionsIcon } from 'assets/icons/icon-suggestions.svg'
 
 import Button from 'common/components/Button'
 import Card from 'common/components/Card'
@@ -28,6 +30,8 @@ import NoData from './components/NoData'
 import { fetchRequestsAsync, getRequests, setSortBy } from './feedbacksSlice'
 import { SortBy } from './types'
 
+const BG_GRADIENT = 'linear(to-tr, #28A7ED, #E84D70)'
+
 type UiStatus = Status | 'noData'
 const sortOptions: SortBy[] = [
   'most upvotes',
@@ -35,6 +39,19 @@ const sortOptions: SortBy[] = [
   'most comments',
   'least comments',
 ]
+
+const headerContent = (
+  <>
+    <H1 color="white">Frontend Mentor</H1>
+    <H2 color="white">Feedback Board</H2>
+  </>
+)
+
+const categoryFilterCard = (
+  <Card p="5">
+    <CategoryFilter />
+  </Card>
+)
 
 function Feedbacks() {
   const dispatch = useAppDispatch()
@@ -59,12 +76,16 @@ function Feedbacks() {
 
   return (
     <>
-      <Box as="header" bgGradient="linear(to-tr, #28A7ED, #E84D70)">
+      <Drawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+      >
+        {categoryFilterCard}
+      </Drawer>
+
+      <Box as="header" display={['block', 'none']} bgGradient={BG_GRADIENT}>
         <Flex py="4" px="6" align="center" justify="space-between">
-          <Box>
-            <H1 color="white">Frontend Mentor</H1>
-            <H2 color="white">Feedback Board</H2>
-          </Box>
+          <Box>{headerContent}</Box>
           <Button
             aria-label="Toggle menu"
             variant="transparent"
@@ -78,19 +99,52 @@ function Feedbacks() {
           </Button>
         </Flex>
       </Box>
-      <Drawer
-        isOpen={isMobileMenuOpen}
-        onClose={() => setIsMobileMenuOpen(false)}
-      >
-        <Card p="5">
-          <CategoryFilter />
-        </Card>
-      </Drawer>
 
-      <Box bg="blueGray.200">
+      <Grid
+        display={['none', 'grid']}
+        templateColumns="repeat(3, 1fr)"
+        gap="3"
+        m="10"
+        mt="0"
+      >
+        <Box
+          as="header"
+          display="flex"
+          flexDirection="column"
+          justifyContent="end"
+          py="4"
+          px="6"
+          bgGradient={BG_GRADIENT}
+          borderRadius="lg"
+        >
+          {headerContent}
+        </Box>
+        {categoryFilterCard}
+      </Grid>
+
+      <Box
+        m={[0, 10]}
+        mb={[0, 0]}
+        borderRadius={['none', 'lg']}
+        bg="blueGray.200"
+      >
         <Flex py="4" px="6" align="center" justify="space-between">
-          <FormControl color="white" display="flex" alignItems="center">
-            <FormLabel htmlFor="sort-by" m="0">
+          <Box
+            display={['none', 'flex']}
+            alignItems="center"
+            gap="4"
+            color="white"
+          >
+            <SuggestionsIcon />
+            <Box>{requests.length} Suggestions</Box>
+          </Box>
+          <FormControl
+            w="auto"
+            display="flex"
+            alignItems="center"
+            color="white"
+          >
+            <FormLabel htmlFor="sort-by" m="0" minWidth="fit-content">
               Sort by:
             </FormLabel>
             <Select
@@ -115,7 +169,7 @@ function Feedbacks() {
           <AddFeedbackButton />
         </Flex>
       </Box>
-      <Box as="main" py="8" px="6">
+      <Box as="main" py={['8', '6']} px={['6', '10']}>
         {
           {
             loading: (

@@ -1,6 +1,11 @@
 import { extendTheme, theme as baseTheme } from '@chakra-ui/react'
 
 const theme = extendTheme({
+  breakpoints: {
+    sm: '48em',
+    md: '80em',
+    lg: '96em',
+  },
   fonts: {
     heading: `Jost, ${baseTheme.fonts.heading}`,
     body: `Jost, ${baseTheme.fonts.body}`,
