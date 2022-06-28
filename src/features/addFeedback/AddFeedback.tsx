@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { Box, Flex, FormErrorMessage, useToast } from '@chakra-ui/react'
+import { Box, Flex, FormErrorMessage, Stack, useToast } from '@chakra-ui/react'
 import { ReactComponent as PlusIcon } from 'assets/icons/icon-new-feedback.svg'
 import { Field, Formik, FormikHelpers } from 'formik'
 
@@ -123,8 +123,14 @@ function AddFeedback() {
                 )}
               </Field>
 
-              <Flex mt="10" direction="column" align="stretch">
-                <Button mb="4" type="submit" isLoading={isSubmitting}>
+              <Flex
+                mt="10"
+                direction={['column', 'row-reverse']}
+                align="stretch"
+                justify={['auto', 'flex-start']}
+                gap="4"
+              >
+                <Button type="submit" isLoading={isSubmitting}>
                   Add Feedback
                 </Button>
                 <Link to="/">
