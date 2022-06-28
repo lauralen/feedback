@@ -10,7 +10,7 @@ function App() {
   return (
     <BrowserRouter>
       <Box minHeight="100vh" pt={[0, 14]} bg="gray.100">
-        <Box maxWidth="6xl" mx="auto">
+        <Box maxWidth="5xl" mx="auto">
           <Routes>
             <Route path="/" element={<Feedbacks />} />
             <Route path="/add-feedback" element={<AddFeedback />} />
