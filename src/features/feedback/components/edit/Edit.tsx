@@ -202,8 +202,14 @@ function Edit() {
                         )}
                       </Field>
 
-                      <Flex mt="10" direction="column" align="stretch">
-                        <Button mb="4" type="submit" isLoading={isSubmitting}>
+                      <Flex
+                        mt="10"
+                        direction={['column', 'row-reverse']}
+                        align="stretch"
+                        justify={['auto', 'flex-start']}
+                        gap="4"
+                      >
+                        <Button type="submit" isLoading={isSubmitting}>
                           Save Changes
                         </Button>
                         <Link to={previousUrl}>
@@ -211,7 +217,7 @@ function Edit() {
                             Cancel
                           </Button>
                         </Link>
-                        <Button variant="danger" mt="4">
+                        <Button variant="danger" mr={['0', 'auto']}>
                           Delete
                         </Button>
                       </Flex>
