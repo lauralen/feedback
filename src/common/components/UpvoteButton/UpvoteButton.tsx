@@ -5,8 +5,12 @@ import { ReactComponent as UpArrowIcon } from 'assets/icons/icon-arrow-up.svg'
 const UpvoteButton: FC<ButtonProps> = ({ children, ...rest }) => {
   return (
     <ButtonCU
-      py="1"
-      px="4"
+      height={['10', 'min-content']}
+      display="flex"
+      flexDirection={['row', 'column']}
+      gap="2"
+      py={['1', '2']}
+      px={['4', '2']}
       color="blueGray.100"
       bg="gray.100"
       lineHeight="shorter"
@@ -15,9 +19,7 @@ const UpvoteButton: FC<ButtonProps> = ({ children, ...rest }) => {
       {...rest}
     >
       <UpArrowIcon />
-      <Box as="span" ml="2">
-        {children}
-      </Box>
+      <Box>{children}</Box>
     </ButtonCU>
   )
 }

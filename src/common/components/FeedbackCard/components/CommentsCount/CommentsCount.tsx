@@ -4,9 +4,15 @@ import { ReactComponent as CommentIcon } from 'assets/icons/icon-comments.svg'
 
 type Props = BoxProps
 
-const CommentsCount: FC<Props> = ({ children }) => {
+const CommentsCount: FC<Props> = ({ children, ...rest }) => {
   return (
-    <Flex align="center" color="blueGray.100" fontSize="sm" fontWeight="bold">
+    <Flex
+      align="center"
+      color="blueGray.100"
+      fontSize="sm"
+      fontWeight="bold"
+      {...rest}
+    >
       <CommentIcon />
       <Box as="span" ml="2">
         {children}

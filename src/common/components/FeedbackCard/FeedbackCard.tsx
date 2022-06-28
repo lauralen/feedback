@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { generatePath, Link } from 'react-router-dom'
-import { Box, BoxProps, Flex } from '@chakra-ui/react'
+import { Box, BoxProps } from '@chakra-ui/react'
 
 import Card from 'common/components/Card'
 import H3 from 'common/components/H3'
@@ -33,47 +33,31 @@ const FeedbackCard: FC<Props> = ({ data, withLink, ...rest }) => {
   ) : (
     <>{titleHeading}</>
   )
-  const upvoteButton = <UpvoteButton>{upvotes}</UpvoteButton>
-  const descriptionComponent = <Text my="2">{description}</Text>
-  const commentsCountComponent = <CommentsCount>{commentsCount}</CommentsCount>
-  const categoryComponent = (
-    <Tag mb={[4, 0]} textTransform="capitalize">
-      {category}
-    </Tag>
-  )
-
   return (
-    <>
-      <Card display={['block', 'none']} mb="4" p="6" {...rest}>
+    <Card
+      display="grid"
+      gridTemplateColumns={['repeat(2, auto)', '50px 1fr 50px']}
+      gridTemplateRows={['repeat(2, auto)', '1fr']}
+      gridAutoFlow="column"
+      gap={['4', '10']}
+      mb="4"
+      py="7"
+      px="8"
+      {...rest}
+    >
+      <Box gridColumn={['1 / span 2', '2']}>
         {titleComponent}
-        {descriptionComponent}
-        {categoryComponent}
-        <Flex justify="space-between">
-          {upvoteButton}
-          {commentsCountComponent}
-        </Flex>
-      </Card>
+        <Text my={['2', '3']}>{description}</Text>
+        <Tag textTransform="capitalize">{category}</Tag>
+      </Box>
 
-      <Card
-        display={['none', 'flex']}
-        justifyContent="space-between"
-        gap="10"
-        mb="4"
-        py="7"
-        px="8"
-        {...rest}
-      >
-        {upvoteButton}
-
-        <Box flexGrow="1">
-          {titleComponent}
-          {descriptionComponent}
-          {categoryComponent}
-        </Box>
-
-        {commentsCountComponent}
-      </Card>
-    </>
+      <UpvoteButton width="fit-content" gridColumn="1">
+        {upvotes}
+      </UpvoteButton>
+      <CommentsCount gridColumn={['auto', '3']} justifySelf="end">
+        {commentsCount}
+      </CommentsCount>
+    </Card>
   )
 }
 
