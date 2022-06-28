@@ -123,7 +123,7 @@ function Feedbacks() {
               <>
                 <FeedbackCard data={data as Feedback} />
                 {data?.comments && (
-                  <Card mb="6" p="6">
+                  <Card mb="6" py="6" px={['6', '8']}>
                     <H1>
                       {data.comments.length} comment
                       {data.comments.length > 1 && 's'}

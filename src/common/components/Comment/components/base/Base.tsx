@@ -16,8 +16,8 @@ const Comment: FC<Props> = ({ data, ...rest }) => {
 
   return (
     <Box
-      mb="6"
-      pt={isReply ? undefined : '6'}
+      pt={isReply ? undefined : ['6', '8']}
+      pb={['6', '8']}
       _notFirst={
         isReply
           ? undefined
@@ -33,7 +33,7 @@ const Comment: FC<Props> = ({ data, ...rest }) => {
     >
       <Flex mb="4">
         <Image
-          mr="4"
+          mr={['4', '6']}
           w="12"
           h="12"
           borderRadius="full"
@@ -45,7 +45,7 @@ const Comment: FC<Props> = ({ data, ...rest }) => {
           <Username>{user.username}</Username>
         </Flex>
       </Flex>
-      <Text mb="6">
+      <Text ml={['0', '18']}>
         {isReply && (
           <Username
             as="span"
