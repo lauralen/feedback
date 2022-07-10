@@ -100,7 +100,7 @@ function Edit() {
   return (
     <Box py="8" px="6">
       <GoBackLink to={previousUrl} />
-      <Card icon={<EditIcon />} mt="12" py="10" px="6">
+      <Card icon={<EditIcon />} mt="12" pb="10" px="6">
         {
           {
             loading: (

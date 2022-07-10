@@ -1,5 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { ReactComponent as PlusIcon } from 'assets/icons/icon-new-feedback.svg'
 import theme from 'theme'
 
 import Card from './Card'
@@ -27,5 +28,5 @@ Default.args = {
 export const WithIcon = Template.bind({})
 WithIcon.args = {
   ...commonArgs,
-  icon: '+',
+  icon: <PlusIcon />,
 }

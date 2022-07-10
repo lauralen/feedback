@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { Box, Flex, FormErrorMessage, Stack, useToast } from '@chakra-ui/react'
+import { Box, Flex, FormErrorMessage, useToast } from '@chakra-ui/react'
 import { ReactComponent as PlusIcon } from 'assets/icons/icon-new-feedback.svg'
 import { Field, Formik, FormikHelpers } from 'formik'
 
@@ -66,7 +66,7 @@ function AddFeedback() {
   return (
     <Box py="8" px="6">
       <GoBackLink />
-      <Card icon={<PlusIcon />} mt="12" py="10" px="6">
+      <Card icon={<PlusIcon />} mt="12" pb="10" px="6">
         <H1 mb="6">Create New Feedback</H1>
         <Formik
           initialValues={{

@@ -7,15 +7,14 @@ type Props = BoxProps & {
 
 const Card: FC<Props> = ({ icon, children, ...rest }) => {
   return (
-    <Box bg="white" borderRadius="lg" {...rest}>
+    <Box position="relative" bg="white" borderRadius="lg" {...rest}>
       {icon && (
         <Box
           aria-hidden
           width="max-content"
-          position="absolute"
-          top="19"
+          position="relative"
+          top="-5"
           borderRadius="full"
-          bgGradient="linear(to-tr, #28A7ED, #E84D70)"
         >
           {icon}
         </Box>
