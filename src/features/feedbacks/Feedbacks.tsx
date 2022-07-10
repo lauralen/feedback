@@ -5,7 +5,6 @@ import {
   Flex,
   FormControl,
   FormLabel,
-  Grid,
   List,
 } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
@@ -40,19 +39,6 @@ const sortOptions: SortBy[] = [
   'least comments',
 ]
 
-const headerContent = (
-  <>
-    <H1 color="white">Frontend Mentor</H1>
-    <H2 color="white">Feedback Board</H2>
-  </>
-)
-
-const categoryFilterCard = (
-  <Card p="5">
-    <CategoryFilter />
-  </Card>
-)
-
 function Feedbacks() {
   const dispatch = useAppDispatch()
   const { status, sortBy } = useAppSelector((state) => state.feedbacks)
@@ -80,16 +66,35 @@ function Feedbacks() {
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
       >
-        {categoryFilterCard}
+        <Card p="5">
+          <CategoryFilter />
+        </Card>
       </Drawer>
 
-      <Box as="header" display={['block', 'none']} bgGradient={BG_GRADIENT}>
-        <Flex py="4" px="6" align="center" justify="space-between">
-          <Box>{headerContent}</Box>
+      <Box
+        as="header"
+        display="grid"
+        gridTemplateColumns={['1fr', 'repeat(3, 1fr)']}
+        gap="3"
+        mx={['0', '10']}
+      >
+        <Flex
+          py="4"
+          px="6"
+          align={['center', 'flex-end']}
+          justify="space-between"
+          borderRadius={['none', 'lg']}
+          bgGradient={BG_GRADIENT}
+        >
+          <Box>
+            <H1 color="white">Frontend Mentor</H1>
+            <H2 color="white">Feedback Board</H2>
+          </Box>
           <Button
             aria-label="Toggle menu"
             variant="transparent"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            display={['block', 'none']}
             bg="transparent"
             _hover={{
               background: 'transparent',
@@ -98,29 +103,11 @@ function Feedbacks() {
             {isMobileMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
           </Button>
         </Flex>
-      </Box>
 
-      <Grid
-        display={['none', 'grid']}
-        templateColumns="repeat(3, 1fr)"
-        gap="3"
-        m="10"
-        mt="0"
-      >
-        <Box
-          as="header"
-          display="flex"
-          flexDirection="column"
-          justifyContent="end"
-          py="4"
-          px="6"
-          bgGradient={BG_GRADIENT}
-          borderRadius="lg"
-        >
-          {headerContent}
-        </Box>
-        {categoryFilterCard}
-      </Grid>
+        <Card p="5" display={['none', 'block']}>
+          <CategoryFilter />
+        </Card>
+      </Box>
 
       <Box
         m={[0, 10]}
