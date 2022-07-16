@@ -13,5 +13,10 @@ describe('FeedbackCard', () => {
       screen.getByRole('heading', { name: data.title })
     ).toBeInTheDocument()
     expect(screen.getByText(data.description)).toBeInTheDocument()
+    expect(screen.getByText(data.category)).toBeInTheDocument()
+    expect(screen.getByText(data.upvotes)).toBeInTheDocument()
+    expect(
+      screen.getByText(String(data.comments?.length as number))
+    ).toBeInTheDocument()
   })
 })
