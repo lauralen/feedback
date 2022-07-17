@@ -38,7 +38,7 @@ const Comment: FC<Props> = ({ data, ...rest }) => {
           h="12"
           borderRadius="full"
           src={user.image}
-          alt="User profile"
+          alt="User avatar"
         />
         <Flex direction="column">
           <H2 fontSize="md">{user.name}</H2>
