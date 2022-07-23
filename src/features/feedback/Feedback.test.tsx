@@ -1,6 +1,5 @@
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import {
-  fireEvent,
   screen,
   waitFor,
   waitForElementToBeRemoved,
@@ -17,7 +16,7 @@ import Feedback from './Feedback'
 const ID = 1
 const DATA = mockRequests[ID - 1]
 
-const Component = (
+const Element = (
   <MemoryRouter initialEntries={[`/feedback/${ID}`]}>
     <Routes>
       <Route path="/feedback/:id" element={<Feedback />} />
@@ -39,7 +38,7 @@ const ui = {
 
 describe('Feedback', () => {
   it('renders request info', async () => {
-    render(Component)
+    render(Element)
 
     await waitForElementToBeRemoved(() => ui.spinner.get())
     expect(ui.error.query()).not.toBeInTheDocument()
@@ -77,7 +76,7 @@ describe('Feedback', () => {
     server.use(
       rest.get(REQUEST_ENDPOINT, (req, res, ctx) => res(ctx.status(500)))
     )
-    render(Component)
+    render(Element)
 
     await waitForElementToBeRemoved(() => ui.spinner.get())
 
@@ -85,7 +84,7 @@ describe('Feedback', () => {
   })
 
   it('handles form', async () => {
-    render(Component)
+    render(Element)
 
     await waitForElementToBeRemoved(() => ui.spinner.get())
 

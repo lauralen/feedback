@@ -34,8 +34,8 @@ function AddFeedback() {
   const validateDetails = (value: string): string | undefined => {
     if (!value) {
       return "Can't be empty"
-    } else if (value.length > 10000) {
-      return "Can't be longer than 10000 characters"
+    } else if (value.length > 500) {
+      return "Can't be longer than 500 characters"
     }
   }
 
@@ -82,8 +82,14 @@ function AddFeedback() {
                 {({ field }) => (
                   <FormControl isInvalid={!!(errors.title && touched.title)}>
                     <FormLabel htmlFor="title">Feedback Title</FormLabel>
-                    <FormHelper>Add a short, descriptive headline</FormHelper>
-                    <Input {...field} id="title" />
+                    <FormHelper id="title-desc">
+                      Add a short, descriptive headline
+                    </FormHelper>
+                    <Input
+                      {...field}
+                      id="title"
+                      aria-describedby="title-desc"
+                    />
                     <FormErrorMessage>{errors.title}</FormErrorMessage>
                   </FormControl>
                 )}
@@ -93,11 +99,14 @@ function AddFeedback() {
                 {({ field }) => (
                   <FormControl>
                     <FormLabel htmlFor="category">Category</FormLabel>
-                    <FormHelper>Choose a category for your feedback</FormHelper>
+                    <FormHelper id="category-desc">
+                      Choose a category for your feedback
+                    </FormHelper>
                     <Select
                       {...field}
                       onChange={(e) => field.onChange(e)}
                       id="category"
+                      aria-describedby="category-desc"
                       options={feedbackCategories.map((option) => ({
                         value: option,
                         label: capitalizeEveryWord(option),
@@ -113,11 +122,15 @@ function AddFeedback() {
                     isInvalid={!!(errors.details && touched.details)}
                   >
                     <FormLabel htmlFor="details">Feedback Detail</FormLabel>
-                    <FormHelper>
+                    <FormHelper id="details-desc">
                       Include any specific comments on what should be improved,
                       added, etc.
                     </FormHelper>
-                    <TextArea {...field} id="details" />
+                    <TextArea
+                      {...field}
+                      id="details"
+                      aria-describedby="details-desc"
+                    />
                     <FormErrorMessage>{errors.details}</FormErrorMessage>
                   </FormControl>
                 )}
