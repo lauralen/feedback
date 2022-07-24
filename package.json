@@ -64,6 +64,7 @@
       "plugin:prettier/recommended"
     ],
     "rules": {
+      "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
       "simple-import-sort/imports": [
         "warn",
         {
