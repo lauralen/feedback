@@ -57,14 +57,19 @@
     },
     "parser": "@typescript-eslint/parser",
     "plugins": [
-      "simple-import-sort"
+      "simple-import-sort",
+      "@typescript-eslint"
     ],
     "extends": [
       "react-app",
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
       "plugin:prettier/recommended"
     ],
     "rules": {
-      "no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+      "@typescript-eslint/no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
+      "@typescript-eslint/no-var-requires": 0,
       "simple-import-sort/imports": [
         "warn",
         {

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { Box, BoxProps, Flex, Image } from '@chakra-ui/react'
 
+import Button from 'common/components/Button'
 import H2 from 'common/components/H2'
 import Text from 'common/components/Text'
 import Username from 'common/components/Username'
@@ -31,19 +32,24 @@ const Comment: FC<Props> = ({ data, ...rest }) => {
       borderColor="gray.100"
       {...rest}
     >
-      <Flex mb="4">
-        <Image
-          mr={['4', '6']}
-          w="12"
-          h="12"
-          borderRadius="full"
-          src={user.image}
-          alt="User avatar"
-        />
-        <Flex direction="column">
-          <H2 fontSize="md">{user.name}</H2>
-          <Username>{user.username}</Username>
+      <Flex align="center" justify="space-between" mb="4">
+        <Flex>
+          <Image
+            mr={['4', '6']}
+            w="12"
+            h="12"
+            borderRadius="full"
+            src={user.image}
+            alt="User avatar"
+          />
+          <Flex direction="column">
+            <H2 fontSize="md">{user.name}</H2>
+            <Username>{user.username}</Username>
+          </Flex>
         </Flex>
+        <Button variant="transparent" textColor="blue.100">
+          Reply
+        </Button>
       </Flex>
       <Text ml={['0', '18']}>
         {isReply && (
