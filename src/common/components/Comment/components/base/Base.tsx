@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { Box, BoxProps, Flex, Image } from '@chakra-ui/react'
 
 import Button from 'common/components/Button'
+import CommentForm from 'common/components/CommentForm'
 import H2 from 'common/components/H2'
 import Text from 'common/components/Text'
 import Username from 'common/components/Username'
@@ -14,6 +15,9 @@ type Props = BoxProps & {
 const Comment: FC<Props> = ({ data, ...rest }) => {
   const { user, content } = data
   const isReply = !!data.replyingTo
+
+  const [isCommentFormVisible, setIsCommentFormVisible] =
+    useState<boolean>(false)
 
   return (
     <Box
@@ -47,7 +51,11 @@ const Comment: FC<Props> = ({ data, ...rest }) => {
             <Username>{user.username}</Username>
           </Flex>
         </Flex>
-        <Button variant="transparent" textColor="blue.100">
+        <Button
+          variant="transparent"
+          textColor="blue.100"
+          onClick={() => setIsCommentFormVisible(!isCommentFormVisible)}
+        >
           Reply
         </Button>
       </Flex>
@@ -65,6 +73,12 @@ const Comment: FC<Props> = ({ data, ...rest }) => {
         )}
         {content}
       </Text>
+
+      {isCommentFormVisible && (
+        <Box mt="4" ml={['0', '18']}>
+          <CommentForm />
+        </Box>
+      )}
     </Box>
   )
 }

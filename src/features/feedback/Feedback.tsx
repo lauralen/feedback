@@ -78,7 +78,7 @@ function Feedbacks() {
 
                 <Card p="6">
                   <H1 mb="6">Add Comment</H1>
-                  <CommentForm id={id} />
+                  <CommentForm />
                 </Card>
               </>
             ),

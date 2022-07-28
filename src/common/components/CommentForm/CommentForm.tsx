@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { useParams } from 'react-router-dom'
 import { Flex, FormErrorMessage, useToast } from '@chakra-ui/react'
 import { Field, Formik, FormikHelpers } from 'formik'
 
@@ -7,10 +8,6 @@ import FormControl from 'common/components/FormControl'
 import Text from 'common/components/Text'
 import TextArea from 'common/components/TextArea'
 import { postComment } from 'features/feedback/api'
-
-type Props = {
-  id?: string
-}
 
 type FormValues = { comment: string }
 
@@ -21,8 +18,9 @@ const getRemainingCharactersCount = (value: string, limit: number): number => {
   return result > 0 ? result : 0
 }
 
-const CommentForm: FC<Props> = ({ id }) => {
+const CommentForm: FC = () => {
   const toast = useToast()
+  const { id } = useParams()
 
   const validateComment = (value: string): string | undefined => {
     if (!value) {
