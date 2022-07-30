@@ -66,8 +66,8 @@ function Edit() {
   const validateDetails = (value: string): string | undefined => {
     if (!value) {
       return "Can't be empty"
-    } else if (value.length > 10000) {
-      return "Can't be longer than 10000 characters"
+    } else if (value.length > 500) {
+      return "Can't be longer than 500 characters"
     }
   }
 
