@@ -26,7 +26,12 @@ import { capitalizeEveryWord } from 'common/utils'
 import AddFeedbackButton from './components/AddFeedbackButton'
 import CategoryFilter from './components/CategoryFilter'
 import NoData from './components/NoData'
-import { fetchRequestsAsync, getRequests, setSortBy } from './feedbacksSlice'
+import {
+  fetchRequestsAsync,
+  getRequests,
+  setSortBy,
+  upvoteRequest,
+} from './feedbacksSlice'
 import { SortBy } from './types'
 
 const BG_GRADIENT = 'linear(to-tr, #28A7ED, #E84D70)'
@@ -58,6 +63,10 @@ function Feedbacks() {
     } else {
       return status
     }
+  }
+
+  const onUpvoteClick = (id) => {
+    dispatch(upvoteRequest(id))
   }
 
   return (
@@ -168,7 +177,13 @@ function Feedbacks() {
             idle: (
               <List>
                 {requests.map((data) => (
-                  <FeedbackCard as="li" key={data.id} data={data} withLink />
+                  <FeedbackCard
+                    as="li"
+                    key={data.id}
+                    data={data}
+                    withLink
+                    onUpvoteClick={() => onUpvoteClick(data.id)}
+                  />
                 ))}
               </List>
             ),

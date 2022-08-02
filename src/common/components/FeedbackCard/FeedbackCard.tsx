@@ -13,10 +13,16 @@ import CommentsCount from './components/CommentsCount'
 
 type Props = BoxProps & {
   data: Data
+  onUpvoteClick: () => void
   withLink?: boolean
 }
 
-const FeedbackCard: FC<Props> = ({ data, withLink, ...rest }) => {
+const FeedbackCard: FC<Props> = ({
+  data,
+  withLink,
+  onUpvoteClick,
+  ...rest
+}) => {
   const { title, description, category, upvotes, comments } = data
   const commentsCount = comments?.length ?? 0
 
@@ -51,9 +57,12 @@ const FeedbackCard: FC<Props> = ({ data, withLink, ...rest }) => {
         <Tag textTransform="capitalize">{category}</Tag>
       </Box>
 
-      <UpvoteButton width="fit-content" gridColumn="1">
-        {upvotes}
-      </UpvoteButton>
+      <UpvoteButton
+        width="fit-content"
+        gridColumn="1"
+        onClick={onUpvoteClick}
+        upvotes={upvotes}
+      />
       <CommentsCount gridColumn={['auto', '3']} justifySelf="end">
         {commentsCount}
       </CommentsCount>

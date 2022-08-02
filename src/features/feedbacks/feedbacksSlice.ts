@@ -38,6 +38,13 @@ export const feedbacksSlice = createSlice({
     selectCategoryFilter(state, action: PayloadAction<CategoryFilter>) {
       state.categoryFilter = action.payload
     },
+    upvoteRequest(state, action: PayloadAction<number>) {
+      state.requests = state.requests.map((request) =>
+        request.id === action.payload
+          ? { ...request, upvotes: request.upvotes + 1 }
+          : request
+      )
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -57,7 +64,8 @@ export const feedbacksSlice = createSlice({
   },
 })
 
-export const { setSortBy, selectCategoryFilter } = feedbacksSlice.actions
+export const { setSortBy, selectCategoryFilter, upvoteRequest } =
+  feedbacksSlice.actions
 
 export const getRequests = (state: RootState) => {
   const { requests: stateRequests, sortBy, categoryFilter } = state.feedbacks

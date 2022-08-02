@@ -7,7 +7,7 @@ import FeedbackCard from './FeedbackCard'
 describe('FeedbackCard', () => {
   it('renders correctly', async () => {
     const data = mockRequests[0]
-    render(<FeedbackCard data={data} />)
+    render(<FeedbackCard data={data} onUpvoteClick={jest.fn} />)
 
     expect(
       screen.getByRole('heading', { name: data.title })

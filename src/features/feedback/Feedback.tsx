@@ -40,6 +40,16 @@ function Feedbacks() {
     })()
   }, [id])
 
+  const onUpvoteClick = () => {
+    setData(
+      (curr) =>
+        ({
+          ...curr,
+          upvotes: (curr?.upvotes as number) + 1,
+        } as Feedback)
+    )
+  }
+
   return (
     <>
       <Box py="8" px="6">
@@ -61,7 +71,10 @@ function Feedbacks() {
             failed: 'Error',
             idle: (
               <>
-                <FeedbackCard data={data as Feedback} />
+                <FeedbackCard
+                  data={data as Feedback}
+                  onUpvoteClick={() => onUpvoteClick()}
+                />
                 {data?.comments && (
                   <Card mb="6" py="6" px={['6', '8']}>
                     <H1>

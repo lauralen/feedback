@@ -2,9 +2,14 @@ import { FC } from 'react'
 import { Box, Button as ButtonCU, ButtonProps } from '@chakra-ui/react'
 import { ReactComponent as UpArrowIcon } from 'assets/icons/icon-arrow-up.svg'
 
-const UpvoteButton: FC<ButtonProps> = ({ children, ...rest }) => {
+type Props = ButtonProps & {
+  upvotes: number
+}
+
+const UpvoteButton: FC<Props> = ({ upvotes, ...rest }) => {
   return (
     <ButtonCU
+      aria-label={`Upvote request (current upvotes: ${upvotes})`}
       height={['10', 'min-content']}
       display="flex"
       flexDirection={['row', 'column']}
@@ -19,7 +24,7 @@ const UpvoteButton: FC<ButtonProps> = ({ children, ...rest }) => {
       {...rest}
     >
       <UpArrowIcon />
-      <Box>{children}</Box>
+      <Box>{upvotes}</Box>
     </ButtonCU>
   )
 }

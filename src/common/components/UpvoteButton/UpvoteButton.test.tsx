@@ -4,9 +4,13 @@ import render from 'test/render'
 import UpvoteButton from './UpvoteButton'
 
 describe('UpvoteButton', () => {
-  it('renders correctly', async () => {
-    render(<UpvoteButton>Test</UpvoteButton>)
+  it('renders correctly', () => {
+    render(<UpvoteButton upvotes={123} />)
 
-    expect(screen.getByText('Test')).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', {
+        name: /upvote request \(current upvotes: 123\)/i,
+      })
+    ).toBeInTheDocument()
   })
 })

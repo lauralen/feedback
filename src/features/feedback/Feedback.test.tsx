@@ -34,6 +34,9 @@ const ui = {
   }),
   initialCharactersLeft: tlsScreen.byText(/250 Characters left/i),
   postCommentButton: tlsScreen.byRole('button', { name: /Post Comment/i }),
+  upvoteButton: tlsScreen.byRole('button', {
+    name: `Upvote request (current upvotes: ${DATA.upvotes})`,
+  }),
 }
 
 describe('Feedback', () => {
@@ -52,7 +55,7 @@ describe('Feedback', () => {
     ).toBeInTheDocument()
     expect(screen.getByText(DATA.description)).toBeInTheDocument()
     expect(screen.getByText(DATA.category)).toBeInTheDocument()
-    expect(screen.getByText(DATA.upvotes)).toBeInTheDocument()
+    expect(ui.upvoteButton.get()).toBeInTheDocument()
 
     // comments
     expect(
@@ -96,5 +99,17 @@ describe('Feedback', () => {
 
     await waitFor(() => expect(ui.commentInput.get()).toHaveValue(''))
     expect(ui.initialCharactersLeft.get()).toBeInTheDocument()
+  })
+
+  it('increments upvote count on upvote button click', async () => {
+    render(Element)
+    await waitForElementToBeRemoved(() => ui.spinner.get())
+
+    userEvent.click(ui.upvoteButton.get())
+    expect(
+      screen.getByRole('button', {
+        name: `Upvote request (current upvotes: ${DATA.upvotes + 1})`,
+      })
+    )
   })
 })
