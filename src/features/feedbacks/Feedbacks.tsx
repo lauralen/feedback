@@ -26,6 +26,7 @@ import { capitalizeEveryWord } from 'common/utils'
 import AddFeedbackButton from './components/AddFeedbackButton'
 import CategoryFilter from './components/CategoryFilter'
 import NoData from './components/NoData'
+import RoadmapCard from './components/RoadmapCard'
 import {
   fetchRequestsAsync,
   getRequests,
@@ -78,6 +79,10 @@ function Feedbacks() {
         <Card p="5">
           <CategoryFilter />
         </Card>
+
+        <Card mt="6" p="5">
+          <RoadmapCard />
+        </Card>
       </Drawer>
 
       <Box
@@ -115,6 +120,10 @@ function Feedbacks() {
 
         <Card p="5" display={['none', 'block']}>
           <CategoryFilter />
+        </Card>
+
+        <Card p="5" display={['none', 'block']}>
+          <RoadmapCard />
         </Card>
       </Box>
 
