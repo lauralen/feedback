@@ -5,6 +5,7 @@ import AddFeedback from 'features/addFeedback'
 import Feedback from 'features/feedback'
 import EditFeedback from 'features/feedback/components/edit'
 import Feedbacks from 'features/feedbacks'
+import Roadmap from 'features/Roadmap'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route path="/add-feedback" element={<AddFeedback />} />
             <Route path="/feedback/:id" element={<Feedback />} />
             <Route path="/feedback/:id/edit" element={<EditFeedback />} />
+            <Route path="/roadmap" element={<Roadmap />} />
           </Routes>
         </Box>
       </Box>

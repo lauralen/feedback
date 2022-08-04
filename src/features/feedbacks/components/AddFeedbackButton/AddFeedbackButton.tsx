@@ -5,7 +5,7 @@ import Button from 'common/components/Button'
 
 const AddFeedbackButton: FC = () => {
   return (
-    <Link to="add-feedback">
+    <Link to="/add-feedback">
       <Button>+ Add feedback</Button>
     </Link>
   )
