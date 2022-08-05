@@ -1,6 +1,6 @@
 import { BrowserRouter } from 'react-router-dom'
 import { screen, waitForElementToBeRemoved } from '@testing-library/react'
-import { mockRequests, REQUESTS_ENDPOINT } from 'mocks/productRequests'
+import { mockRequests, REQUESTS_ENDPOINT } from 'mocks/handlers/productRequests'
 import { server } from 'mocks/server'
 import { rest } from 'msw'
 import render from 'test/render'

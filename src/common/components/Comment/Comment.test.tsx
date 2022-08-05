@@ -1,5 +1,8 @@
 import { screen } from '@testing-library/react'
-import { mockComment, mockCommentWithReplies } from 'mocks/productRequests'
+import {
+  mockComment,
+  mockCommentWithReplies,
+} from 'mocks/handlers/productRequests'
 import render from 'test/render'
 
 import Comment from './Comment'

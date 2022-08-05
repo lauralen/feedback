@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react'
-import { mockRequests } from 'mocks/productRequests'
+import { mockRequests } from 'mocks/handlers/productRequests'
 import render from 'test/render'
 
 import FeedbackCard from './FeedbackCard'

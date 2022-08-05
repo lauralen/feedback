@@ -5,7 +5,7 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { mockRequests, REQUEST_ENDPOINT } from 'mocks/productRequests'
+import { mockRequests, REQUEST_ENDPOINT } from 'mocks/handlers/productRequests'
 import { server } from 'mocks/server'
 import { rest } from 'msw'
 import render from 'test/render'

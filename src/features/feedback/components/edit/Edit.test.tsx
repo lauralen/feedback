@@ -7,7 +7,7 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { mockRequests } from 'mocks/productRequests'
+import { mockRequests } from 'mocks/handlers/productRequests'
 import render from 'test/render'
 import * as tlsScreen from 'testing-library-selector'
 

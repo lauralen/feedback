@@ -1,16 +1,21 @@
 import { BrowserRouter } from 'react-router-dom'
-import { screen } from '@testing-library/react'
+import { screen, waitForElementToBeRemoved } from '@testing-library/react'
+import { mockStatus } from 'mocks/handlers/roadmap'
 import render from 'test/render'
+
+import { capitalizeEveryWord } from 'common/utils'
 
 import RoadmapCard from './RoadmapCard'
 
 describe('RoadmapCard', () => {
-  it('renders correctly', () => {
+  it('renders correctly', async () => {
     render(
       <BrowserRouter>
         <RoadmapCard />
       </BrowserRouter>
     )
+
+    await waitForElementToBeRemoved(() => screen.getByText(/spinner/i))
 
     expect(screen.getByText(/Roadmap/i)).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /view/i })).toHaveAttribute(
@@ -18,9 +23,10 @@ describe('RoadmapCard', () => {
       '/roadmap'
     )
 
-    expect(screen.getByText(/Planned/i)).toBeInTheDocument()
-    expect(screen.getByText(/In-progress/i)).toBeInTheDocument()
-    expect(screen.getByText(/Live/i)).toBeInTheDocument()
-    expect(screen.getAllByText(/2/i)).toHaveLength(3)
+    Object.keys(mockStatus).forEach((label) => {
+      const count = mockStatus[label]
+      expect(screen.getByText(capitalizeEveryWord(label))).toBeInTheDocument()
+      expect(screen.getByText(count)).toBeInTheDocument()
+    })
   })
 })

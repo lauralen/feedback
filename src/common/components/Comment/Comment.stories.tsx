@@ -1,6 +1,9 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { ComponentMeta, ComponentStory } from '@storybook/react'
-import { mockComment, mockCommentWithReplies } from 'mocks/productRequests'
+import {
+  mockComment,
+  mockCommentWithReplies,
+} from 'mocks/handlers/productRequests'
 import theme from 'theme'
 
 import Comment from './Comment'
