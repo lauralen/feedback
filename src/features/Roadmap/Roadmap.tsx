@@ -1,8 +1,16 @@
 import { FC } from 'react'
-import { Box, Flex } from '@chakra-ui/react'
+import { Box, Flex, Grid } from '@chakra-ui/react'
 
 import GoBackLink from 'common/components/GoBackLink'
 import AddFeedbackButton from 'features/feedbacks/components/AddFeedbackButton'
+
+import ColumnTItle from './components/ColumnTItle'
+
+const columnTitles = [
+  { title: 'Planned (2)', description: 'Ideas prioritized for research' },
+  { title: 'In-Progress (3)', description: 'Currently being developed' },
+  { title: 'Live (1)', description: 'Released features' },
+]
 
 const Roadmap: FC = () => {
   return (
@@ -11,6 +19,7 @@ const Roadmap: FC = () => {
         justify="space-between"
         align="center"
         mx={[0, 6]}
+        mb="6"
         p="6"
         borderRadius={['none', 'lg']}
         fontSize="lg"
@@ -24,6 +33,12 @@ const Roadmap: FC = () => {
         </Flex>
         <AddFeedbackButton />
       </Flex>
+
+      <Grid mx="6" templateColumns="repeat(3, 1fr)" gap="2">
+        {columnTitles.map(({ title, description }) => (
+          <ColumnTItle key={title} title={title} description={description} />
+        ))}
+      </Grid>
     </>
   )
 }
