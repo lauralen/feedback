@@ -5,13 +5,13 @@ import render from 'test/render'
 
 import { capitalizeEveryWord } from 'common/utils'
 
-import RoadmapCard from './RoadmapCard'
+import RoadmapWidget from './RoadmapWidget'
 
-describe('RoadmapCard', () => {
+describe('RoadmapWidget', () => {
   it('renders correctly', async () => {
     render(
       <BrowserRouter>
-        <RoadmapCard />
+        <RoadmapWidget />
       </BrowserRouter>
     )
 

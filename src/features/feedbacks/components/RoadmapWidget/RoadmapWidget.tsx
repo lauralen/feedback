@@ -14,7 +14,7 @@ const statusColors = {
   live: 'blue.50',
 }
 
-const RoadmapCard: FC = () => {
+const RoadmapWidget: FC = () => {
   const [status, setStatus] = useState<Status>('loading')
   const [data, setData] = useState<RoadmapStatus>()
 
@@ -89,4 +89,4 @@ const RoadmapCard: FC = () => {
   )
 }
 
-export default RoadmapCard
+export default RoadmapWidget
