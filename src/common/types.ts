@@ -33,3 +33,7 @@ export type Feedback = {
   description: string
   comments?: Comment[]
 }
+
+export type RoadmapFeedback = Feedback & {
+  status: RoadmapState
+}

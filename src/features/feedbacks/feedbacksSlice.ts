@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'app/store'
 
-import { Feedback, Status } from 'common/types'
+import { Feedback, RoadmapFeedback, Status } from 'common/types'
 
 import { fetchRequests } from './api'
 import { CategoryFilter, SortBy } from './types'
@@ -89,6 +89,12 @@ export const getRequests = (state: RootState) => {
         (a, b) => (a.comments?.length ?? 0) - (b.comments?.length ?? 0)
       )
   }
+}
+
+export const getRoadmapRequests = (state: RootState): RoadmapFeedback[] => {
+  return state.feedbacks.requests.filter(
+    ({ status }) => status !== 'suggestion'
+  ) as RoadmapFeedback[]
 }
 
 export default feedbacksSlice.reducer

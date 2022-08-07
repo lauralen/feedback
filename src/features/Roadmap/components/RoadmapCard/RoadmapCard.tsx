@@ -5,15 +5,11 @@ import CommentsCount from 'common/components/FeedbackCard/components/CommentsCou
 import RequestStatus from 'common/components/RequestStatus'
 import Tag from 'common/components/Tag'
 import UpvoteButton from 'common/components/UpvoteButton'
-import { Feedback, RoadmapState } from 'common/types'
+import { RoadmapFeedback } from 'common/types'
 import { statusColors } from 'common/utils'
 
-export type RoadmapCardData = Feedback & {
-  status: RoadmapState
-}
-
 type Props = {
-  data: RoadmapCardData
+  data: RoadmapFeedback
 }
 
 const RoadmapCard: FC<Props> = ({ data }) => {

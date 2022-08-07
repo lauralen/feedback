@@ -4,10 +4,10 @@ import { useAppSelector } from 'app/hooks'
 
 import GoBackLink from 'common/components/GoBackLink'
 import AddFeedbackButton from 'features/feedbacks/components/AddFeedbackButton'
+import { getRoadmapRequests } from 'features/feedbacks/feedbacksSlice'
 
 import ColumnTitle from './components/ColumnTitle'
 import RoadmapCard from './components/RoadmapCard'
-import { RoadmapCardData } from './components/RoadmapCard/RoadmapCard'
 
 const columnTitles = [
   { title: 'Planned (2)', description: 'Ideas prioritized for research' },
@@ -16,7 +16,7 @@ const columnTitles = [
 ]
 
 const Roadmap: FC = () => {
-  const { requests } = useAppSelector((state) => state.feedbacks)
+  const requests = useAppSelector(getRoadmapRequests)
 
   return (
     <>
@@ -49,13 +49,9 @@ const Roadmap: FC = () => {
         {columnTitles.map(({ title, description }) => (
           <ColumnTitle key={title} title={title} description={description} />
         ))}
-        {requests.map((data) => {
-          if (data.status !== 'suggestion') {
-            return <RoadmapCard key={data.id} data={data as RoadmapCardData} />
-          } else {
-            return undefined
-          }
-        })}
+        {requests.map((data) => (
+          <RoadmapCard key={data.id} data={data} />
+        ))}
       </Grid>
     </>
   )
