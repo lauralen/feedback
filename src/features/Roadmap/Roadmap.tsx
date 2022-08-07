@@ -12,22 +12,18 @@ import RoadmapCard from './components/RoadmapCard'
 
 const columnTitles: {
   status: RoadmapState
-  title: string
   description: string
 }[] = [
   {
     status: 'planned',
-    title: 'Planned (2)',
     description: 'Ideas prioritized for research',
   },
   {
     status: 'in-progress',
-    title: 'In-Progress (3)',
     description: 'Currently being developed',
   },
   {
     status: 'live',
-    title: 'Live (1)',
     description: 'Released features',
   },
 ]
@@ -65,8 +61,13 @@ const Roadmap: FC = () => {
         columnGap="3"
         rowGap="4"
       >
-        {columnTitles.map(({ status, title, description }) => (
-          <ColumnTitle key={status} title={title} description={description} />
+        {columnTitles.map(({ status, description }) => (
+          <ColumnTitle
+            key={status}
+            title={status}
+            count={requests[status].count}
+            description={description}
+          />
         ))}
         {columnTitles.map(({ status }) => (
           <GridItem
@@ -76,7 +77,7 @@ const Roadmap: FC = () => {
             flexDirection="column"
             gap={4}
           >
-            {requests[status].map((data) => (
+            {requests[status].requests.map((data) => (
               <RoadmapCard key={data.id} data={data} />
             ))}
           </GridItem>

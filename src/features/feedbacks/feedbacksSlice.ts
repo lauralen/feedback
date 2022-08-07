@@ -6,8 +6,6 @@ import { Feedback, RoadmapFeedback, RoadmapState, Status } from 'common/types'
 import { fetchRequests } from './api'
 import { CategoryFilter, SortBy } from './types'
 
-type RoadmapRequests = Record<RoadmapState, RoadmapFeedback[]>
-
 export interface FeedbacksState {
   requests: Feedback[]
   status: Status
@@ -92,21 +90,30 @@ export const getRequests = (state: RootState) => {
       )
   }
 }
+type RoadmapRequests = Record<
+  RoadmapState,
+  { requests: RoadmapFeedback[]; count: number }
+>
 
 export const getRoadmapRequests = (state: RootState): RoadmapRequests => {
   const { requests } = state.feedbacks
 
   const result: RoadmapRequests = {
-    planned: [],
-    'in-progress': [],
-    live: [],
+    planned: { requests: [], count: 0 },
+    'in-progress': { requests: [], count: 0 },
+    live: { requests: [], count: 0 },
   }
 
   requests.length &&
     requests
       .filter(({ status }) => status !== 'suggestion')
       .forEach((request) => {
-        result[request.status] = [...result[request.status], request]
+        result[request.status].requests = [
+          ...result[request.status].requests,
+          request,
+        ]
+
+        result[request.status].count = result[request.status].requests.length
       })
 
   return result
