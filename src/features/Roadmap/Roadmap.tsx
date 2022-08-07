@@ -1,18 +1,35 @@
 import { FC } from 'react'
-import { Box, Flex, Grid } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem } from '@chakra-ui/react'
 import { useAppSelector } from 'app/hooks'
 
 import GoBackLink from 'common/components/GoBackLink'
+import { RoadmapState } from 'common/types'
 import AddFeedbackButton from 'features/feedbacks/components/AddFeedbackButton'
 import { getRoadmapRequests } from 'features/feedbacks/feedbacksSlice'
 
 import ColumnTitle from './components/ColumnTitle'
 import RoadmapCard from './components/RoadmapCard'
 
-const columnTitles = [
-  { title: 'Planned (2)', description: 'Ideas prioritized for research' },
-  { title: 'In-Progress (3)', description: 'Currently being developed' },
-  { title: 'Live (1)', description: 'Released features' },
+const columnTitles: {
+  status: RoadmapState
+  title: string
+  description: string
+}[] = [
+  {
+    status: 'planned',
+    title: 'Planned (2)',
+    description: 'Ideas prioritized for research',
+  },
+  {
+    status: 'in-progress',
+    title: 'In-Progress (3)',
+    description: 'Currently being developed',
+  },
+  {
+    status: 'live',
+    title: 'Live (1)',
+    description: 'Released features',
+  },
 ]
 
 const Roadmap: FC = () => {
@@ -43,14 +60,26 @@ const Roadmap: FC = () => {
         mx="6"
         pb="14"
         templateColumns="repeat(3, 1fr)"
+        templateAreas={`"title title title"
+                        "planned in-progress live"`}
         columnGap="3"
         rowGap="4"
       >
-        {columnTitles.map(({ title, description }) => (
-          <ColumnTitle key={title} title={title} description={description} />
+        {columnTitles.map(({ status, title, description }) => (
+          <ColumnTitle key={status} title={title} description={description} />
         ))}
-        {requests.map((data) => (
-          <RoadmapCard key={data.id} data={data} />
+        {columnTitles.map(({ status }) => (
+          <GridItem
+            key={status}
+            area={status}
+            display="flex"
+            flexDirection="column"
+            gap={4}
+          >
+            {requests[status].map((data) => (
+              <RoadmapCard key={data.id} data={data} />
+            ))}
+          </GridItem>
         ))}
       </Grid>
     </>

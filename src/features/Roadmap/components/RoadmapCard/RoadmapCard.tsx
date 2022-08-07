@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Box, Flex, GridItem } from '@chakra-ui/react'
+import { Box, Flex } from '@chakra-ui/react'
 
 import CommentsCount from 'common/components/FeedbackCard/components/CommentsCount'
 import RequestStatus from 'common/components/RequestStatus'
@@ -17,7 +17,7 @@ const RoadmapCard: FC<Props> = ({ data }) => {
   const commentsCount = comments?.length ?? 0
 
   return (
-    <GridItem
+    <Box
       px="5"
       py="6"
       fontSize="sm"
@@ -40,7 +40,7 @@ const RoadmapCard: FC<Props> = ({ data }) => {
         <UpvoteButton upvotes={upvotes} />
         <CommentsCount>{commentsCount}</CommentsCount>
       </Flex>
-    </GridItem>
+    </Box>
   )
 }
 

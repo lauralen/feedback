@@ -1,10 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'app/store'
 
-import { Feedback, RoadmapFeedback, Status } from 'common/types'
+import { Feedback, RoadmapFeedback, RoadmapState, Status } from 'common/types'
 
 import { fetchRequests } from './api'
 import { CategoryFilter, SortBy } from './types'
+
+type RoadmapRequests = Record<RoadmapState, RoadmapFeedback[]>
 
 export interface FeedbacksState {
   requests: Feedback[]
@@ -91,10 +93,23 @@ export const getRequests = (state: RootState) => {
   }
 }
 
-export const getRoadmapRequests = (state: RootState): RoadmapFeedback[] => {
-  return state.feedbacks.requests.filter(
-    ({ status }) => status !== 'suggestion'
-  ) as RoadmapFeedback[]
+export const getRoadmapRequests = (state: RootState): RoadmapRequests => {
+  const { requests } = state.feedbacks
+
+  const result: RoadmapRequests = {
+    planned: [],
+    'in-progress': [],
+    live: [],
+  }
+
+  requests.length &&
+    requests
+      .filter(({ status }) => status !== 'suggestion')
+      .forEach((request) => {
+        result[request.status] = [...result[request.status], request]
+      })
+
+  return result
 }
 
 export default feedbacksSlice.reducer
