@@ -1,11 +1,13 @@
 import { FC } from 'react'
 import { Box, Flex, Grid } from '@chakra-ui/react'
+import { useAppSelector } from 'app/hooks'
 
 import GoBackLink from 'common/components/GoBackLink'
 import AddFeedbackButton from 'features/feedbacks/components/AddFeedbackButton'
 
-import ColumnTItle from './components/ColumnTItle'
+import ColumnTitle from './components/ColumnTitle'
 import RoadmapCard from './components/RoadmapCard'
+import { RoadmapCardData } from './components/RoadmapCard/RoadmapCard'
 
 const columnTitles = [
   { title: 'Planned (2)', description: 'Ideas prioritized for research' },
@@ -14,6 +16,8 @@ const columnTitles = [
 ]
 
 const Roadmap: FC = () => {
+  const { requests } = useAppSelector((state) => state.feedbacks)
+
   return (
     <>
       <Flex
@@ -35,11 +39,23 @@ const Roadmap: FC = () => {
         <AddFeedbackButton />
       </Flex>
 
-      <Grid mx="6" templateColumns="repeat(3, 1fr)" columnGap="2" rowGap="4">
+      <Grid
+        mx="6"
+        pb="14"
+        templateColumns="repeat(3, 1fr)"
+        columnGap="3"
+        rowGap="4"
+      >
         {columnTitles.map(({ title, description }) => (
-          <ColumnTItle key={title} title={title} description={description} />
+          <ColumnTitle key={title} title={title} description={description} />
         ))}
-        <RoadmapCard />
+        {requests.map((data) => {
+          if (data.status !== 'suggestion') {
+            return <RoadmapCard key={data.id} data={data as RoadmapCardData} />
+          } else {
+            return undefined
+          }
+        })}
       </Grid>
     </>
   )

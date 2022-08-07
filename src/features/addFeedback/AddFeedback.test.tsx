@@ -102,5 +102,5 @@ describe('AddFeedback', () => {
     await waitFor(() =>
       expect(ui.emptyInputError.query()).not.toBeInTheDocument()
     )
-  }, 30000)
+  }, 40000)
 })

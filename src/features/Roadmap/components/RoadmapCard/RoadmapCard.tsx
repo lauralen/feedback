@@ -5,33 +5,44 @@ import CommentsCount from 'common/components/FeedbackCard/components/CommentsCou
 import RequestStatus from 'common/components/RequestStatus'
 import Tag from 'common/components/Tag'
 import UpvoteButton from 'common/components/UpvoteButton'
+import { Feedback, RoadmapState } from 'common/types'
+import { statusColors } from 'common/utils'
 
-// type Props = {}
+export type RoadmapCardData = Feedback & {
+  status: RoadmapState
+}
 
-// const RoadmapCard: FC<Props> = () => {
-const RoadmapCard: FC = () => {
+type Props = {
+  data: RoadmapCardData
+}
+
+const RoadmapCard: FC<Props> = ({ data }) => {
+  const { status, title, description, category, comments, upvotes } = data
+  const commentsCount = comments?.length ?? 0
+
   return (
     <GridItem
       px="5"
       py="6"
       fontSize="sm"
       bgColor="white"
-      borderTop="6px solid coral"
+      borderTop="6px solid"
+      borderColor={statusColors[status]}
       borderRadius="4"
     >
-      <RequestStatus value="live" />
-      <Box mb="2" textColor="blueGray.100" fontWeight="bold">
-        More comprehensive reports
+      <RequestStatus value={status} />
+      <Box mt="3" mb="2" textColor="blueGray.100" fontWeight="bold">
+        {title}
       </Box>
       <Box mb="6" textColor="blueGray.50">
-        It would be great to see a more detailed breakdown of solutions.
+        {description}
       </Box>
       <Tag mb="4" textTransform="capitalize">
-        Feature
+        {category}
       </Tag>
       <Flex justify="space-between">
-        <UpvoteButton upvotes={123} />
-        <CommentsCount>2</CommentsCount>
+        <UpvoteButton upvotes={upvotes} />
+        <CommentsCount>{commentsCount}</CommentsCount>
       </Flex>
     </GridItem>
   )
