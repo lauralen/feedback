@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Box, Flex, GridItem } from '@chakra-ui/react'
 
 import CommentsCount from 'common/components/FeedbackCard/components/CommentsCount'
+import RequestStatus from 'common/components/RequestStatus'
 import Tag from 'common/components/Tag'
 import UpvoteButton from 'common/components/UpvoteButton'
 
@@ -18,7 +19,7 @@ const RoadmapCard: FC = () => {
       borderTop="6px solid coral"
       borderRadius="4"
     >
-      <Box>Planned</Box>
+      <RequestStatus value="live" />
       <Box mb="2" textColor="blueGray.100" fontWeight="bold">
         More comprehensive reports
       </Box>

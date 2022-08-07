@@ -1,6 +1,6 @@
 import { rest } from 'msw'
 
-import { RoadmapStatus } from 'features/feedbacks/components/RoadmapWidget/interfaces'
+import { RoadmapStatus } from 'common/types'
 
 const { REACT_APP_API_ENDPOINT } = process.env
 

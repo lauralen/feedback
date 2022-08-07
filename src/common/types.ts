@@ -1,6 +1,9 @@
 export type Status = 'idle' | 'loading' | 'failed'
 export type Category = 'enhancement' | 'feature' | 'bug' | 'UI' | 'UX'
 export type State = 'suggestion' | 'planned' | 'in-progress' | 'live'
+export type RoadmapState = Exclude<State, 'suggestion'>
+
+export type RoadmapStatus = Record<RoadmapState, number>
 
 type CommentBase = {
   content: string
