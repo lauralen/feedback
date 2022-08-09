@@ -1,12 +1,20 @@
 import { FC } from 'react'
-import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
+import {
+  DragDropContext,
+  Draggable,
+  Droppable,
+  DropResult,
+} from 'react-beautiful-dnd'
 import { Box, Flex, Grid, GridItem } from '@chakra-ui/react'
-import { useAppSelector } from 'app/hooks'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
 
 import GoBackLink from 'common/components/GoBackLink'
-import { RoadmapState } from 'common/types'
+import { RoadmapState, State } from 'common/types'
 import AddFeedbackButton from 'features/feedbacks/components/AddFeedbackButton'
-import { getRoadmapRequests } from 'features/feedbacks/feedbacksSlice'
+import {
+  changeRequestStatus,
+  getRoadmapRequests,
+} from 'features/feedbacks/feedbacksSlice'
 
 import ColumnTitle from './components/ColumnTitle'
 import RoadmapCard from './components/RoadmapCard'
@@ -30,10 +38,20 @@ const columnTitles: {
 ]
 
 const Roadmap: FC = () => {
+  const dispatch = useAppDispatch()
   const requests = useAppSelector(getRoadmapRequests)
 
-  const onDragEnd = () => {
-    console.log('on drag end')
+  const onDragEnd = (result: DropResult) => {
+    const { draggableId, destination } = result
+
+    if (destination?.droppableId) {
+      dispatch(
+        changeRequestStatus({
+          requestId: Number(draggableId),
+          status: destination.droppableId as State,
+        })
+      )
+    }
   }
 
   return (

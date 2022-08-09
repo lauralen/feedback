@@ -29,7 +29,7 @@ export type Feedback = {
   title: string
   category: Category
   upvotes: number
-  status: 'suggestion' | 'planned' | 'in-progress' | 'live'
+  status: State
   description: string
   comments?: Comment[]
 }

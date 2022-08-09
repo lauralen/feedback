@@ -1,7 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from 'app/store'
 
-import { Feedback, RoadmapFeedback, RoadmapState, Status } from 'common/types'
+import {
+  Feedback,
+  RoadmapFeedback,
+  RoadmapState,
+  State,
+  Status,
+} from 'common/types'
 
 import { fetchRequests } from './api'
 import { CategoryFilter, SortBy } from './types'
@@ -45,6 +51,18 @@ export const feedbacksSlice = createSlice({
           : request
       )
     },
+    changeRequestStatus(
+      state,
+      action: PayloadAction<{ requestId: number; status: State }>
+    ) {
+      state.requests = state.requests.map((request) => {
+        if (request.id === action.payload.requestId) {
+          return { ...request, status: action.payload.status }
+        } else {
+          return request
+        }
+      })
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -64,8 +82,12 @@ export const feedbacksSlice = createSlice({
   },
 })
 
-export const { setSortBy, selectCategoryFilter, upvoteRequest } =
-  feedbacksSlice.actions
+export const {
+  setSortBy,
+  selectCategoryFilter,
+  upvoteRequest,
+  changeRequestStatus,
+} = feedbacksSlice.actions
 
 export const getRequests = (state: RootState) => {
   const { requests: stateRequests, sortBy, categoryFilter } = state.feedbacks
