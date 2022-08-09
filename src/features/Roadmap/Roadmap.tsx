@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import { Box, Flex, Grid, GridItem } from '@chakra-ui/react'
 import { useAppSelector } from 'app/hooks'
 
@@ -31,6 +32,10 @@ const columnTitles: {
 const Roadmap: FC = () => {
   const requests = useAppSelector(getRoadmapRequests)
 
+  const onDragEnd = () => {
+    console.log('on drag end')
+  }
+
   return (
     <>
       <Flex
@@ -52,37 +57,61 @@ const Roadmap: FC = () => {
         <AddFeedbackButton />
       </Flex>
 
-      <Grid
-        mx="6"
-        pb="14"
-        templateColumns="repeat(3, 1fr)"
-        templateAreas={`"title title title"
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Grid
+          mx="6"
+          pb="14"
+          templateColumns="repeat(3, 1fr)"
+          templateAreas={`"title title title"
                         "planned in-progress live"`}
-        columnGap="3"
-        rowGap="4"
-      >
-        {columnTitles.map(({ status, description }) => (
-          <ColumnTitle
-            key={status}
-            title={status}
-            count={requests[status].count}
-            description={description}
-          />
-        ))}
-        {columnTitles.map(({ status }) => (
-          <GridItem
-            key={status}
-            area={status}
-            display="flex"
-            flexDirection="column"
-            gap={4}
-          >
-            {requests[status].requests.map((data) => (
-              <RoadmapCard key={data.id} data={data} />
-            ))}
-          </GridItem>
-        ))}
-      </Grid>
+          columnGap="3"
+          rowGap="4"
+        >
+          {columnTitles.map(({ status, description }) => (
+            <ColumnTitle
+              key={status}
+              title={status}
+              count={requests[status].count}
+              description={description}
+            />
+          ))}
+          {columnTitles.map(({ status }) => (
+            <Droppable key={status} droppableId={status}>
+              {(provided) => (
+                <>
+                  <GridItem
+                    area={status}
+                    display="flex"
+                    flexDirection="column"
+                    gap={4}
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                  >
+                    {requests[status].requests.map((data) => (
+                      <Draggable
+                        key={data.id}
+                        draggableId={String(data.id)}
+                        index={data.id}
+                      >
+                        {(provided) => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <RoadmapCard data={data} />
+                          </div>
+                        )}
+                      </Draggable>
+                    ))}
+                  </GridItem>
+                  {provided.placeholder}
+                </>
+              )}
+            </Droppable>
+          ))}
+        </Grid>
+      </DragDropContext>
     </>
   )
 }
