@@ -1,7 +1,8 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import {
   DragDropContext,
   Draggable,
+  DragStart,
   Droppable,
   DropResult,
 } from 'react-beautiful-dnd'
@@ -41,6 +42,12 @@ const Roadmap: FC = () => {
   const dispatch = useAppDispatch()
   const requests = useAppSelector(getRoadmapRequests)
 
+  const [draggedCardStatus, setDraggedCardStatus] = useState<RoadmapState>()
+
+  const onDragStart = (initial: DragStart) => {
+    setDraggedCardStatus(initial.source.droppableId as RoadmapState)
+  }
+
   const onDragEnd = (result: DropResult) => {
     const { draggableId, destination } = result
 
@@ -75,7 +82,7 @@ const Roadmap: FC = () => {
         <AddFeedbackButton />
       </Flex>
 
-      <DragDropContext onDragEnd={onDragEnd}>
+      <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
         <Grid
           mx="6"
           pb="14"
@@ -94,7 +101,11 @@ const Roadmap: FC = () => {
             />
           ))}
           {columnTitles.map(({ status }) => (
-            <Droppable key={status} droppableId={status}>
+            <Droppable
+              key={status}
+              droppableId={status}
+              isDropDisabled={status === draggedCardStatus}
+            >
               {(provided) => (
                 <>
                   <GridItem
@@ -105,11 +116,11 @@ const Roadmap: FC = () => {
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
-                    {requests[status].requests.map((data) => (
+                    {requests[status].requests.map((data, index) => (
                       <Draggable
                         key={data.id}
                         draggableId={String(data.id)}
-                        index={data.id}
+                        index={index}
                       >
                         {(provided) => (
                           <div
