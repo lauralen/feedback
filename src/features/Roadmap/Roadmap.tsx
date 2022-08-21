@@ -123,7 +123,7 @@ const Roadmap: FC = () => {
               droppableId={status}
               isDropDisabled={status === draggedCardStatus}
             >
-              {(provided) => (
+              {(provided, snapshot) => (
                 <>
                   <GridItem
                     area={status}
@@ -131,6 +131,13 @@ const Roadmap: FC = () => {
                     flexDirection="column"
                     gap={4}
                     ref={provided.innerRef}
+                    padding={snapshot.isDraggingOver ? 2 : 0}
+                    border={snapshot.isDraggingOver ? '2px' : ''}
+                    borderColor="purple"
+                    borderRadius="md"
+                    borderStyle="dashed"
+                    transition="all 0.2s"
+                    opacity={snapshot.isDraggingOver ? '50%' : ''}
                     {...provided.droppableProps}
                   >
                     {requests[status].requests.map((data, index) => (
