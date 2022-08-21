@@ -38,6 +38,23 @@ const columnTitles: {
   },
 ]
 
+// fix reordering
+// https://github.com/atlassian/react-beautiful-dnd/issues/374
+const getStyle = (style, snapshot) => {
+  if (!snapshot.isDragging) {
+    return {}
+  }
+  if (!snapshot.isDropAnimating) {
+    return style
+  }
+
+  return {
+    ...style,
+    // cannot be 0, but make it super tiny
+    transitionDuration: `0.001s`,
+  }
+}
+
 const Roadmap: FC = () => {
   const dispatch = useAppDispatch()
   const requests = useAppSelector(getRoadmapRequests)
@@ -122,11 +139,15 @@ const Roadmap: FC = () => {
                         draggableId={String(data.id)}
                         index={index}
                       >
-                        {(provided) => (
+                        {(provided, snapshot) => (
                           <div
                             ref={provided.innerRef}
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
+                            style={getStyle(
+                              provided.draggableProps.style,
+                              snapshot
+                            )}
                           >
                             <RoadmapCard data={data} />
                           </div>
