@@ -112,6 +112,7 @@ export const getRequests = (state: RootState) => {
       )
   }
 }
+
 type RoadmapRequests = Record<
   RoadmapState,
   { requests: RoadmapFeedback[]; count: number }
@@ -139,6 +140,20 @@ export const getRoadmapRequests = (state: RootState): RoadmapRequests => {
       })
 
   return result
+}
+
+type UiStatus = Status | 'noData'
+
+export const getUiStatus = (state: RootState): UiStatus => {
+  const { requests, status } = state.feedbacks
+
+  const hasData = requests.length
+
+  if (status !== 'failed' && status !== 'loading' && !hasData) {
+    return 'noData'
+  } else {
+    return status
+  }
 }
 
 export default feedbacksSlice.reducer

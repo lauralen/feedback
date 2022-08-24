@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom'
 import { screen, waitForElementToBeRemoved } from '@testing-library/react'
+import { generateStore } from 'app/store'
 import { mockRequests, REQUESTS_ENDPOINT } from 'mocks/handlers/productRequests'
 import { server } from 'mocks/server'
 import { rest } from 'msw'
@@ -7,12 +8,7 @@ import render from 'test/render'
 import * as tlsScreen from 'testing-library-selector'
 
 import Feedbacks from './Feedbacks'
-
-const Component = (
-  <BrowserRouter>
-    <Feedbacks />
-  </BrowserRouter>
-)
+import { fetchRequestsAsync } from './feedbacksSlice'
 
 const ui = {
   spinner: tlsScreen.byText(/loading.../i),
@@ -26,7 +22,15 @@ const ui = {
 
 describe('Feedbacks', () => {
   it('renders a list of requests', async () => {
-    render(Component)
+    const store = generateStore()
+    store.dispatch(fetchRequestsAsync())
+
+    render(
+      <BrowserRouter>
+        <Feedbacks />
+      </BrowserRouter>,
+      store
+    )
 
     await waitForElementToBeRemoved(() => ui.spinner.get())
 
@@ -47,7 +51,15 @@ describe('Feedbacks', () => {
     server.use(
       rest.get(REQUESTS_ENDPOINT, (req, res, ctx) => res(ctx.json([])))
     )
-    render(Component)
+    const store = generateStore()
+    store.dispatch(fetchRequestsAsync())
+
+    render(
+      <BrowserRouter>
+        <Feedbacks />
+      </BrowserRouter>,
+      store
+    )
 
     await waitForElementToBeRemoved(() => ui.spinner.get())
 
@@ -64,7 +76,15 @@ describe('Feedbacks', () => {
     server.use(
       rest.get(REQUESTS_ENDPOINT, (req, res, ctx) => res(ctx.status(500)))
     )
-    render(Component)
+    const store = generateStore()
+    store.dispatch(fetchRequestsAsync())
+
+    render(
+      <BrowserRouter>
+        <Feedbacks />
+      </BrowserRouter>,
+      store
+    )
 
     await waitForElementToBeRemoved(() => ui.spinner.get())
 

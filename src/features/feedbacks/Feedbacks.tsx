@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   Box,
   Center,
@@ -20,7 +20,6 @@ import H1 from 'common/components/H1'
 import H2 from 'common/components/H2'
 import Select from 'common/components/Select'
 import Spinner from 'common/components/Spinner'
-import { Status } from 'common/types'
 import { capitalizeEveryWord } from 'common/utils'
 
 import AddFeedbackButton from './components/AddFeedbackButton'
@@ -28,8 +27,8 @@ import CategoryFilter from './components/CategoryFilter'
 import NoData from './components/NoData'
 import RoadmapWidget from './components/RoadmapWidget'
 import {
-  fetchRequestsAsync,
   getRequests,
+  getUiStatus,
   setSortBy,
   upvoteRequest,
 } from './feedbacksSlice'
@@ -37,7 +36,6 @@ import { SortBy } from './types'
 
 const BG_GRADIENT = 'linear(to-tr, #28A7ED, #E84D70)'
 
-type UiStatus = Status | 'noData'
 const sortOptions: SortBy[] = [
   'most upvotes',
   'least upvotes',
@@ -47,24 +45,11 @@ const sortOptions: SortBy[] = [
 
 function Feedbacks() {
   const dispatch = useAppDispatch()
-  const { status, sortBy } = useAppSelector((state) => state.feedbacks)
+  const { sortBy } = useAppSelector((state) => state.feedbacks)
   const requests = useAppSelector(getRequests)
+  const uiStatus = useAppSelector(getUiStatus)
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false)
-
-  useEffect(() => {
-    dispatch(fetchRequestsAsync())
-  }, [dispatch])
-
-  const getUiStatus = (): UiStatus => {
-    const hasData = requests.length
-
-    if (status !== 'failed' && status !== 'loading' && !hasData) {
-      return 'noData'
-    } else {
-      return status
-    }
-  }
 
   const onUpvoteClick = (id) => {
     dispatch(upvoteRequest(id))
@@ -197,7 +182,7 @@ function Feedbacks() {
               </List>
             ),
             noData: <NoData />,
-          }[getUiStatus()]
+          }[uiStatus]
         }
       </Box>
     </>

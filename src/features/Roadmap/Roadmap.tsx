@@ -6,15 +6,17 @@ import {
   Droppable,
   DropResult,
 } from 'react-beautiful-dnd'
-import { Box, Flex, Grid, GridItem } from '@chakra-ui/react'
+import { Box, Center, Flex, Grid, GridItem } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 
 import GoBackLink from 'common/components/GoBackLink'
+import Spinner from 'common/components/Spinner'
 import { RoadmapState, State } from 'common/types'
 import AddFeedbackButton from 'features/feedbacks/components/AddFeedbackButton'
 import {
   changeRequestStatus,
   getRoadmapRequests,
+  getUiStatus,
 } from 'features/feedbacks/feedbacksSlice'
 
 import ColumnTitle from './components/ColumnTitle'
@@ -58,6 +60,7 @@ const getStyle = (style, snapshot) => {
 const Roadmap: FC = () => {
   const dispatch = useAppDispatch()
   const requests = useAppSelector(getRoadmapRequests)
+  const uiStatus = useAppSelector(getUiStatus)
 
   const [draggedCardStatus, setDraggedCardStatus] = useState<RoadmapState>()
 
@@ -99,76 +102,89 @@ const Roadmap: FC = () => {
         <AddFeedbackButton />
       </Flex>
 
-      <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
-        <Grid
-          mx="6"
-          pb="14"
-          templateColumns="repeat(3, 1fr)"
-          templateAreas={`"title title title"
-                        "planned in-progress live"`}
-          columnGap="3"
-          rowGap="4"
-        >
-          {columnTitles.map(({ status, description }) => (
-            <ColumnTitle
-              key={status}
-              title={status}
-              count={requests[status].count}
-              description={description}
-            />
-          ))}
-          {columnTitles.map(({ status }) => (
-            <Droppable
-              key={status}
-              droppableId={status}
-              isDropDisabled={status === draggedCardStatus}
-            >
-              {(provided, snapshot) => (
-                <>
-                  <GridItem
-                    area={status}
-                    display="flex"
-                    flexDirection="column"
-                    gap={4}
-                    ref={provided.innerRef}
-                    padding={snapshot.isDraggingOver ? 2 : 0}
-                    border={snapshot.isDraggingOver ? '2px' : ''}
-                    borderColor="purple"
-                    borderRadius="md"
-                    borderStyle="dashed"
-                    transition="all 0.2s"
-                    opacity={snapshot.isDraggingOver ? '50%' : ''}
-                    {...provided.droppableProps}
+      {
+        {
+          loading: (
+            <Center>
+              <Spinner />
+            </Center>
+          ),
+          failed: 'Error',
+          idle: (
+            <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+              <Grid
+                mx="6"
+                pb="14"
+                templateColumns="repeat(3, 1fr)"
+                templateAreas={`"title title title"
+                            "planned in-progress live"`}
+                columnGap="3"
+                rowGap="4"
+              >
+                {columnTitles.map(({ status, description }) => (
+                  <ColumnTitle
+                    key={status}
+                    title={status}
+                    count={requests[status].count}
+                    description={description}
+                  />
+                ))}
+                {columnTitles.map(({ status }) => (
+                  <Droppable
+                    key={status}
+                    droppableId={status}
+                    isDropDisabled={status === draggedCardStatus}
                   >
-                    {requests[status].requests.map((data, index) => (
-                      <Draggable
-                        key={data.id}
-                        draggableId={String(data.id)}
-                        index={index}
-                      >
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={getStyle(
-                              provided.draggableProps.style,
-                              snapshot
-                            )}
-                          >
-                            <RoadmapCard data={data} />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                  </GridItem>
-                  {provided.placeholder}
-                </>
-              )}
-            </Droppable>
-          ))}
-        </Grid>
-      </DragDropContext>
+                    {(provided, snapshot) => (
+                      <>
+                        <GridItem
+                          area={status}
+                          display="flex"
+                          flexDirection="column"
+                          gap={4}
+                          ref={provided.innerRef}
+                          padding={snapshot.isDraggingOver ? 2 : 0}
+                          border={snapshot.isDraggingOver ? '2px' : ''}
+                          borderColor="purple"
+                          borderRadius="md"
+                          borderStyle="dashed"
+                          transition="all 0.2s"
+                          opacity={snapshot.isDraggingOver ? '50%' : ''}
+                          {...provided.droppableProps}
+                        >
+                          {requests[status].requests.map((data, index) => (
+                            <Draggable
+                              key={data.id}
+                              draggableId={String(data.id)}
+                              index={index}
+                            >
+                              {(provided, snapshot) => (
+                                <div
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  style={getStyle(
+                                    provided.draggableProps.style,
+                                    snapshot
+                                  )}
+                                >
+                                  <RoadmapCard data={data} />
+                                </div>
+                              )}
+                            </Draggable>
+                          ))}
+                        </GridItem>
+                        {provided.placeholder}
+                      </>
+                    )}
+                  </Droppable>
+                ))}
+              </Grid>
+            </DragDropContext>
+          ),
+          noData: <div>No requests created yet</div>,
+        }[uiStatus]
+      }
     </>
   )
 }
