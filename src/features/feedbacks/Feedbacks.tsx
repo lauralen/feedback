@@ -24,7 +24,7 @@ import { capitalizeEveryWord } from 'common/utils'
 
 import AddFeedbackButton from './components/AddFeedbackButton'
 import CategoryFilter from './components/CategoryFilter'
-import NoData from './components/NoData'
+import NoData from './components/NoData/NoData'
 import RoadmapWidget from './components/RoadmapWidget'
 import {
   getRequests,
