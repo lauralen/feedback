@@ -14,8 +14,6 @@ const ui = {
   headerTitle: tlsScreen.byText(/roadmap/i),
   addFeedbackButton: tlsScreen.byRole('button', { name: /add feedback/i }),
   goBackButton: tlsScreen.byRole('button', { name: /go back/i }),
-  // spinner: tlsScreen.byText(/loading.../i),
-  // error: tlsScreen.byText(/error/i),
 }
 
 describe('Roadmap', () => {
