@@ -9,7 +9,7 @@ import {
 import { Box, Center, Flex, Grid, GridItem } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 
-import GoBackLink from 'common/components/GoBackLink'
+import GoBackButton from 'common/components/GoBackButton'
 import Spinner from 'common/components/Spinner'
 import { RoadmapState, State } from 'common/types'
 import AddFeedbackButton from 'features/feedbacks/components/AddFeedbackButton'
@@ -96,7 +96,7 @@ const Roadmap: FC = () => {
         bg="blueGray.200"
       >
         <Flex direction="column">
-          <GoBackLink textColor="white" />
+          <GoBackButton textColor="white" />
           <Box mt="2">Roadmap</Box>
         </Flex>
         <AddFeedbackButton />

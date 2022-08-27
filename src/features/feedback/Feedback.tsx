@@ -7,7 +7,7 @@ import Card from 'common/components/Card'
 import Comment from 'common/components/Comment'
 import CommentForm from 'common/components/CommentForm'
 import FeedbackCard from 'common/components/FeedbackCard'
-import GoBackLink from 'common/components/GoBackLink'
+import GoBackButton from 'common/components/GoBackButton'
 import H1 from 'common/components/H1'
 import Spinner from 'common/components/Spinner'
 import { Feedback, Status } from 'common/types'
@@ -54,7 +54,7 @@ function Feedbacks() {
     <>
       <Box py="8" px="6">
         <Flex mb="6" align="center" justify="space-between">
-          <GoBackLink />
+          <GoBackButton />
           <Link to="edit">
             <Button variant="blue" isDisabled={status !== 'idle'}>
               Edit Feedback

@@ -13,7 +13,7 @@ const Element = (
 const ui = {
   headerTitle: tlsScreen.byText(/roadmap/i),
   addFeedbackButton: tlsScreen.byRole('button', { name: /add feedback/i }),
-  goBackLink: tlsScreen.byRole('link', { name: /go back/i }),
+  goBackButton: tlsScreen.byRole('button', { name: /go back/i }),
   // spinner: tlsScreen.byText(/loading.../i),
   // error: tlsScreen.byText(/error/i),
 }
@@ -24,6 +24,6 @@ describe('Roadmap', () => {
 
     expect(ui.headerTitle.get()).toBeInTheDocument()
     expect(ui.addFeedbackButton.get()).toBeInTheDocument()
-    expect(ui.goBackLink.get()).toHaveAttribute('href', '/')
+    expect(ui.goBackButton.get()).toBeEnabled()
   })
 })

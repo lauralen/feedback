@@ -27,7 +27,7 @@ const Element = (
 const ui = {
   spinner: tlsScreen.byText(/loading.../i),
   error: tlsScreen.byText(/error/i),
-  goBackLink: tlsScreen.byRole('link', { name: /go back/i }),
+  goBackButton: tlsScreen.byRole('button', { name: /go back/i }),
   editFeedbackButton: tlsScreen.byRole('button', { name: /edit feedback/i }),
   commentInput: tlsScreen.byRole('textbox', {
     name: /comment/i,
@@ -46,7 +46,7 @@ describe('Feedback', () => {
     await waitForElementToBeRemoved(() => ui.spinner.get())
     expect(ui.error.query()).not.toBeInTheDocument()
 
-    expect(ui.goBackLink.get()).toHaveAttribute('href', '/')
+    expect(ui.goBackButton.get()).toBeEnabled()
     expect(ui.editFeedbackButton.get()).toBeInTheDocument()
 
     // feedback card

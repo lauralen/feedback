@@ -28,7 +28,7 @@ const Element = (
 
 const ui = {
   loader: tlsScreen.byText(/loading/i),
-  goBackLink: tlsScreen.byRole('link', { name: /go back/i }),
+  goBackButton: tlsScreen.byRole('button', { name: /go back/i }),
   title: tlsScreen.byText(`Editing ${DATA.title}`),
   titleInput: tlsScreen.byRole('textbox', {
     name: /feedback title/i,
@@ -58,8 +58,7 @@ describe('Edit Feedback', () => {
     render(Element)
     await waitForElementToBeRemoved(ui.loader.get())
 
-    expect(ui.goBackLink.get()).toHaveAttribute('href', previousRoute)
-
+    expect(ui.goBackButton.get()).toBeEnabled()
     expect(ui.title.get()).toBeInTheDocument()
     expect(ui.titleInput.get()).toBeEnabled()
     expect(ui.categorySelect.get()).toBeEnabled()

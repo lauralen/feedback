@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Button as ButtonCU, ButtonProps } from '@chakra-ui/react'
 
-type Props = ButtonProps & {
+export type Props = ButtonProps & {
   variant?: 'primary' | 'secondary' | 'blue' | 'transparent' | 'danger'
 }
 

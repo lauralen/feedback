@@ -9,7 +9,7 @@ import Card from 'common/components/Card'
 import FormControl from 'common/components/FormControl'
 import FormHelper from 'common/components/FormHelper'
 import FormLabel from 'common/components/FormLabel'
-import GoBackLink from 'common/components/GoBackLink'
+import GoBackButton from 'common/components/GoBackButton'
 import H1 from 'common/components/H1'
 import Input from 'common/components/Input'
 import Select from 'common/components/Select'
@@ -99,7 +99,7 @@ function Edit() {
 
   return (
     <Box py="8" px="6">
-      <GoBackLink to={previousUrl} />
+      <GoBackButton />
       <Card icon={<EditIcon />} mt="12" pb="10" px="6">
         {
           {

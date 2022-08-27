@@ -16,7 +16,7 @@ const Element = (
 )
 
 const ui = {
-  goBackLink: tlsScreen.byRole('link', { name: /go back/i }),
+  goBackButton: tlsScreen.byRole('button', { name: /go back/i }),
   title: tlsScreen.byText(/Create New Feedback/i),
   titleInput: tlsScreen.byRole('textbox', {
     name: /feedback title/i,
@@ -42,8 +42,7 @@ describe('AddFeedback', () => {
   it('renders correctly', () => {
     render(Element)
 
-    expect(ui.goBackLink.get()).toHaveAttribute('href', '/')
-
+    expect(ui.goBackButton.get()).toBeEnabled()
     expect(ui.title.get()).toBeInTheDocument()
     expect(ui.titleInput.get()).toBeEnabled()
     expect(ui.categorySelect.get()).toBeEnabled()
