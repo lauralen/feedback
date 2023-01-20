@@ -2,10 +2,11 @@
 import { rest } from 'msw'
 
 import { Comment, Feedback } from 'common/types'
+import { ResponseFeedback } from 'features/feedbacks/types'
 
 const { REACT_APP_API_ENDPOINT } = process.env
 
-export const REQUESTS_ENDPOINT = `${REACT_APP_API_ENDPOINT}requests`
+export const REQUESTS_ENDPOINT = `${REACT_APP_API_ENDPOINT}feedbacks`
 export const ADD_REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-request`
 export const REQUEST_ENDPOINT = `${REACT_APP_API_ENDPOINT}request/*`
 export const ADD_COMMENT_ENDPOINT = `${REACT_APP_API_ENDPOINT}add-comment`
@@ -58,9 +59,9 @@ export const mockCommentWithReplies: Comment = {
   ],
 }
 
-export const mockRequests: Feedback[] = [
+export const mockRequests: ResponseFeedback[] = [
   {
-    id: 1,
+    _id: 1,
     title: 'Add tags for solutions',
     category: 'enhancement',
     upvotes: 112,
@@ -82,7 +83,7 @@ export const mockRequests: Feedback[] = [
     ],
   },
   {
-    id: 2,
+    _id: 2,
     title: 'Add a dark theme option',
     category: 'feature',
     upvotes: 99,
@@ -105,7 +106,7 @@ export const mockRequests: Feedback[] = [
     ],
   },
   {
-    id: 3,
+    _id: 3,
     title: 'Q&A within the challenge hubs',
     category: 'feature',
     upvotes: 65,
@@ -126,7 +127,7 @@ export const mockRequests: Feedback[] = [
     ],
   },
   {
-    id: 4,
+    _id: 4,
     title: 'Add image/video upload to feedback',
     category: 'enhancement',
     upvotes: 51,
@@ -158,7 +159,7 @@ export const mockRequests: Feedback[] = [
     ],
   },
   {
-    id: 5,
+    _id: 5,
     title: 'Ability to follow others',
     category: 'feature',
     upvotes: 42,
@@ -203,7 +204,7 @@ export const mockRequests: Feedback[] = [
     ],
   },
   {
-    id: 6,
+    _id: 6,
     title: 'Preview images not loading',
     category: 'bug',
     upvotes: 3,
@@ -212,7 +213,7 @@ export const mockRequests: Feedback[] = [
       'Challenge preview images are missing when you apply a filter.',
   },
   {
-    id: 7,
+    _id: 7,
     title: 'More comprehensive reports',
     category: 'feature',
     upvotes: 123,
@@ -245,7 +246,7 @@ export const mockRequests: Feedback[] = [
     ],
   },
   {
-    id: 8,
+    _id: 8,
     title: 'Learning paths',
     category: 'feature',
     upvotes: 28,
@@ -267,7 +268,7 @@ export const mockRequests: Feedback[] = [
     ],
   },
   {
-    id: 9,
+    _id: 9,
     title: 'One-click portfolio generation',
     category: 'feature',
     upvotes: 62,
@@ -289,7 +290,7 @@ export const mockRequests: Feedback[] = [
     ],
   },
   {
-    id: 10,
+    _id: 10,
     title: 'Bookmark challenges',
     category: 'feature',
     upvotes: 31,
@@ -310,7 +311,7 @@ export const mockRequests: Feedback[] = [
     ],
   },
   {
-    id: 11,
+    _id: 11,
     title: 'Animated solution screenshots',
     category: 'bug',
     upvotes: 9,
@@ -319,7 +320,7 @@ export const mockRequests: Feedback[] = [
       'Screenshots of solutions with animations don’t display correctly.',
   },
   {
-    id: 12,
+    _id: 12,
     title: 'Add micro-interactions',
     category: 'enhancement',
     upvotes: 71,
@@ -356,7 +357,7 @@ export const mockRequests: Feedback[] = [
 
 const handlers = [
   rest.get<Feedback[]>(REQUESTS_ENDPOINT, (req, res, ctx) =>
-    res(ctx.json(mockRequests))
+    res(ctx.json({ data: mockRequests, count: mockRequests.length }))
   ),
   rest.post(ADD_REQUEST_ENDPOINT, (req, res, ctx) => res(ctx.status(200))),
   rest.get<Feedback>(REQUEST_ENDPOINT, (req, res, ctx) => {

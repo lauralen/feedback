@@ -1,5 +1,8 @@
+import { FeedbacksResponse } from './types'
+
 const { REACT_APP_API_ENDPOINT } = process.env
 
-export async function fetchRequests() {
-  return await fetch(`${REACT_APP_API_ENDPOINT}requests`)
+export const fetchRequests = async (): Promise<FeedbacksResponse> => {
+  const response = await fetch(`${REACT_APP_API_ENDPOINT}feedbacks`)
+  return response.json()
 }

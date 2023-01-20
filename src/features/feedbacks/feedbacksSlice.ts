@@ -10,7 +10,12 @@ import {
 } from 'common/types'
 
 import { fetchRequests } from './api'
-import { CategoryFilter, SortBy } from './types'
+import {
+  CategoryFilter,
+  FeedbacksResponse,
+  ResponseFeedback,
+  SortBy,
+} from './types'
 
 export interface FeedbacksState {
   requests: Feedback[]
@@ -26,13 +31,16 @@ const initialState: FeedbacksState = {
   categoryFilter: 'all',
 }
 
-export const fetchRequestsAsync = createAsyncThunk<Feedback[]>(
+export const fetchRequestsAsync = createAsyncThunk<FeedbacksResponse>(
   'countries/fetchRequests',
-  async () => {
-    const res = await fetchRequests()
-    return await res.json()
-  }
+  async () => await fetchRequests()
 )
+
+export const formatFeedbacks = (data: ResponseFeedback[]): Feedback[] =>
+  data.map(({ _id: id, ...rest }) => ({
+    id,
+    ...rest,
+  }))
 
 export const feedbacksSlice = createSlice({
   name: 'feedbacks',
@@ -71,8 +79,8 @@ export const feedbacksSlice = createSlice({
       })
       .addCase(
         fetchRequestsAsync.fulfilled,
-        (state, action: PayloadAction<Feedback[]>) => {
-          state.requests = action.payload
+        (state, action: PayloadAction<FeedbacksResponse>) => {
+          state.requests = formatFeedbacks(action.payload.data)
           state.status = 'idle'
         }
       )

@@ -2,11 +2,13 @@ import { screen } from '@testing-library/react'
 import { mockRequests } from 'mocks/handlers/productRequests'
 import render from 'test/render'
 
+import { formatFeedbacks } from 'features/feedbacks/feedbacksSlice'
+
 import FeedbackCard from './FeedbackCard'
 
 describe('FeedbackCard', () => {
   it('renders correctly', async () => {
-    const data = mockRequests[0]
+    const data = formatFeedbacks(mockRequests)[0]
     render(<FeedbackCard data={data} onUpvoteClick={jest.fn} />)
 
     expect(

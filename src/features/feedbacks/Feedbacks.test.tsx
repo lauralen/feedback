@@ -49,7 +49,9 @@ describe('Feedbacks', () => {
 
   it('renders no data message', async () => {
     server.use(
-      rest.get(REQUESTS_ENDPOINT, (req, res, ctx) => res(ctx.json([])))
+      rest.get(REQUESTS_ENDPOINT, (req, res, ctx) =>
+        res(ctx.json({ data: [] }))
+      )
     )
     const store = generateStore()
     store.dispatch(fetchRequestsAsync())
